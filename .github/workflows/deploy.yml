@@ -1,0 +1,77 @@
+name: 🚀 Deploy to MIKAEL Server
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:   # 수동 실행도 가능
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: 🔌 SSH → 서버 배포
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 43.200.203.218
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          timeout: 30s
+          command_timeout: 18m
+          script: |
+            set -e
+
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "  MIKAEL Solutions Auto Deploy"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+            # ── 1. 코드 업데이트 ──────────────────
+            echo "▶ [1/4] 코드 업데이트..."
+            cd /home/ubuntu/osiris
+
+            if [ ! -d .git ]; then
+              echo "  git 초기화 (최초 1회)"
+              git init
+              git remote add origin https://github.com/Yoon-robin/MIKAEL-Solutions.git
+            fi
+
+            git fetch origin master
+            git reset --hard origin/master
+            echo "  ✓ $(git log -1 --format='%h %s')"
+
+            # ── 2. Docker 이미지 빌드 ─────────────
+            echo "▶ [2/4] Docker 이미지 빌드 (3~5분)..."
+            docker build -t osiris:local . 2>&1 | tail -5
+            echo "  ✓ 빌드 완료"
+
+            # ── 3. 컨테이너 재시작 ───────────────
+            echo "▶ [3/4] 컨테이너 재시작..."
+            docker stop osiris 2>/dev/null || true
+            docker rm   osiris 2>/dev/null || true
+
+            # .env 있으면 포함
+            ENV_ARG=""
+            [ -f .env ] && ENV_ARG="--env-file .env"
+
+            docker run -d --name osiris --restart unless-stopped \
+              -p 127.0.0.1:3000:3000 \
+              -e NODE_ENV=production \
+              -e PORT=3000 \
+              -e HOSTNAME=0.0.0.0 \
+              --add-host=host.docker.internal:host-gateway \
+              $ENV_ARG \
+              osiris:local
+            echo "  ✓ 컨테이너 시작"
+
+            # ── 4. 헬스 체크 ─────────────────────
+            echo "▶ [4/4] 헬스 체크..."
+            sleep 8
+            HEALTH=$(curl -sf --max-time 10 http://127.0.0.1:3000/api/health 2>/dev/null || echo '{"status":"pending"}')
+            echo "  $HEALTH"
+
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "  ✅ 배포 완료"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
