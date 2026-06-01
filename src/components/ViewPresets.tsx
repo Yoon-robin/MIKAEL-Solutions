@@ -29,11 +29,11 @@ export default function ViewPresets({ onNavigate }: ViewPresetsProps) {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.7, duration: 0.6 }}
-      className="glass-panel p-2.5 pointer-events-auto"
+      className="border border-white/[0.08] bg-[#0E1018] rounded-xl p-3 pointer-events-auto"
     >
-      <div className="flex items-center gap-2 mb-2">
+      <div className="flex items-center gap-2 mb-2.5">
         <Globe className="w-3.5 h-3.5 text-[var(--gold-primary)]" />
-        <span className="hud-text text-[12px] text-[var(--text-primary)] tracking-widest">지역 프리셋</span>
+        <span className="text-[13px] font-semibold text-[var(--text-heading)]">지역 프리셋</span>
         <Badge variant="danger" className="text-[7px] px-1.5 py-0 font-mono ml-auto">
           {PRESETS.filter(p => (p as any).hot).length} 주의
         </Badge>

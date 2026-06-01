@@ -120,17 +120,17 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
 
   return (
     <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="pointer-events-auto">
-      <Card className="glass-panel mikael-glow border-[var(--border-primary)] bg-[var(--card)] py-0 gap-0 overflow-hidden">
-        <CardHeader className="px-3 py-3">
+      <Card className="border-white/[0.08] bg-[#0E1018] py-0 gap-0 overflow-hidden">
+        <CardHeader className="px-4 py-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="relative rounded-md border border-[var(--border-primary)] bg-[var(--hover-accent)] p-1.5">
+            <div className="flex items-center gap-2.5">
+              <div className="relative rounded-md border border-white/[0.08] bg-white/[0.04] p-1.5">
                 <Eye className="w-3.5 h-3.5 text-[var(--gold-primary)]" />
                 <div className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[var(--alert-green)] animate-mikael-pulse" />
               </div>
               <div>
-                <CardTitle className="hud-text text-[12px] text-[var(--text-primary)] tracking-widest">데이터 레이어</CardTitle>
-                <p className="mt-0.5 text-[9px] font-mono text-[var(--text-muted)]">레이어 제어 시스템</p>
+                <CardTitle className="text-[13px] font-semibold text-[var(--text-heading)]">데이터 레이어</CardTitle>
+                <p className="mt-0.5 text-[11px] text-[var(--text-muted)]">레이어 제어 시스템</p>
               </div>
             </div>
             <div className="flex items-center gap-1.5">
@@ -141,7 +141,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
             </div>
           </div>
         </CardHeader>
-        <Separator className="bg-[var(--border-secondary)]" />
+        <Separator className="bg-white/[0.06]" />
         <CardContent className="px-3 py-2">
           {/* Groups */}
           <div className="space-y-1">

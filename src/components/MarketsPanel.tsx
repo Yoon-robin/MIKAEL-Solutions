@@ -50,15 +50,15 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
       transition={{ delay: 0.6, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="glass-panel mikael-glow border-[var(--border-primary)] bg-[var(--card)] py-0 gap-0 overflow-hidden">
-        <CardHeader className="px-3 py-3">
+      <Card className="border-white/[0.08] bg-[#0E1018] py-0 gap-0 overflow-hidden">
+        <CardHeader className="px-4 py-3">
           <button
             onClick={() => setExpanded(!expanded)}
             className="flex items-center justify-between w-full"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2.5">
               <BarChart3 className="w-3.5 h-3.5 text-[var(--gold-primary)]" />
-              <CardTitle className="hud-text text-[12px] text-[var(--text-primary)] tracking-widest">
+              <CardTitle className="text-[13px] font-semibold text-[var(--text-heading)]">
                 시장·정보
               </CardTitle>
               <Badge variant="success" className="text-[7px] px-1.5 py-0 font-mono">실시간</Badge>
@@ -81,7 +81,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <Separator className="bg-[var(--border-secondary)]" />
+              <Separator className="bg-white/[0.06]" />
               <CardContent className="px-3 py-2">
                 {/* 우주기상 배너 */}
                 {spaceWeather && (

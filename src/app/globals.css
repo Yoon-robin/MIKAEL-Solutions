@@ -3,28 +3,28 @@
 
 /* ═══════════════════════════════════════════════════════════════
    MIKAEL Solutions — Global Intelligence Platform Design System
-   Egyptian Mythology × Dark Ops × Glassmorphism
+   shadcn/ui dark × OSINT Command Console × Gold Accent
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
   /* ── Core Palette ── */
   --bg-void: #04040A;
-  --bg-primary: #06060C;
-  --bg-secondary: #0C0E1A;
-  --bg-tertiary: #121628;
-  --bg-panel: rgba(8, 10, 20, 0.88);
-  --bg-panel-solid: #0C0E1A;
+  --bg-primary: #08090F;
+  --bg-secondary: #0E1018;
+  --bg-tertiary: #141728;
+  --bg-panel: #0E1018;
+  --bg-panel-solid: #0E1018;
 
-  /* ── Gold Accent (Eye of Horus) ── */
+  /* ── Gold Accent ── */
   --gold-primary: #D4AF37;
   --gold-light: #F0D060;
   --gold-dim: #8B7325;
-  --gold-glow: rgba(212, 175, 55, 0.3);
+  --gold-glow: rgba(212, 175, 55, 0.25);
 
   /* ── Cyan Intel Stream ── */
   --cyan-primary: #00E5FF;
   --cyan-dim: #006B7A;
-  --cyan-glow: rgba(0, 229, 255, 0.15);
+  --cyan-glow: rgba(0, 229, 255, 0.12);
 
   /* ── Alert Colors ── */
   --alert-red: #FF3D3D;
@@ -32,26 +32,28 @@
   --alert-green: #00E676;
   --alert-blue: #448AFF;
 
-  /* ── Borders ── */
-  --border-primary: rgba(212, 175, 55, 0.15);
-  --border-secondary: rgba(212, 175, 55, 0.08);
-  --border-active: rgba(212, 175, 55, 0.4);
+  /* ── Borders — neutral white, gold only for active states ── */
+  --border-neutral: rgba(255, 255, 255, 0.08);
+  --border-neutral-hover: rgba(255, 255, 255, 0.13);
+  --border-primary: rgba(212, 175, 55, 0.22);
+  --border-secondary: rgba(255, 255, 255, 0.05);
+  --border-active: rgba(212, 175, 55, 0.45);
   --border-cyan: rgba(0, 229, 255, 0.2);
 
   /* ── Text ── */
   --text-primary: #E8E6E0;
-  --text-secondary: #9B978E;
-  --text-muted: #5C5A54;
+  --text-secondary: #8A8880;
+  --text-muted: #4A4845;
   --text-heading: #F5F0E0;
   --text-gold: #D4AF37;
   --text-cyan: #00E5FF;
 
   /* ── Scrollbar ── */
-  --scrollbar-thumb: rgba(212, 175, 55, 0.2);
-  --scrollbar-thumb-hover: rgba(212, 175, 55, 0.4);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.08);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.14);
 
   /* ── Hover ── */
-  --hover-accent: rgba(212, 175, 55, 0.08);
+  --hover-accent: rgba(255, 255, 255, 0.04);
 
   /* ── Fonts ── */
   --font-hud: 'JetBrains Mono', 'Courier New', monospace;
@@ -61,25 +63,25 @@
   --panel-gap: 12px;
   --edge-pad: 20px;
 
-  /* ── shadcn/ui compatible tokens, mapped to MIKAEL dark-ops palette ── */
-  --radius: 0.85rem;
+  /* ── shadcn/ui tokens — solid dark, neutral borders ── */
+  --radius: 0.75rem;
   --background: var(--bg-void);
   --foreground: var(--text-primary);
-  --card: rgba(8, 10, 20, 0.88);
+  --card: #0E1018;
   --card-foreground: var(--text-primary);
-  --popover: var(--bg-panel-solid);
+  --popover: #111420;
   --popover-foreground: var(--text-primary);
   --primary: var(--gold-primary);
   --primary-foreground: #07070d;
-  --secondary: #141827;
+  --secondary: #151820;
   --secondary-foreground: var(--text-primary);
-  --muted: #111521;
+  --muted: #111420;
   --muted-foreground: var(--text-secondary);
-  --accent: rgba(212, 175, 55, 0.12);
-  --accent-foreground: var(--gold-light);
+  --accent: rgba(255, 255, 255, 0.05);
+  --accent-foreground: var(--text-primary);
   --destructive: var(--alert-red);
-  --border: var(--border-primary);
-  --input: rgba(212, 175, 55, 0.16);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.06);
   --ring: var(--gold-primary);
 }
 
@@ -133,60 +135,64 @@ html, body {
 .styled-scrollbar { scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) transparent; }
 
 /* ═══════════════════════════════════════════════════════════════
-   GLASS PANELS — Premium depth with micro-reflections
+   SOLID DARK PANELS — shadcn-style, no glassmorphism
    ═══════════════════════════════════════════════════════════════ */
 .glass-panel {
-  background: var(--bg-panel);
-  backdrop-filter: blur(24px) saturate(1.3);
-  -webkit-backdrop-filter: blur(24px) saturate(1.3);
-  border: 1px solid var(--border-primary);
-  border-radius: 14px;
-  box-shadow:
-    0 4px 30px rgba(0, 0, 0, 0.5),
-    0 1px 0 rgba(212, 175, 55, 0.06) inset,
-    0 -1px 0 rgba(0, 0, 0, 0.3) inset;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: #0E1018;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.2s ease;
 }
 
 .glass-panel:hover {
-  border-color: rgba(212, 175, 55, 0.22);
+  border-color: rgba(255, 255, 255, 0.13);
 }
 
 .glass-panel-sm {
-  background: var(--bg-panel);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-secondary);
-  border-radius: 10px;
+  background: #111420;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
 }
 
-/* ── Mikael Gold Glow ── */
+/* ── Subtle depth shadow (replaces gold glow) ── */
 .mikael-glow {
-  box-shadow:
-    0 0 20px rgba(212, 175, 55, 0.12),
-    0 0 60px rgba(212, 175, 55, 0.06),
-    0 4px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .mikael-glow-cyan {
-  box-shadow:
-    0 0 20px rgba(0, 229, 255, 0.1),
-    0 0 60px rgba(0, 229, 255, 0.05);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.08);
 }
 
 /* ═══════════════════════════════════════════════════════════════
    HUD TEXT SYSTEM
    ═══════════════════════════════════════════════════════════════ */
 .hud-text {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Mono HUD — only for numeric/coordinate/code data */
+.hud-text-mono {
   font-family: var(--font-hud);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .hud-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+}
+
+/* Mono label — for short technical codes in the HUD bar */
+.hud-label-mono {
   font-family: var(--font-hud);
   font-size: 7px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-muted);
 }

@@ -709,10 +709,10 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
   if (isFullScreen) {
     return (
       <div className="fixed inset-4 z-[999] glass-panel bg-[#0a0a09]/95 backdrop-blur-2xl border border-[var(--cyan-primary)]/40 rounded-xl flex flex-col overflow-hidden shadow-2xl shadow-[var(--cyan-primary)]/20">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-secondary)] bg-[#111]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-[#0A0C14]">
           <div className="flex items-center gap-3">
             <Radar className="w-5 h-5 text-[var(--cyan-primary)]" />
-            <span className="hud-text text-[16px] text-[var(--text-primary)]">MIKAEL 정찰 도구함</span>
+            <span className="text-[16px] font-semibold text-[var(--text-heading)]">MIKAEL 정찰 도구함</span>
             <Badge variant="cyan" className="text-[9px] px-1.5 py-0 font-mono">전체 화면</Badge>
             <Badge variant="gold" className="text-[8px] px-1.5 py-0 font-mono tracking-[0.15em]">{TABS.length}개 모듈</Badge>
           </div>
@@ -731,11 +731,11 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
   }
 
   return (
-    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="glass-panel flex flex-col overflow-hidden pointer-events-auto">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-transparent hover:bg-[var(--hover-accent)] transition-colors">
-        <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-2 flex-1">
+    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="border border-white/[0.08] bg-[#0E1018] rounded-xl flex flex-col overflow-hidden pointer-events-auto">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06] hover:bg-white/[0.03] transition-colors">
+        <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-2.5 flex-1">
           <Radar className="w-3.5 h-3.5 text-[var(--cyan-primary)]" />
-          <span className="hud-text text-[12px] text-[var(--text-primary)]">정찰 도구함</span>
+          <span className="text-[13px] font-semibold text-[var(--text-heading)]">정찰 도구함</span>
           <Badge variant="cyan" className="text-[7px] px-1.5 py-0 font-mono">{TABS.length}개 도구</Badge>
         </button>
         <div className="flex items-center gap-3">

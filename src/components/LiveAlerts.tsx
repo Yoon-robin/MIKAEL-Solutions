@@ -118,14 +118,14 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
       transition={{ delay: 0.5, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="glass-panel mikael-glow border-[var(--border-primary)] bg-[var(--card)] py-0 gap-0 overflow-hidden">
+      <Card className="border-white/[0.08] bg-[#0E1018] py-0 gap-0 overflow-hidden">
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center justify-between px-3 py-2.5 w-full hover:bg-[var(--hover-accent)] transition-colors"
+        className="flex items-center justify-between px-4 py-3 w-full hover:bg-white/[0.03] transition-colors"
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <Radio className="w-3.5 h-3.5 text-[#FF4081]" />
-          <span className="hud-text text-[10px] text-[var(--text-primary)]">실시간 경보</span>
+          <span className="text-[13px] font-semibold text-[var(--text-heading)]">실시간 경보</span>
           <Badge variant="warning" className="text-[7px] px-1.5 py-0 font-mono">
             {alerts.filter(a => a.type === 'news' || a.type === 'quake').length}
           </Badge>
@@ -148,7 +148,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <Separator className="bg-[var(--border-secondary)]" />
+            <Separator className="bg-white/[0.06]" />
             <div className="px-2 pb-2 pt-2">
             {/* 필터 */}
             <div className="flex gap-1 mb-2">

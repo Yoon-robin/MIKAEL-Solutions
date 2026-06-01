@@ -57,15 +57,15 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
       transition={{ delay: 0.6, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="glass-panel mikael-glow border-[var(--border-primary)] bg-[var(--card)] py-0 gap-0 overflow-hidden">
+      <Card className="border-white/[0.08] bg-[#0E1018] py-0 gap-0 overflow-hidden">
         {/* 헤더 — 클릭 시 접기/펼치기 */}
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center justify-between px-4 py-3 w-full hover:bg-[var(--hover-accent)] transition-colors"
+          className="flex items-center justify-between px-4 py-3 w-full hover:bg-white/[0.03] transition-colors"
         >
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <Newspaper className="w-3.5 h-3.5 text-[var(--gold-primary)]" />
-            <span className="hud-text text-[12px] text-[var(--text-primary)]">정보 피드</span>
+            <span className="text-[13px] font-semibold text-[var(--text-heading)]">정보 피드</span>
             <Badge variant="cyan" className="text-[8px] px-1.5 py-0 font-mono">{news.length}</Badge>
             {news.some((n: any) => n.risk_score >= 8) && (
               <Badge variant="danger" className="text-[7px] px-1.5 py-0 font-mono">경보</Badge>
@@ -88,7 +88,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
               exit={{ height: 0 }}
               className="overflow-hidden"
             >
-              <Separator className="bg-[var(--border-secondary)]" />
+              <Separator className="bg-white/[0.06]" />
               <div className="max-h-[400px] overflow-y-auto styled-scrollbar divide-y divide-[var(--border-secondary)]">
                 {news.length === 0 ? (
                   <div className="px-4 py-6 text-center">
