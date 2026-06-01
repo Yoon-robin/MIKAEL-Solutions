@@ -118,24 +118,24 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
       transition={{ delay: 0.5, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="border-white/[0.08] bg-[#0E1018] py-0 gap-0 overflow-hidden">
+      <Card className="border-[#27272A] bg-[#111113] py-0 gap-0 overflow-hidden rounded-lg">
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center justify-between px-4 py-3 w-full hover:bg-white/[0.03] transition-colors"
+        className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#18181B] transition-colors"
       >
         <div className="flex items-center gap-2.5">
-          <Radio className="w-3.5 h-3.5 text-[#FF4081]" />
-          <span className="text-[13px] font-semibold text-[var(--text-heading)]">실시간 경보</span>
-          <Badge variant="warning" className="text-[7px] px-1.5 py-0 font-mono">
+          <Radio className="w-4 h-4 text-[#FF4081]" />
+          <span className="text-[14px] font-semibold text-white tracking-tight">실시간 경보</span>
+          <Badge variant="warning" className="text-[10px] h-5 px-1.5 rounded font-medium">
             {alerts.filter(a => a.type === 'news' || a.type === 'quake').length}
           </Badge>
-          <Badge variant="cyan" className="text-[7px] px-1.5 py-0 font-mono">
+          <Badge variant="cyan" className="text-[10px] h-5 px-1.5 rounded font-medium">
             {BUILTIN_FEEDS.length}개 피드
           </Badge>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#FF4081] animate-mikael-pulse" />
-          {expanded ? <ChevronUp className="w-3.5 h-3.5 text-[var(--text-muted)]" /> : <ChevronDown className="w-3.5 h-3.5 text-[var(--text-muted)]" />}
+          <div className="w-1.5 h-1.5 rounded-full bg-[#FF4081]" />
+          {expanded ? <ChevronUp className="w-4 h-4 text-[#71717A]" /> : <ChevronDown className="w-4 h-4 text-[#71717A]" />}
         </div>
       </button>
 
@@ -148,7 +148,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <Separator className="bg-white/[0.06]" />
+            <Separator className="bg-[#27272A]" />
             <div className="px-2 pb-2 pt-2">
             {/* 필터 */}
             <div className="flex gap-1 mb-2">
@@ -156,7 +156,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-2 py-1 rounded text-[9px] font-mono tracking-wider transition-all ${filter === f ? 'bg-[var(--hover-accent)] text-[var(--text-primary)] border border-[var(--border-primary)]' : 'text-[var(--text-muted)] border border-transparent hover:text-[var(--text-secondary)]'}`}
+                  className={`px-2.5 py-1 rounded-md text-[12px] font-medium transition-colors ${filter === f ? 'bg-[#18181B] text-white' : 'text-[#71717A] hover:text-[#A1A1AA] hover:bg-[#18181B]'}`}
                 >
                   {{ all: '전체', news: '뉴스', quakes: '지진', feeds: '방송' }[f]}
                 </button>
@@ -190,7 +190,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5 mb-1">
                           <Icon className="w-3 h-3 flex-shrink-0" style={{ color: sevColor }} />
-                          <span className={`text-[10px] font-mono text-[var(--text-primary)] ${alert.type === 'news' ? 'line-clamp-4 leading-snug' : 'truncate leading-tight'}`}>
+                          <span className={`text-[13px] text-white font-medium ${alert.type === 'news' ? 'line-clamp-4 leading-snug' : 'truncate leading-tight'}`}>
                             {alert.description || alert.title}
                           </span>
                         </div>

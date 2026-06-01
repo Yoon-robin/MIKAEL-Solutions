@@ -731,20 +731,20 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
   }
 
   return (
-    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="border border-white/[0.08] bg-[#0E1018] rounded-xl flex flex-col overflow-hidden pointer-events-auto">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06] hover:bg-white/[0.03] transition-colors">
+    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="border border-[#27272A] bg-[#111113] rounded-lg flex flex-col overflow-hidden pointer-events-auto">
+      <div className="flex items-center justify-between px-4 py-3.5 border-b border-[#27272A] hover:bg-[#18181B] transition-colors">
         <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-2.5 flex-1">
-          <Radar className="w-3.5 h-3.5 text-[var(--cyan-primary)]" />
-          <span className="text-[13px] font-semibold text-[var(--text-heading)]">정찰 도구함</span>
-          <Badge variant="cyan" className="text-[7px] px-1.5 py-0 font-mono">{TABS.length}개 도구</Badge>
+          <Radar className="w-4 h-4 text-[var(--cyan-primary)]" />
+          <span className="text-[14px] font-semibold text-white tracking-tight">정찰 도구함</span>
+          <Badge variant="cyan" className="text-[10px] h-5 px-1.5 rounded font-medium">{TABS.length}개 도구</Badge>
         </button>
         <div className="flex items-center gap-3">
-          <button onClick={() => setIsFullScreen(true)} className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors" title="전체 화면">
-             <Maximize2 className="w-3.5 h-3.5" />
+          <button onClick={() => setIsFullScreen(true)} className="text-[#71717A] hover:text-white transition-colors" title="전체 화면">
+             <Maximize2 className="w-4 h-4" />
           </button>
-          <div className="w-1.5 h-1.5 rounded-full bg-[var(--cyan-primary)] animate-mikael-pulse" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[var(--cyan-primary)]" />
           <button onClick={() => setExpanded(!expanded)}>
-            {expanded ? <ChevronUp className="w-3.5 h-3.5 text-[var(--text-muted)]" /> : <ChevronDown className="w-3.5 h-3.5 text-[var(--text-muted)]" />}
+            {expanded ? <ChevronUp className="w-4 h-4 text-[#71717A]" /> : <ChevronDown className="w-4 h-4 text-[#71717A]" />}
           </button>
         </div>
       </div>

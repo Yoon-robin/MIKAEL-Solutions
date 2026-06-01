@@ -120,140 +120,117 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
 
   return (
     <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="pointer-events-auto">
-      <Card className="border-white/[0.08] bg-[#0E1018] py-0 gap-0 overflow-hidden">
-        <CardHeader className="px-4 py-3">
+      <Card className="border-[#27272A] bg-[#111113] py-0 gap-0 overflow-hidden rounded-lg">
+
+        {/* ── 패널 헤더 ── */}
+        <CardHeader className="px-4 py-3.5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="relative rounded-md border border-white/[0.08] bg-white/[0.04] p-1.5">
-                <Eye className="w-3.5 h-3.5 text-[var(--gold-primary)]" />
-                <div className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[var(--alert-green)] animate-mikael-pulse" />
+              <div className="relative">
+                <Eye className="w-4 h-4 text-[var(--gold-primary)]" />
+                <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[var(--alert-green)]" />
               </div>
-              <div>
-                <CardTitle className="text-[13px] font-semibold text-[var(--text-heading)]">데이터 레이어</CardTitle>
-                <p className="mt-0.5 text-[11px] text-[var(--text-muted)]">레이어 제어 시스템</p>
-              </div>
+              <CardTitle className="text-[14px] font-semibold text-white tracking-tight">
+                데이터 레이어
+              </CardTitle>
             </div>
             <div className="flex items-center gap-1.5">
-              <Badge variant={activeCount > 10 ? 'danger' : activeCount > 5 ? 'gold' : 'success'} className="text-[8px] px-1.5 py-0 font-mono">
+              <span className="text-xs text-[var(--text-muted)] tabular-nums font-medium">
                 {activeCount}/{ALL_LAYERS.length}
+              </span>
+              <Badge variant="success" className="text-[10px] h-5 px-1.5 rounded font-medium">
+                {totalEntities.toLocaleString()}
               </Badge>
-              <Badge variant="cyan" className="text-[7px] px-1.5 py-0 font-mono">{totalEntities.toLocaleString()}개</Badge>
             </div>
           </div>
         </CardHeader>
-        <Separator className="bg-white/[0.06]" />
-        <CardContent className="px-3 py-2">
-          {/* Groups */}
-          <div className="space-y-1">
-        {LAYER_GROUPS.map((group) => {
-          const isExpanded = expandedGroups[group.label];
-          const groupActiveCount = group.layers.filter(l => activeLayers[l.key]).length;
-          const allActive = groupActiveCount === group.layers.length;
-          const GroupIcon = group.icon;
 
-          return (
-            <div key={group.label}>
-              {/* Group Header */}
-              <div className="flex items-center gap-1.5">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => toggleGroup(group.label)}
-                  className="h-8 flex-1 justify-start gap-2 px-2 text-[var(--text-secondary)] hover:bg-white/[0.03] hover:text-[var(--text-primary)]"
-                >
-                  <GroupIcon className="w-3 h-3 flex-shrink-0" style={{ color: group.color }} />
-                  <span className="text-[9px] font-mono tracking-[0.15em] font-bold flex-1 text-left">{group.label}</span>
-                  <span className="text-[8px] font-mono tabular-nums" style={{ color: groupActiveCount > 0 ? group.color : 'var(--text-muted)' }}>
-                    {groupActiveCount}/{group.layers.length}
-                  </span>
-                  {isExpanded ? (
-                    <ChevronUp className="w-3 h-3 text-[var(--text-muted)]" />
-                  ) : (
-                    <ChevronDown className="w-3 h-3 text-[var(--text-muted)]" />
-                  )}
-                </Button>
-                {/* Toggle all in group */}
-                <Button
-                  type="button"
-                  variant="hud"
-                  size="icon-sm"
-                  onClick={() => toggleAllInGroup(group)}
-                  title={allActive ? '전체 끄기' : '전체 켜기'}
-                >
-                  {allActive ? (
-                    <ToggleRight className="w-3.5 h-3.5" style={{ color: group.color }} />
-                  ) : (
-                    <ToggleLeft className="w-3.5 h-3.5 text-[var(--text-muted)]" />
-                  )}
-                </Button>
-              </div>
+        <Separator className="bg-[#27272A]" />
 
-              {/* Layer items */}
-              <AnimatePresence>
-                {isExpanded && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="ml-2 pl-2 border-l border-[var(--border-secondary)]/40 space-y-px">
-                      {group.layers.map((layer) => {
-                        const Icon = layer.icon;
-                        const isActive = activeLayers[layer.key];
-                        const count = getCount(layer.dataKey);
-                        return (
-                          <Button
-                            type="button"
-                            variant={isActive ? 'gold' : 'ghost'}
-                            size="sm"
-                            key={layer.key}
-                            onClick={() => toggle(layer.key)}
-                            className={`w-full h-8 justify-start gap-2.5 px-2 py-[5px] text-left font-normal transition-all duration-200 group ${
-                              isActive
-                                ? 'border-white/[0.06] bg-white/[0.04]'
-                                : 'border border-transparent text-[var(--text-muted)] hover:bg-white/[0.02]'
-                            }`}
-                          >
-                            {/* Color dot indicator */}
-                            <div
-                              className={`w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-300 ${isActive ? 'scale-100' : 'scale-50 opacity-30'}`}
-                              style={{
-                                backgroundColor: layer.color,
-                                boxShadow: isActive ? `0 0 6px ${layer.color}60` : 'none',
-                              }}
-                            />
-                            <Icon
-                              className="w-3.5 h-3.5 flex-shrink-0 transition-colors duration-200"
-                              style={{ color: isActive ? layer.color : 'var(--text-muted)' }}
-                            />
-                            <span className={`text-[11px] font-mono tracking-wide flex-1 text-left transition-colors duration-200 ${
-                              isActive ? 'text-[var(--text-primary)]' : 'text-[var(--text-muted)] group-hover:text-[var(--text-secondary)]'
-                            }`}>
-                              {layer.label}
-                            </span>
-                            {count !== null && (
-                              <span
-                                className="text-[9px] font-mono tabular-nums font-bold transition-colors duration-200"
-                                style={{ color: isActive ? layer.color : 'var(--text-muted)' }}
+        <CardContent className="px-2 py-2">
+          <div className="space-y-0.5">
+            {LAYER_GROUPS.map((group) => {
+              const isExpanded = expandedGroups[group.label];
+              const groupActiveCount = group.layers.filter(l => activeLayers[l.key]).length;
+              const allActive = groupActiveCount === group.layers.length;
+              const GroupIcon = group.icon;
+
+              return (
+                <div key={group.label}>
+                  {/* ── 그룹 헤더 — Next.js 사이드바 섹션 스타일 ── */}
+                  <div className="flex items-center gap-1 px-1 py-0.5">
+                    <button
+                      type="button"
+                      onClick={() => toggleGroup(group.label)}
+                      className="flex items-center gap-2 flex-1 py-1.5 px-2 rounded-md hover:bg-[#18181B] transition-colors text-left group"
+                    >
+                      <GroupIcon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: group.color }} />
+                      <span className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-widest flex-1">
+                        {group.label}
+                      </span>
+                      <span className="text-[10px] tabular-nums text-[var(--text-muted)] mr-1">
+                        {groupActiveCount}/{group.layers.length}
+                      </span>
+                      {isExpanded
+                        ? <ChevronUp className="w-3 h-3 text-[var(--text-muted)]" />
+                        : <ChevronDown className="w-3 h-3 text-[var(--text-muted)]" />}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => toggleAllInGroup(group)}
+                      className="p-1 rounded hover:bg-[#18181B] transition-colors"
+                      title={allActive ? '전체 끄기' : '전체 켜기'}
+                    >
+                      {allActive
+                        ? <ToggleRight className="w-4 h-4" style={{ color: group.color }} />
+                        : <ToggleLeft className="w-4 h-4 text-[#3F3F46]" />}
+                    </button>
+                  </div>
+
+                  {/* ── 레이어 아이템 — Next.js 사이드바 리스트 ── */}
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.15 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="ml-3 pl-3 border-l border-[#27272A] space-y-px mb-1">
+                          {group.layers.map((layer) => {
+                            const Icon = layer.icon;
+                            const isActive = activeLayers[layer.key];
+                            const count = getCount(layer.dataKey);
+                            return (
+                              <button
+                                key={layer.key}
+                                type="button"
+                                onClick={() => toggle(layer.key)}
+                                className={`w-full flex items-center gap-2.5 px-2 py-2 rounded-md transition-colors text-left ${
+                                  isActive
+                                    ? 'bg-[#18181B] text-white'
+                                    : 'text-[var(--text-muted)] hover:bg-[#18181B] hover:text-[var(--text-secondary)]'
+                                }`}
                               >
-                                {count.toLocaleString()}
-                              </span>
-                            )}
-                            {/* Toggle switch */}
-                            <div className={`layer-toggle ${isActive ? 'active' : ''}`} />
-                          </Button>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          );
-        })}
+                                <Icon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: isActive ? layer.color : '#52525B' }} />
+                                <span className="text-[13px] flex-1 font-medium">{layer.label}</span>
+                                {count !== null && (
+                                  <span className="text-[11px] tabular-nums text-[#71717A]">
+                                    {count.toLocaleString()}
+                                  </span>
+                                )}
+                                <div className={`layer-toggle flex-shrink-0 ${isActive ? 'active' : ''}`} />
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </CardContent>
       </Card>

@@ -29,11 +29,11 @@ export default function ViewPresets({ onNavigate }: ViewPresetsProps) {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.7, duration: 0.6 }}
-      className="border border-white/[0.08] bg-[#0E1018] rounded-xl p-3 pointer-events-auto"
+      className="border border-[#27272A] bg-[#111113] rounded-lg p-3 pointer-events-auto"
     >
-      <div className="flex items-center gap-2 mb-2.5">
-        <Globe className="w-3.5 h-3.5 text-[var(--gold-primary)]" />
-        <span className="text-[13px] font-semibold text-[var(--text-heading)]">지역 프리셋</span>
+      <div className="flex items-center gap-2 mb-3">
+        <Globe className="w-4 h-4 text-[var(--gold-primary)]" />
+        <span className="text-[14px] font-semibold text-white tracking-tight">지역 프리셋</span>
         <Badge variant="danger" className="text-[7px] px-1.5 py-0 font-mono ml-auto">
           {PRESETS.filter(p => (p as any).hot).length} 주의
         </Badge>
@@ -43,7 +43,7 @@ export default function ViewPresets({ onNavigate }: ViewPresetsProps) {
           <button
             key={p.label}
             onClick={() => onNavigate(p.lat, p.lng, p.zoom)}
-            className={`flex items-center gap-1.5 px-2 py-1.5 rounded text-[10px] font-mono tracking-wider border border-transparent hover:border-[var(--border-primary)] hover:text-[var(--gold-primary)] transition-all hover:scale-[1.02] active:scale-[0.98] ${(p as any).hot ? 'text-[var(--alert-red)] hover:border-[var(--alert-red)]/30 hover:bg-[var(--alert-red)]/5' : 'text-[var(--text-muted)] hover:bg-[var(--hover-accent)]'}`}
+            className={`flex items-center gap-2 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors ${(p as any).hot ? 'text-[var(--alert-red)] hover:bg-[#18181B]' : 'text-[#A1A1AA] hover:bg-[#18181B] hover:text-white'}`}
           >
             <span className="text-[11px] flex-shrink-0">{p.icon}</span>
             <span>{p.label}</span>

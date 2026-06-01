@@ -57,25 +57,24 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
       transition={{ delay: 0.6, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="border-white/[0.08] bg-[#0E1018] py-0 gap-0 overflow-hidden">
-        {/* 헤더 — 클릭 시 접기/펼치기 */}
+      <Card className="border-[#27272A] bg-[#111113] py-0 gap-0 overflow-hidden rounded-lg">
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center justify-between px-4 py-3 w-full hover:bg-white/[0.03] transition-colors"
+          className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#18181B] transition-colors"
         >
           <div className="flex items-center gap-2.5">
-            <Newspaper className="w-3.5 h-3.5 text-[var(--gold-primary)]" />
-            <span className="text-[13px] font-semibold text-[var(--text-heading)]">정보 피드</span>
-            <Badge variant="cyan" className="text-[8px] px-1.5 py-0 font-mono">{news.length}</Badge>
+            <Newspaper className="w-4 h-4 text-[var(--gold-primary)]" />
+            <span className="text-[14px] font-semibold text-white tracking-tight">정보 피드</span>
+            <Badge variant="cyan" className="text-[10px] h-5 px-1.5 rounded font-medium">{news.length}</Badge>
             {news.some((n: any) => n.risk_score >= 8) && (
-              <Badge variant="danger" className="text-[7px] px-1.5 py-0 font-mono">경보</Badge>
+              <Badge variant="danger" className="text-[10px] h-5 px-1.5 rounded font-medium">경보</Badge>
             )}
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-[var(--alert-green)] animate-mikael-pulse" />
+            <div className="w-1.5 h-1.5 rounded-full bg-[var(--alert-green)]" />
             {expanded
-              ? <ChevronUp className="w-3 h-3 text-[var(--text-muted)]" />
-              : <ChevronDown className="w-3 h-3 text-[var(--text-muted)]" />}
+              ? <ChevronUp className="w-4 h-4 text-[#71717A]" />
+              : <ChevronDown className="w-4 h-4 text-[#71717A]" />}
           </div>
         </button>
 
@@ -88,7 +87,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
               exit={{ height: 0 }}
               className="overflow-hidden"
             >
-              <Separator className="bg-white/[0.06]" />
+              <Separator className="bg-[#27272A]" />
               <div className="max-h-[400px] overflow-y-auto styled-scrollbar divide-y divide-[var(--border-secondary)]">
                 {news.length === 0 ? (
                   <div className="px-4 py-6 text-center">
@@ -102,7 +101,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                       key={i}
                       role="button"
                       tabIndex={0}
-                      className="px-4 py-2.5 hover:bg-[var(--hover-accent)] transition-colors cursor-pointer"
+                      className="px-4 py-3 hover:bg-[#18181B] transition-colors cursor-pointer"
                       onClick={() => {
                         if (item.link) window.open(item.link, '_blank', 'noopener,noreferrer');
                         else setSelectedIdx(selectedIdx === i ? null : i);
@@ -117,7 +116,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                         <span className={`text-[9px] font-mono font-bold tracking-widest ${getRiskClass(item.risk_score)}`}>
                           {getRiskLabel(item.risk_score)}
                         </span>
-                        <span className="text-[8px] font-mono text-[var(--text-muted)] bg-[var(--bg-tertiary)] px-1.5 py-0.5 rounded">
+                        <span className="text-[11px] text-[#71717A] bg-[#18181B] px-1.5 py-0.5 rounded-md font-medium">
                           {item.source}
                         </span>
                         {item.coords && (
@@ -137,7 +136,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                       </div>
 
                       {/* 제목 */}
-                      <h4 className="text-[11px] text-[var(--text-primary)] leading-tight line-clamp-2">
+                      <h4 className="text-[13px] text-white leading-snug line-clamp-2 font-medium">
                         {item.title}
                       </h4>
 
