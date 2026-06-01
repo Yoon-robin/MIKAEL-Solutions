@@ -14,11 +14,11 @@
   --bg-panel:      #111113;
   --bg-panel-solid:#111113;
 
-  /* ── 브랜드 골드 (강조 포인트만) ── */
-  --gold-primary: #D4AF37;
-  --gold-light:   #F0D060;
-  --gold-dim:     #8B7325;
-  --gold-glow:    rgba(212, 175, 55, 0.2);
+  /* ── 브랜드 레드 (Osiris 골드와 차별화) ── */
+  --gold-primary: #EF4444;    /* red-500 */
+  --gold-light:   #FCA5A5;    /* red-300 */
+  --gold-dim:     #991B1B;    /* red-800 */
+  --gold-glow:    rgba(239, 68, 68, 0.2);
 
   /* ── 데이터 스트림 시안 ── */
   --cyan-primary: #00E5FF;
@@ -36,7 +36,7 @@
   --border-neutral-hover: #3F3F46;  /* zinc-700 */
   --border-primary:       #27272A;
   --border-secondary:     #1C1C1F;
-  --border-active:        rgba(212, 175, 55, 0.5);
+  --border-active:        rgba(239, 68, 68, 0.5);
   --border-cyan:          rgba(0, 229, 255, 0.25);
 
   /* ── 텍스트 — shadcn 정확한 값 ── */
@@ -44,7 +44,7 @@
   --text-secondary:#A1A1AA;  /* zinc-400 */
   --text-muted:    #71717A;  /* zinc-500 */
   --text-heading:  #FFFFFF;
-  --text-gold:     #D4AF37;
+  --text-gold:     #EF4444;
   --text-cyan:     #00E5FF;
 
   /* ── 스크롤바 ── */
@@ -81,7 +81,7 @@
   --destructive:          #EF4444;
   --border:               #27272A;
   --input:                #27272A;
-  --ring:                 #D4AF37;
+  --ring:                 #EF4444;
 }
 
 @theme inline {

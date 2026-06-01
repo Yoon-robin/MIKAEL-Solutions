@@ -15,9 +15,9 @@ const buttonVariants = cva(
         secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
-        hud: 'border border-[var(--border-primary)] bg-[rgba(8,10,20,0.78)] text-[var(--text-primary)] shadow-[0_0_0_1px_rgba(212,175,55,0.04)_inset] hover:border-[var(--border-active)] hover:bg-[var(--hover-accent)] hover:text-[var(--gold-light)]',
-        cyan: 'border border-[var(--border-cyan)] bg-[rgba(0,229,255,0.06)] text-[var(--cyan-primary)] hover:bg-[rgba(0,229,255,0.12)] hover:shadow-[0_0_24px_rgba(0,229,255,0.10)]',
-        gold: 'border border-[rgba(212,175,55,0.35)] bg-[rgba(212,175,55,0.12)] text-[var(--gold-light)] hover:bg-[rgba(212,175,55,0.18)] hover:shadow-[0_0_24px_rgba(212,175,55,0.14)]',
+        hud: 'border border-[var(--border-primary)] bg-[#111113] text-[var(--text-primary)] hover:border-[var(--border-active)] hover:bg-[#18181B] hover:text-[var(--gold-light)]',
+        cyan: 'border border-[var(--border-cyan)] bg-[rgba(0,229,255,0.06)] text-[var(--cyan-primary)] hover:bg-[rgba(0,229,255,0.12)]',
+        gold: 'border border-[rgba(239,68,68,0.35)] bg-[rgba(239,68,68,0.12)] text-[var(--gold-light)] hover:bg-[rgba(239,68,68,0.18)]',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
