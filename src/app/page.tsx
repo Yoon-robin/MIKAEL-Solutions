@@ -439,7 +439,7 @@ export default function Dashboard() {
           >
             {/* ── Scanline CRT overlay ── */}
             <div className="absolute inset-0 pointer-events-none z-[1]" style={{
-              backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(185,28,28,0.015) 2px, rgba(185,28,28,0.015) 4px)',
+              backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px)',
               animation: 'splashScanDrift 8s linear infinite',
             }} />
 
@@ -524,7 +524,7 @@ export default function Dashboard() {
             >
               <span
                 className="mikael-brand text-4xl md:text-5xl"
-                style={{ color: 'var(--text-heading)', textShadow: '0 2px 24px rgba(185,28,28,0.2)', letterSpacing: '0.35em' }}
+                style={{ color: 'var(--text-heading)', letterSpacing: '0.35em' }}
               >
                 MIKAEL
               </span>
@@ -553,7 +553,7 @@ export default function Dashboard() {
             {/* ── Multi-stage progress bar ── */}
             <div className="w-64 md:w-80 z-[2]">
               {/* Thin progress track */}
-              <div className="relative w-full h-[2px] rounded-full overflow-hidden" style={{ background: 'rgba(185,28,28,0.08)' }}>
+              <div className="relative w-full h-[2px] rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
                 <motion.div
                   initial={{ width: '0%' }}
                   animate={{ width: ['0%', '25%', '50%', '78%', '100%'] }}
@@ -965,7 +965,7 @@ export default function Dashboard() {
       {/* ── BOTTOM CENTER (desktop) ── */}
       {!isMobile && (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 3, duration: 0.8 }} className="desktop-only absolute bottom-5 left-1/2 -translate-x-1/2 z-[200] pointer-events-auto">
-          <div className="glass-panel px-5 py-2.5 flex items-center gap-0 mikael-glow relative overflow-hidden" style={{ borderImage: 'linear-gradient(90deg, rgba(185,28,28,0.05), rgba(185,28,28,0.15), rgba(185,28,28,0.05)) 1', borderImageSlice: 1, borderWidth: '1px', borderStyle: 'solid' }}>
+          <div className="glass-panel px-5 py-2.5 flex items-center gap-0 mikael-glow relative overflow-hidden" style={{ borderImage: 'linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.08), rgba(255,255,255,0.04)) 1', borderImageSlice: 1, borderWidth: '1px', borderStyle: 'solid' }}>
 
             {/* Animated scan line sweeping across the bar */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -1078,14 +1078,7 @@ export default function Dashboard() {
       />
 
       {/* ── OVERLAYS ── */}
-      {/* 심연 분위기 배경 — 코너 심홍 radial gradient */}
-      <div className="fixed inset-0 pointer-events-none z-[1]" style={{
-        background: `
-          radial-gradient(ellipse 45% 35% at 0% 100%, rgba(120,0,0,0.07) 0%, transparent 100%),
-          radial-gradient(ellipse 30% 45% at 100% 0%, rgba(80,0,0,0.05) 0%, transparent 100%)
-        `
-      }} />
-      {/* 지도 포커스 비네트 — 테두리 페이드 */}
+      {/* 지도 포커스 비네트 */}
       <div className="fixed inset-0 map-vignette z-[1]" />
 
       {/* Keyboard Shortcuts Overlay */}

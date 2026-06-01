@@ -157,47 +157,47 @@ html, body {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   Next.js 스타일 기하학적 그리드 배경
+   Next.js 스타일 기하학적 그리드 — 순흑 + 흰색
    ═══════════════════════════════════════════════════════════════ */
 .mikael-grid-bg {
   background-image:
-    linear-gradient(rgba(185, 28, 28, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(185, 28, 28, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 88px 88px;
 }
 
-/* 그리드 교점 원형 장식 */
+/* 그리드 교점 원형 장식 — 흰색, Next.js와 동일 */
 .mikael-grid-circle {
-  border: 1px solid rgba(185, 28, 28, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 50%;
   position: absolute;
   pointer-events: none;
 }
 
 .mikael-glow {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(185, 28, 28, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
 }
 
 .mikael-glow-cyan {
   box-shadow: none;
 }
 
-/* ── 패널 호버 리프트 ── */
+/* ── 패널 호버 — Next.js처럼 중립 ── */
 .glass-panel {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .glass-panel:hover {
-  border-color: #3A303A;
-  box-shadow: 0 6px 28px rgba(0,0,0,0.5), 0 0 0 1px rgba(185,28,28,0.12);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
 }
 
-/* ── 지도 포커스 비네트 (Osiris 것과 다름 — 테두리 페이드) ── */
+/* ── 지도 포커스 비네트 ── */
 .map-vignette {
   background: radial-gradient(
     ellipse at center,
     transparent 55%,
-    rgba(6,4,8,0.35) 80%,
-    rgba(6,4,8,0.65) 100%
+    rgba(0,0,0,0.3) 80%,
+    rgba(0,0,0,0.6) 100%
   );
   pointer-events: none;
 }
@@ -252,7 +252,7 @@ html, body {
   font-weight: 700;
 }
 
-/* ── 패널 심홍 탑 액센트 — 권위의 선 ── */
+/* ── 패널 탑 액센트 — Next.js처럼 매우 미세한 흰색 ── */
 .mikael-panel {
   position: relative;
 }
@@ -261,18 +261,17 @@ html, body {
   content: '';
   position: absolute;
   top: 0;
-  left: 12px;
-  right: 12px;
+  left: 0;
+  right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(185, 28, 28, 0.55), transparent);
-  border-radius: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
   z-index: 1;
   pointer-events: none;
 }
 
 /* ── 레이어 활성 → 왼쪽 심홍 세로선 ── */
 .mikael-layer-active {
-  border-left: 2px solid rgba(185, 28, 28, 0.7) !important;
+  border-left: 2px solid rgba(255, 255, 255, 0.2) !important;
   padding-left: calc(0.5rem - 2px) !important;
 }
 
