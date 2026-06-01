@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
         // Forward the payload to the local MIKAEL Solutions Discord Bot running on Port 3005
         // Using the Tailscale internal IP of the host server
-        const response = await fetch('http://100.89.48.10:3005/github/webhook', {
+        const response = await fetch('http://100.91.54.20:3005/github/webhook', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
