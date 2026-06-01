@@ -196,9 +196,9 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className="text-[8px] font-mono text-[var(--text-muted)]">{alert.source}</span>
+                            <span className="text-[8px] text-[var(--text-muted)]">{alert.source}</span>
                             {alert.time && (
-                              <span className="text-[8px] font-mono text-[var(--text-muted)] flex items-center gap-0.5">
+                              <span className="text-[8px] text-[var(--text-muted)] flex items-center gap-0.5">
                                 <Clock className="w-2 h-2" />
                                 {new Date(alert.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </span>
@@ -209,7 +209,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                               href={alert.url} 
                               target="_blank" 
                               rel="noopener noreferrer" 
-                              className="text-[8px] font-mono text-[var(--cyan-primary)] hover:underline"
+                              className="text-[8px] text-[var(--cyan-primary)] hover:underline"
                               onClick={(e) => e.stopPropagation()}
                             >
                               원문
@@ -227,7 +227,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                 );
               })}
               {filtered.length === 0 && (
-                <div className="text-center py-4 text-[10px] font-mono text-[var(--text-muted)]">
+                <div className="text-center py-4 text-[10px] text-[var(--text-muted)]">
                   이 필터에 표시할 경보가 없습니다
                 </div>
               )}

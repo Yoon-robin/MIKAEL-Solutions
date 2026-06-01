@@ -55,7 +55,7 @@
   --hover-accent: #18181B;  /* zinc-900, 선명한 호버 */
 
   /* ── 폰트 ── */
-  --font-hud:  'JetBrains Mono', 'Courier New', monospace;
+  --font-hud:  'Inter', -apple-system, sans-serif;  /* mono 제거 — Inter 통일 */
   --font-body: 'Inter', -apple-system, sans-serif;
 
   /* ── 간격 ── */

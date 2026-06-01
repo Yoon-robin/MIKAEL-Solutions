@@ -141,8 +141,8 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
     if (value === undefined || value === null || value === '') return null;
     return (
       <div className="flex items-start gap-3 py-1.5 border-b border-[var(--border-secondary)]/20 last:border-0">
-        <span className="text-[9px] font-mono text-[var(--text-muted)] uppercase tracking-wider w-[90px] flex-shrink-0 pt-0.5">{label}</span>
-        <span className={`text-[10px] ${mono ? 'font-mono' : ''} break-all flex-1`} style={{ color: color || 'var(--text-primary)' }}>
+        <span className="text-[9px] text-[var(--text-muted)] uppercase tracking-wider w-[90px] flex-shrink-0 pt-0.5">{label}</span>
+        <span className={`text-[10px] ${mono ? '' : ''} break-all flex-1`} style={{ color: color || 'var(--text-primary)' }}>
           {String(value)}
         </span>
       </div>
@@ -150,7 +150,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
   };
 
   const StatusBadge = ({ ok, label }: { ok: boolean; label: string }) => (
-    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[9px] font-mono font-bold ${ok ? 'bg-green-500/15 text-green-400 border border-green-500/30' : 'bg-red-500/15 text-red-400 border border-red-500/30'}`}>
+    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[9px] font-bold ${ok ? 'bg-green-500/15 text-green-400 border border-green-500/30' : 'bg-red-500/15 text-red-400 border border-red-500/30'}`}>
       {ok ? <CheckCircle className="w-2.5 h-2.5" /> : <XCircle className="w-2.5 h-2.5" />}
       {label}
     </span>
@@ -159,17 +159,17 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
   const SectionHeader = ({ title, icon: Icon, color }: { title: string; icon: any; color: string }) => (
     <div className="flex items-center gap-2 mt-3 mb-1.5 first:mt-0">
       <Icon className="w-3.5 h-3.5" style={{ color }} />
-      <span className="text-[10px] font-mono font-bold tracking-widest" style={{ color }}>{title}</span>
+      <span className="text-[10px] font-bold tracking-widest" style={{ color }}>{title}</span>
       <div className="flex-1 h-px" style={{ background: `${color}30` }} />
     </div>
   );
 
   const PortRow = ({ port, state, service, version }: { port: number; state: string; service?: string; version?: string }) => (
     <div className="flex items-center gap-2 py-1 px-2 rounded hover:bg-[var(--hover-accent)] transition-colors">
-      <span className="text-[11px] font-mono font-bold text-[var(--cyan-primary)] w-[60px]">{port}</span>
+      <span className="text-[11px] font-bold text-[var(--cyan-primary)] w-[60px]">{port}</span>
       <StatusBadge ok={state === 'open'} label={state.toUpperCase()} />
-      <span className="text-[10px] font-mono text-[var(--text-secondary)] flex-1">{service || '알 수 없음'}</span>
-      {version && <span className="text-[9px] font-mono text-[var(--text-muted)]">{version}</span>}
+      <span className="text-[10px] text-[var(--text-secondary)] flex-1">{service || '알 수 없음'}</span>
+      {version && <span className="text-[9px] text-[var(--text-muted)]">{version}</span>}
     </div>
   );
 
@@ -219,11 +219,11 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
               {regularVulns.slice(0, 20).map((v: any, i: number) => (
                 <div key={i} className="p-2 rounded-lg border border-red-500/20 bg-red-500/5 flex flex-col">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold text-red-400">{v.id || v.cve || v.name}</span>
-                    {v.severity && <span className={`text-[8px] font-mono font-bold px-1.5 py-0.5 rounded ${v.severity === 'CRITICAL' ? 'bg-red-500/20 text-red-400' : v.severity === 'HIGH' ? 'bg-orange-500/20 text-orange-400' : 'bg-yellow-500/20 text-yellow-400'}`}>{v.severity}</span>}
+                    <span className="text-[10px] font-bold text-red-400">{v.id || v.cve || v.name}</span>
+                    {v.severity && <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded ${v.severity === 'CRITICAL' ? 'bg-red-500/20 text-red-400' : v.severity === 'HIGH' ? 'bg-orange-500/20 text-orange-400' : 'bg-yellow-500/20 text-yellow-400'}`}>{v.severity}</span>}
                   </div>
-                  {v.cvss && <div className="text-[9px] font-mono text-[var(--text-muted)] mt-1">CVSS: {v.cvss} ({v.type || 'cve'})</div>}
-                  {v.description && <p className="text-[9px] font-mono text-[var(--text-muted)] mt-1 line-clamp-2">{v.description}</p>}
+                  {v.cvss && <div className="text-[9px] text-[var(--text-muted)] mt-1">CVSS: {v.cvss} ({v.type || 'cve'})</div>}
+                  {v.description && <p className="text-[9px] text-[var(--text-muted)] mt-1 line-clamp-2">{v.description}</p>}
                 </div>
               ))}
             </div>
@@ -236,10 +236,10 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
                 {exploits.slice(0, 10).map((e: any, i: number) => (
                   <div key={i} className="p-2 rounded-lg border border-orange-500/30 bg-orange-500/10 flex flex-col">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono font-bold text-orange-400">{e.id}</span>
-                      <span className="text-[8px] font-mono font-bold px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-400">익스플로잇</span>
+                      <span className="text-[10px] font-bold text-orange-400">{e.id}</span>
+                      <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-orange-500/20 text-orange-400">익스플로잇</span>
                     </div>
-                    <div className="text-[9px] font-mono text-[var(--text-muted)] mt-1 flex justify-between">
+                    <div className="text-[9px] text-[var(--text-muted)] mt-1 flex justify-between">
                       <span>출처: {e.type?.toUpperCase() || '알 수 없음'}</span>
                       {e.cvss && <span>CVSS: {e.cvss}</span>}
                     </div>
@@ -384,7 +384,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
         {/* Sweep - Main Action */}
         {TABS.filter(t => t.id === 'sweep').map(tab => (
           <button key={tab.id} onClick={() => { setActiveTab(tab.id); setQuery(''); setResults(null); setError(''); }}
-            className={`flex items-center justify-center gap-2 px-3 py-3 rounded-lg text-[12px] font-mono tracking-widest font-bold transition-all border ${activeTab === tab.id ? 'border-opacity-60 bg-opacity-20' : 'border-[var(--border-secondary)] hover:bg-[var(--hover-accent)]'}`}
+            className={`flex items-center justify-center gap-2 px-3 py-3 rounded-lg text-[12px] tracking-widest font-bold transition-all border ${activeTab === tab.id ? 'border-opacity-60 bg-opacity-20' : 'border-[var(--border-secondary)] hover:bg-[var(--hover-accent)]'}`}
             style={{ 
               borderColor: activeTab === tab.id ? tab.color : 'rgba(255,61,61,0.3)', 
               backgroundColor: activeTab === tab.id ? `${tab.color}20` : 'rgba(255,61,61,0.05)', 
@@ -395,14 +395,14 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
             <span>전역 {tab.label}</span>
           </button>
         ))}
-        {/* Other Tools */}
+        {/* Other Tools — 5열 유지, 가독성 개선 */}
         <div className="grid grid-cols-5 gap-1 mt-1">
           {TABS.filter(t => t.id !== 'sweep').map(tab => (
             <button key={tab.id} onClick={() => { setActiveTab(tab.id); setQuery(''); setResults(null); setError(''); }}
-              className={`flex flex-col items-center gap-1 px-1 py-2 rounded-lg text-[8px] font-mono tracking-wider transition-all border ${activeTab === tab.id ? 'border-opacity-40 bg-opacity-15' : 'border-transparent hover:bg-[var(--hover-accent)]'}`}
-              style={{ borderColor: activeTab === tab.id ? tab.color : 'transparent', backgroundColor: activeTab === tab.id ? `${tab.color}15` : undefined, color: activeTab === tab.id ? tab.color : 'var(--text-muted)' }}>
-              <tab.icon className="w-3.5 h-3.5" />
-              <span className="leading-none text-center truncate w-full">{tab.label}</span>
+              className={`flex flex-col items-center gap-1.5 px-0.5 py-2.5 rounded-lg text-[11px] font-medium transition-all border ${activeTab === tab.id ? 'border-opacity-40 bg-opacity-15' : 'border-transparent hover:bg-[#18181B]'}`}
+              style={{ borderColor: activeTab === tab.id ? tab.color : 'transparent', backgroundColor: activeTab === tab.id ? `${tab.color}15` : undefined, color: activeTab === tab.id ? tab.color : '#71717A' }}>
+              <tab.icon className="w-4 h-4 flex-shrink-0" />
+              <span className="leading-tight text-center break-keep w-full" style={{ fontSize: '10px', lineHeight: '1.3' }}>{tab.label}</span>
             </button>
           ))}
         </div>
@@ -415,11 +415,11 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--text-muted)]" />
             <input type="text" value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => e.key === 'Enter' && runLookup()}
               placeholder={currentTab?.placeholder}
-              className="w-full bg-[var(--bg-primary)]/60 border border-[var(--border-primary)] rounded-lg pl-8 pr-3 py-2.5 text-[11px] font-mono text-[var(--text-primary)] placeholder:text-[var(--text-muted)]/40 focus:outline-none transition-colors"
+              className="w-full bg-[var(--bg-primary)]/60 border border-[var(--border-primary)] rounded-lg pl-8 pr-3 py-2.5 text-[11px] text-[var(--text-primary)] placeholder:text-[var(--text-muted)]/40 focus:outline-none transition-colors"
               style={{ borderColor: query ? `${currentTab?.color}40` : undefined }} />
           </div>
           <button onClick={runLookup} disabled={loading || !query.trim()}
-            className="px-4 py-2 rounded-lg text-[10px] font-mono font-bold tracking-wider disabled:opacity-30 transition-all flex items-center justify-center min-w-[70px]"
+            className="px-4 py-2 rounded-lg text-[10px] font-bold tracking-wider disabled:opacity-30 transition-all flex items-center justify-center min-w-[70px]"
             style={{ backgroundColor: `${currentTab?.color}20`, border: `1px solid ${currentTab?.color}40`, color: currentTab?.color }}>
             {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : '스캔'}
           </button>
@@ -428,17 +428,17 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
         {/* Secondary Controls */}
         {activeTab === 'scanner' && (
           <select value={scanType} onChange={e => setScanType(e.target.value)}
-            className="bg-[var(--bg-primary)]/60 border border-[var(--border-primary)] rounded-lg px-2 py-1.5 text-[10px] font-mono text-[var(--text-muted)] outline-none w-full">
+            className="bg-[var(--bg-primary)]/60 border border-[var(--border-primary)] rounded-lg px-2 py-1.5 text-[10px] text-[var(--text-muted)] outline-none w-full">
             <option value="quick">빠른 스캔</option><option value="deep">심층 스캔</option><option value="ports">상위 1000 포트</option>
           </select>
         )}
         {(activeTab === 'sweep' || activeTab === 'vuln') && (
           <div className="flex items-center justify-between bg-[var(--bg-primary)]/60 border border-[var(--border-primary)] rounded-lg p-1">
-            <span className="text-[9px] font-mono text-[var(--text-muted)] pl-2">서브넷 마스크:</span>
+            <span className="text-[9px] text-[var(--text-muted)] pl-2">서브넷 마스크:</span>
             <div className="flex items-center gap-0.5">
               {[24, 25, 26, 27, 28].map(c => (
                 <button key={c} onClick={() => setSweepCidr(c)}
-                  className={`px-2 py-1 text-[10px] font-mono rounded transition-all ${
+                  className={`px-2 py-1 text-[10px] rounded transition-all ${
                     sweepCidr === c ? 'bg-[#FF3D3D]/20 text-[#FF3D3D]' : 'text-[var(--text-muted)] hover:bg-[var(--bg-tertiary)]'
                   }`}
                 >/{c}</button>
@@ -449,7 +449,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
       </div>
 
       {error && (
-        <div className="p-2.5 rounded-lg border border-red-500/30 bg-red-500/10 text-[11px] font-mono text-red-400 flex items-center gap-2">
+        <div className="p-2.5 rounded-lg border border-red-500/30 bg-red-500/10 text-[11px] text-red-400 flex items-center gap-2">
           <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />{error}
         </div>
       )}
@@ -458,8 +458,8 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
       {sweepProgress && loading && (
         <div className="p-3 rounded-lg border border-[#FF3D3D]/30 bg-[#FF3D3D]/5">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[10px] font-mono tracking-wider text-[#FF3D3D]">서브넷 스윕 중...</span>
-            <span className="text-[10px] font-mono text-[#E8E6E0]">{sweepProgress.total} 호스트</span>
+            <span className="text-[10px] tracking-wider text-[#FF3D3D]">서브넷 스윕 중...</span>
+            <span className="text-[10px] text-[#E8E6E0]">{sweepProgress.total} 호스트</span>
           </div>
           <div className="w-full h-1.5 bg-[#1A1A18] rounded-full overflow-hidden">
             <div className="h-full rounded-full" style={{ width: '100%', background: 'linear-gradient(90deg, #FF3D3D, #FF6B00, #FFD700)', animation: 'sweep-pulse 1.5s ease-in-out infinite' }} />
@@ -474,12 +474,12 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
           <div className="p-3 border-b border-[#2A2A28]">
             <div className="flex items-center justify-between mb-3">
               <div>
-                <div className="text-[11px] font-mono tracking-wider text-[#E8E6E0]">{sweepResult.subnet}</div>
-                <div className="text-[9px] font-mono text-[#5C5A54]">{sweepResult.center.city}, {sweepResult.center.country} · {sweepResult.center.isp}</div>
+                <div className="text-[11px] tracking-wider text-[#E8E6E0]">{sweepResult.subnet}</div>
+                <div className="text-[9px] text-[#5C5A54]">{sweepResult.center.city}, {sweepResult.center.country} · {sweepResult.center.isp}</div>
               </div>
               <div className="text-right">
-                <div className="text-[18px] font-mono font-bold text-[#FF3D3D]">{sweepResult.summary.total_responsive}</div>
-                <div className="text-[8px] font-mono text-[#5C5A54] tracking-wider">발견 장비</div>
+                <div className="text-[18px] font-bold text-[#FF3D3D]">{sweepResult.summary.total_responsive}</div>
+                <div className="text-[8px] text-[#5C5A54] tracking-wider">발견 장비</div>
               </div>
             </div>
             {/* Breakdown Bar */}
@@ -495,8 +495,8 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
                 return (
                   <div key={type} className="flex items-center gap-1">
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: device?.device_color || '#666' }} />
-                    <span className="text-[9px] font-mono text-[#8A8880]">{type}</span>
-                    <span className="text-[9px] font-mono text-[#E8E6E0] font-bold">{String(count)}</span>
+                    <span className="text-[9px] text-[#8A8880]">{type}</span>
+                    <span className="text-[9px] text-[#E8E6E0] font-bold">{String(count)}</span>
                   </div>
                 );
               })}
@@ -505,7 +505,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
           {/* Visualize Button */}
           <div className="p-3 border-b border-[#2A2A28]">
             <button onClick={() => onSweepVisualize?.(sweepResult)}
-              className="w-full py-2.5 rounded-lg font-mono text-[11px] tracking-wider font-bold transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+              className="w-full py-2.5 rounded-lg text-[11px] tracking-wider font-bold transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
               style={{ background: 'linear-gradient(135deg, rgba(255,61,61,0.2), rgba(255,107,0,0.2))', border: '1px solid rgba(255,61,61,0.5)', color: '#FF3D3D', textShadow: '0 0 10px rgba(255,61,61,0.5)' }}
             >
               <Globe className="w-4 h-4" /> 글로브에 시각화
@@ -535,18 +535,18 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: device.device_color }} />
-                    <span className={isFullScreen ? "text-[14px] font-mono font-bold text-[#E8E6E0]" : "text-[11px] font-mono text-[#E8E6E0]"}>{device.ip}</span>
+                    <span className={isFullScreen ? "text-[14px] font-bold text-[#E8E6E0]" : "text-[11px] text-[#E8E6E0]"}>{device.ip}</span>
                     {device.hostnames.length > 0 && (
-                      <span className={`${isFullScreen ? "text-[11px]" : "text-[9px]"} font-mono text-[#5C5A54]`}>{device.hostnames[0]}</span>
+                      <span className={`${isFullScreen ? "text-[11px]" : "text-[9px]"} text-[#5C5A54]`}>{device.hostnames[0]}</span>
                     )}
                   </div>
                   <div className="flex items-center gap-2">
                     {device.vulns.length > 0 && (
-                      <span className={`${isFullScreen ? "text-[10px]" : "text-[8px]"} font-mono px-1.5 py-0.5 rounded bg-red-500/15 text-red-400 border border-red-500/30`}>
+                      <span className={`${isFullScreen ? "text-[10px]" : "text-[8px]"} px-1.5 py-0.5 rounded bg-red-500/15 text-red-400 border border-red-500/30`}>
                         {device.vulns.length} CVEs
                       </span>
                     )}
-                    <span className={`${isFullScreen ? "text-[10px]" : "text-[8px]"} font-mono px-1.5 py-0.5 rounded`} style={{ backgroundColor: device.device_color + '20', color: device.device_color, border: `1px solid ${device.device_color}40` }}>{device.device_type}</span>
+                    <span className={`${isFullScreen ? "text-[10px]" : "text-[8px]"} px-1.5 py-0.5 rounded`} style={{ backgroundColor: device.device_color + '20', color: device.device_color, border: `1px solid ${device.device_color}40` }}>{device.device_type}</span>
                     {isFullScreen && (
                       <ChevronDown className={`w-4 h-4 text-[#5C5A54] transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                     )}
@@ -556,7 +556,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
                 {/* Compact info (sidebar mode) */}
                 {!isFullScreen && (
                   <>
-                    <div className="flex items-center gap-2 text-[9px] font-mono text-[#5C5A54]">
+                    <div className="flex items-center gap-2 text-[9px] text-[#5C5A54]">
                       <span>포트: {device.ports.slice(0, 8).join(', ')}{device.ports.length > 8 ? ` +${device.ports.length - 8}` : ''}</span>
                       {device.vulns.length > 0 && (
                         <div className="group relative flex items-center gap-1 cursor-help">
@@ -564,10 +564,10 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
                             <AlertTriangle className="w-2.5 h-2.5" /> {device.vulns.length} CVEs
                           </span>
                           <div className="absolute bottom-full left-0 mb-1 hidden group-hover:block z-50 p-2 bg-[#1A1A18] border border-[#FF3D3D50] rounded-md shadow-xl min-w-[140px] max-w-[220px] max-h-[150px] overflow-y-auto styled-scrollbar">
-                            <div className="text-[8px] font-mono text-[#FF3D3D] mb-1 tracking-wider uppercase border-b border-[#FF3D3D30] pb-1">식별된 취약점</div>
+                            <div className="text-[8px] text-[#FF3D3D] mb-1 tracking-wider uppercase border-b border-[#FF3D3D30] pb-1">식별된 취약점</div>
                             <div className="flex flex-col gap-0.5">
                               {device.vulns.map((cve: string) => (
-                                <a key={cve} href={`https://nvd.nist.gov/vuln/detail/${cve}`} target="_blank" rel="noreferrer" className="text-[9px] font-mono text-[#E8E6E0] hover:text-[#FF3D3D] transition-colors truncate">
+                                <a key={cve} href={`https://nvd.nist.gov/vuln/detail/${cve}`} target="_blank" rel="noreferrer" className="text-[9px] text-[#E8E6E0] hover:text-[#FF3D3D] transition-colors truncate">
                                   {cve}
                                 </a>
                               ))}
@@ -576,7 +576,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
                         </div>
                       )}
                     </div>
-                    {device.hostnames.length > 0 && <div className="text-[9px] font-mono text-[#8A8880] mt-0.5 truncate">{device.hostnames[0]}</div>}
+                    {device.hostnames.length > 0 && <div className="text-[9px] text-[#8A8880] mt-0.5 truncate">{device.hostnames[0]}</div>}
                   </>
                 )}
 
@@ -586,23 +586,23 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
                     {/* Ports + 호스트명 Row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#2A2A28]">
                       <div className="bg-[#0D0D0C] p-4">
-                        <div className="text-[10px] font-mono text-[#5C5A54] tracking-widest uppercase mb-2">열린 포트</div>
+                        <div className="text-[10px] text-[#5C5A54] tracking-widest uppercase mb-2">열린 포트</div>
                         <div className="flex flex-wrap gap-1.5">
                           {device.ports.map((port: number) => (
-                            <span key={port} className="px-2 py-1 bg-[#1A1A18] border border-[#2A2A28] rounded text-[11px] font-mono text-[var(--cyan-primary)]">{port}</span>
+                            <span key={port} className="px-2 py-1 bg-[#1A1A18] border border-[#2A2A28] rounded text-[11px] text-[var(--cyan-primary)]">{port}</span>
                           ))}
                         </div>
                       </div>
                       <div className="bg-[#0D0D0C] p-4">
-                        <div className="text-[10px] font-mono text-[#5C5A54] tracking-widest uppercase mb-2">호스트명</div>
+                        <div className="text-[10px] text-[#5C5A54] tracking-widest uppercase mb-2">호스트명</div>
                         {device.hostnames.length > 0 ? (
                           <div className="flex flex-col gap-1">
                             {device.hostnames.map((h: string) => (
-                              <span key={h} className="text-[11px] font-mono text-[#E8E6E0]">{h}</span>
+                              <span key={h} className="text-[11px] text-[#E8E6E0]">{h}</span>
                             ))}
                           </div>
                         ) : (
-                          <span className="text-[11px] font-mono text-[#3A3A38]">역방향 DNS 없음</span>
+                          <span className="text-[11px] text-[#3A3A38]">역방향 DNS 없음</span>
                         )}
                       </div>
                     </div>
@@ -610,7 +610,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
                     {/* CVE Intelligence */}
                     {device.vulns.length > 0 && (
                       <div className="p-4 border-t border-[#2A2A28]">
-                        <div className="text-[10px] font-mono text-[#5C5A54] tracking-widest uppercase mb-3">취약점 ({device.vulns.length})</div>
+                        <div className="text-[10px] text-[#5C5A54] tracking-widest uppercase mb-3">취약점 ({device.vulns.length})</div>
                         <div className="flex flex-col gap-2">
                           {device.vulns.map((cveId: string) => {
                             const info = cveCache[cveId];
@@ -624,14 +624,14 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
                               <div key={cveId} className="bg-[#111] border border-[#2A2A28] rounded-lg p-3">
                                 <div className="flex items-center justify-between mb-2">
                                   <div className="flex items-center gap-2">
-                                    <span className="text-[12px] font-mono font-bold text-[#E8E6E0]">{cveId}</span>
+                                    <span className="text-[12px] font-bold text-[#E8E6E0]">{cveId}</span>
                                     {info?.cvss != null && (
-                                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded" style={{ backgroundColor: severityColor + '15', color: severityColor, border: `1px solid ${severityColor}40` }}>CVSS {info.cvss}</span>
+                                      <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ backgroundColor: severityColor + '15', color: severityColor, border: `1px solid ${severityColor}40` }}>CVSS {info.cvss}</span>
                                     )}
                                   </div>
                                   <div className="flex items-center gap-2">
                                     {info?.severity && (
-                                      <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded" style={{ backgroundColor: severityColor + '15', color: severityColor, border: `1px solid ${severityColor}40` }}>{info.severity}</span>
+                                      <span className="text-[9px] font-bold px-2 py-0.5 rounded" style={{ backgroundColor: severityColor + '15', color: severityColor, border: `1px solid ${severityColor}40` }}>{info.severity}</span>
                                     )}
                                     <a href={`https://nvd.nist.gov/vuln/detail/${cveId}`} target="_blank" rel="noreferrer" className="text-[#5C5A54] hover:text-[#E8E6E0] transition-colors">
                                       <ExternalLink className="w-3.5 h-3.5" />
@@ -641,16 +641,16 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
                                 {isLoading ? (
                                   <div className="flex items-center gap-2 py-1">
                                     <Loader2 className="w-3 h-3 animate-spin text-[#5C5A54]" />
-                                    <span className="text-[10px] font-mono text-[#5C5A54]">취약점 정보 수집 중...</span>
+                                    <span className="text-[10px] text-[#5C5A54]">취약점 정보 수집 중...</span>
                                   </div>
                                 ) : (
                                   <>
-                                    <p className="text-[11px] font-mono text-[#8A8880] leading-relaxed">{info.description}</p>
-                                    {info.cwe && <div className="text-[10px] font-mono text-[#5C5A54] mt-2">약점: {info.cwe}</div>}
+                                    <p className="text-[11px] text-[#8A8880] leading-relaxed">{info.description}</p>
+                                    {info.cwe && <div className="text-[10px] text-[#5C5A54] mt-2">약점: {info.cwe}</div>}
                                     {info.affected && info.affected.length > 0 && (
                                       <div className="mt-2 flex flex-wrap gap-1.5">
                                         {info.affected.map((a: any, i: number) => (
-                                          <span key={i} className="text-[9px] font-mono px-1.5 py-0.5 bg-[#1A1A18] border border-[#2A2A28] rounded text-[#8A8880]">
+                                          <span key={i} className="text-[9px] px-1.5 py-0.5 bg-[#1A1A18] border border-[#2A2A28] rounded text-[#8A8880]">
                                             {a.vendor}/{a.product}
                                           </span>
                                         ))}
@@ -671,7 +671,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
             })}
           </div>
           <div className="px-3 py-2 border-t border-[#2A2A28]">
-            <div className="text-[8px] font-mono text-[#5C5A54] tracking-wider">{sweepResult.summary.total_hosts}개 호스트 스윕 완료 · {(sweepResult.sweep_time_ms / 1000).toFixed(1)}s · ASN {sweepResult.center.asn}</div>
+            <div className="text-[8px] text-[#5C5A54] tracking-wider">{sweepResult.summary.total_hosts}개 호스트 스윕 완료 · {(sweepResult.sweep_time_ms / 1000).toFixed(1)}s · ASN {sweepResult.center.asn}</div>
           </div>
         </div>
       )}
@@ -679,8 +679,8 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
       {results && !(sweepResult && !loading) && (
         <div className="bg-[var(--bg-primary)]/40 border border-[var(--border-primary)] rounded-lg p-3 max-h-[50vh] overflow-y-auto styled-scrollbar">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[9px] font-mono tracking-widest" style={{ color: currentTab?.color }}>{currentTab?.label} 결과</span>
-            <span className="text-[8px] font-mono text-[var(--text-muted)] flex items-center gap-1"><Clock className="w-2.5 h-2.5" />{new Date().toLocaleTimeString()}</span>
+            <span className="text-[9px] tracking-widest" style={{ color: currentTab?.color }}>{currentTab?.label} 결과</span>
+            <span className="text-[8px] text-[var(--text-muted)] flex items-center gap-1"><Clock className="w-2.5 h-2.5" />{new Date().toLocaleTimeString()}</span>
           </div>
           {renderStructuredResults()}
         </div>
@@ -688,15 +688,15 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
 
       {history.length > 0 && !results && (
         <div className="space-y-1">
-          <span className="text-[9px] font-mono tracking-widest text-[var(--text-muted)]">최근 스캔</span>
+          <span className="text-[9px] tracking-widest text-[var(--text-muted)]">최근 스캔</span>
           {history.slice(0, 5).map((h, i) => (
             <button key={i} onClick={() => { setActiveTab(h.tab); setQuery(h.query); }}
               className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-[var(--hover-accent)] transition-colors text-left">
               <div className="flex items-center gap-2">
-                <span className="text-[9px] font-mono" style={{ color: TABS.find(t => t.id === h.tab)?.color }}>{TABS.find(t => t.id === h.tab)?.label}</span>
-                <span className="text-[10px] font-mono text-[var(--text-secondary)]">{h.query}</span>
+                <span className="text-[9px]" style={{ color: TABS.find(t => t.id === h.tab)?.color }}>{TABS.find(t => t.id === h.tab)?.label}</span>
+                <span className="text-[10px] text-[var(--text-secondary)]">{h.query}</span>
               </div>
-              <span className="text-[8px] font-mono text-[var(--text-muted)]">{h.time}</span>
+              <span className="text-[8px] text-[var(--text-muted)]">{h.time}</span>
             </button>
           ))}
         </div>
@@ -713,8 +713,8 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
           <div className="flex items-center gap-3">
             <Radar className="w-5 h-5 text-[var(--cyan-primary)]" />
             <span className="text-[16px] font-semibold text-[var(--text-heading)]">MIKAEL 정찰 도구함</span>
-            <Badge variant="cyan" className="text-[9px] px-1.5 py-0 font-mono">전체 화면</Badge>
-            <Badge variant="gold" className="text-[8px] px-1.5 py-0 font-mono tracking-[0.15em]">{TABS.length}개 모듈</Badge>
+            <Badge variant="cyan" className="text-[9px] px-1.5 py-0">전체 화면</Badge>
+            <Badge variant="gold" className="text-[8px] px-1.5 py-0 tracking-[0.15em]">{TABS.length}개 모듈</Badge>
           </div>
           <button onClick={() => setIsFullScreen(false)} className="p-2 hover:bg-white/5 rounded transition-colors text-[var(--text-muted)] hover:text-white">
             <Minimize2 className="w-5 h-5" />

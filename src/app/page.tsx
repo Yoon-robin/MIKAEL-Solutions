@@ -434,7 +434,7 @@ export default function Dashboard() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.6 }}
               transition={{ delay: 0.8, duration: 0.5 }}
-              className="absolute top-6 left-6 z-[2] font-mono text-[10px] tracking-[0.3em] text-[var(--gold-primary)]"
+              className="absolute top-6 left-6 z-[2] text-[10px] tracking-[0.3em] text-[var(--gold-primary)]"
             >
               V4.2
             </motion.div>
@@ -515,7 +515,7 @@ export default function Dashboard() {
                   initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   transition={{ delay: 0.5 + i * 0.08, duration: 0.5, ease: 'easeOut' }}
-                  className="text-4xl md:text-5xl font-bold tracking-[0.5em] font-mono"
+                  className="text-4xl md:text-5xl font-bold tracking-[0.5em]"
                   style={{ color: 'var(--text-heading)', textShadow: '0 0 30px rgba(212,175,55,0.2)' }}
                 >
                   {letter}
@@ -531,7 +531,7 @@ export default function Dashboard() {
                 transition={{ delay: 1.2, duration: 0.8, ease: 'easeInOut' }}
                 className="overflow-hidden whitespace-nowrap"
               >
-                <p className="text-[10px] md:text-[11px] font-mono tracking-[0.5em] text-[var(--gold-primary)]" style={{ opacity: 0.8 }}>
+                <p className="text-[10px] md:text-[11px] tracking-[0.5em] text-[var(--gold-primary)]" style={{ opacity: 0.8 }}>
                   개인 OSINT 상황인식 센터
                 </p>
               </motion.div>
@@ -563,7 +563,7 @@ export default function Dashboard() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: [0, 1, 1, 0] }}
                     transition={{ delay: stage.delay, duration: 0.6, times: [0, 0.1, 0.7, 1] }}
-                    className="absolute text-[9px] font-mono tracking-[0.25em]"
+                    className="absolute text-[9px] tracking-[0.25em]"
                     style={{ color: i === 3 ? 'var(--cyan-primary)' : 'var(--text-muted)' }}
                   >
                     {stage.text}
@@ -646,7 +646,7 @@ export default function Dashboard() {
           ) : (
             <Globe className="w-4 h-4 text-[var(--cyan-primary)] group-hover:scale-110 transition-transform" />
           )}
-          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
+          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
             {mapProjection === 'globe' ? '2D 지도' : '3D 글로브'}
           </span>
         </button>
@@ -662,7 +662,7 @@ export default function Dashboard() {
           ) : (
             <Moon className="w-4 h-4 text-[var(--cyan-primary)] group-hover:scale-110 transition-transform" />
           )}
-          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
+          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
             {mapStyle === 'dark' ? '위성' : '야간 모드'}
           </span>
         </button>
@@ -688,18 +688,18 @@ export default function Dashboard() {
         <div className="hidden md:block absolute top-1/2 left-[52px] w-[200px] h-[1px] bg-gradient-to-r from-[var(--gold-primary)]/40 via-[var(--gold-primary)]/15 to-transparent" />
         <div className="flex flex-col">
           <div className="flex items-center gap-2">
-            <h1 className="text-base md:text-xl font-bold tracking-[0.22em] md:tracking-[0.28em] text-[var(--text-heading)] font-mono">MIKAEL Solutions</h1>
-            <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-[1px] rounded-sm border border-[var(--cyan-primary)]/40 bg-[var(--cyan-primary)]/10 text-[7px] font-mono font-bold tracking-[0.15em] text-[var(--cyan-primary)] uppercase" style={{ lineHeight: '1.4' }}>
+            <h1 className="text-base md:text-xl font-bold tracking-[0.22em] md:tracking-[0.28em] text-[var(--text-heading)]">MIKAEL Solutions</h1>
+            <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-[1px] rounded-sm border border-[var(--cyan-primary)]/40 bg-[var(--cyan-primary)]/10 text-[7px] font-bold tracking-[0.15em] text-[var(--cyan-primary)] uppercase" style={{ lineHeight: '1.4' }}>
               <Globe className="w-2.5 h-2.5" />
               개인 그리드
             </span>
           </div>
-          <span className="text-[8px] md:text-[9px] text-[var(--gold-primary)] font-mono tracking-[0.2em] md:tracking-[0.3em] opacity-80">OSINT 상황인식 지휘 콘솔</span>
+          <span className="text-[8px] md:text-[9px] text-[var(--gold-primary)] tracking-[0.2em] md:tracking-[0.3em] opacity-80">OSINT 상황인식 지휘 콘솔</span>
         </div>
       </motion.div>
 
       {/* ── TOP-RIGHT STATUS (desktop) — C2 DISPLAY ── */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }} className="status-bar-desktop absolute top-3 right-3 md:top-4 md:right-5 z-[200] pointer-events-none flex items-center gap-1.5 md:gap-3 text-[9px] md:text-[10px] font-mono tracking-widest text-[var(--text-muted)]">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }} className="status-bar-desktop absolute top-3 right-3 md:top-4 md:right-5 z-[200] pointer-events-none flex items-center gap-1.5 md:gap-3 text-[9px] md:text-[10px] tracking-widest text-[var(--text-muted)]">
 
         {/* Zulu Clock */}
         <span className="hidden lg:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm border border-[var(--border-primary)] bg-black/30">
@@ -729,7 +729,7 @@ export default function Dashboard() {
       {/* ── MOBILE: Compact top status ── */}
       {isMobile && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
-          <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[7px] font-mono tracking-widest hover:opacity-80 transition-opacity border-[var(--gold-primary)]/40 bg-[var(--gold-primary)]/10">
+          <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[7px] tracking-widest hover:opacity-80 transition-opacity border-[var(--gold-primary)]/40 bg-[var(--gold-primary)]/10">
             <div className="w-1 h-1 rounded-full bg-[var(--gold-primary)] animate-mikael-pulse" />
             <span className="text-[var(--gold-primary)] font-bold">MIKAEL GRID</span>
           </a>
@@ -795,10 +795,10 @@ export default function Dashboard() {
               <div className="flex items-center justify-between px-4 py-2.5 bg-[#111] border-b border-[var(--border-primary)]">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[#FF4081] animate-mikael-pulse" />
-                  <span className="text-[12px] font-mono font-bold text-white tracking-wider">{liveFeedName}</span>
-                  <span className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 font-mono text-[9px] font-bold">실시간 방송</span>
+                  <span className="text-[12px] font-bold text-white tracking-wider">{liveFeedName}</span>
+                  <span className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 text-[9px] font-bold">실시간 방송</span>
                   {!liveFeedEmbedAllowed && (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono text-[9px]">외부 전용</span>
+                    <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[9px]">외부 전용</span>
                   )}
                 </div>
                 <div className="flex items-center gap-3">
@@ -812,7 +812,7 @@ export default function Dashboard() {
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--border-primary)] hover:bg-[var(--gold-primary)] hover:text-black text-white transition-colors text-[11px] font-mono"
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--border-primary)] hover:bg-[var(--gold-primary)] hover:text-black text-white transition-colors text-[11px]"
                   >
                     <span>YouTube에서 열기</span>
                     <ExternalLink className="w-3 h-3" />
@@ -839,8 +839,8 @@ export default function Dashboard() {
                     <div className="w-14 h-14 rounded-full bg-[#39FF14]/10 border border-[#39FF14]/20 flex items-center justify-center mx-auto mb-4">
                       <ExternalLink className="w-6 h-6 text-[#39FF14]" />
                     </div>
-                    <p className="text-[13px] font-mono font-bold text-white tracking-widest mb-2">임베드 제한됨</p>
-                    <p className="text-[11px] font-mono text-white/50 mb-6 max-w-xs">
+                    <p className="text-[13px] font-bold text-white tracking-widest mb-2">임베드 제한됨</p>
+                    <p className="text-[11px] text-white/50 mb-6 max-w-xs">
                       {liveFeedName} 은(는) 외부 임베드를 허용하지 않습니다. 아래 버튼으로 원본 실시간 스트림을 직접 여세요.
                     </p>
                     <a
@@ -853,7 +853,7 @@ export default function Dashboard() {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded border border-[#39FF14]/40 text-[#39FF14] font-mono text-[12px] hover:bg-[#39FF14]/10 transition-colors tracking-wider"
+                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded border border-[#39FF14]/40 text-[#39FF14] text-[12px] hover:bg-[#39FF14]/10 transition-colors tracking-wider"
                     >
                       <ExternalLink className="w-4 h-4" />
                       실시간 스트림 열기
@@ -866,7 +866,7 @@ export default function Dashboard() {
               {liveFeedEmbedAllowed && (
                 <div className="bg-[#111]/90 px-4 py-2.5 border-t border-[var(--border-primary)] flex items-center gap-2.5">
                   <AlertTriangle className="w-4 h-4 text-[var(--gold-primary)] shrink-0" />
-                  <span className="text-[11px] font-mono text-white/70 leading-relaxed">
+                  <span className="text-[11px] text-white/70 leading-relaxed">
                     &ldquo;동영상을 재생할 수 없음&rdquo;이 보이면 위의 <strong className="text-[var(--gold-primary)]">YouTube에서 열기</strong>를 사용하세요.
                   </span>
                 </div>
@@ -985,7 +985,7 @@ export default function Dashboard() {
             {/* 좌표 */}
             <div className="flex flex-col items-center min-w-[110px] px-3">
               <div className="hud-label">좌표</div>
-              <div ref={coordsDisplayRef} className="text-[10px] font-mono font-bold text-[var(--gold-primary)] tracking-wide tabular-nums">—</div>
+              <div ref={coordsDisplayRef} className="text-[10px] font-bold text-[var(--gold-primary)] tracking-wide tabular-nums">—</div>
             </div>
 
             <div className="w-px h-8 bg-gradient-to-b from-transparent via-[var(--border-primary)] to-transparent flex-shrink-0" />
@@ -993,7 +993,7 @@ export default function Dashboard() {
             {/* 위치 */}
             <div className="flex flex-col items-center min-w-[160px] max-w-[280px] px-3">
               <div className="hud-label">위치</div>
-              <div className="text-[9px] text-[var(--text-secondary)] font-mono truncate max-w-[280px]">{locationLabel || '지도 위에 마우스를 올리세요...'}</div>
+              <div className="text-[9px] text-[var(--text-secondary)] truncate max-w-[280px]">{locationLabel || '지도 위에 마우스를 올리세요...'}</div>
             </div>
 
             <div className="w-px h-8 bg-gradient-to-b from-transparent via-[var(--border-primary)] to-transparent flex-shrink-0" />
@@ -1001,7 +1001,7 @@ export default function Dashboard() {
             {/* 줌 */}
             <div className="flex flex-col items-center px-3">
               <div className="hud-label">줌</div>
-              <div className="text-[10px] font-mono font-bold text-[var(--gold-primary)] tabular-nums">{mapView.zoom.toFixed(1)}</div>
+              <div className="text-[10px] font-bold text-[var(--gold-primary)] tabular-nums">{mapView.zoom.toFixed(1)}</div>
             </div>
 
             <div className="w-px h-8 bg-gradient-to-b from-transparent via-[var(--border-primary)] to-transparent flex-shrink-0" />
@@ -1011,7 +1011,7 @@ export default function Dashboard() {
               <div className="hud-label">활성 레이어</div>
               <div className="flex items-center gap-1">
                 <Layers className="w-3 h-3 text-[var(--gold-primary)]" />
-                <span className="text-[10px] font-mono font-bold text-[var(--gold-primary)] tabular-nums">{Object.values(activeLayers).filter(Boolean).length}</span>
+                <span className="text-[10px] font-bold text-[var(--gold-primary)] tabular-nums">{Object.values(activeLayers).filter(Boolean).length}</span>
               </div>
             </div>
 
@@ -1022,7 +1022,7 @@ export default function Dashboard() {
               <div className="hud-label">피드</div>
               <div className="flex items-center gap-1">
                 <Activity className="w-3 h-3 text-[var(--cyan-primary)]" />
-                <span className="text-[10px] font-mono font-bold text-[var(--cyan-primary)] tabular-nums">{Object.values(activeLayers).filter(Boolean).length}</span>
+                <span className="text-[10px] font-bold text-[var(--cyan-primary)] tabular-nums">{Object.values(activeLayers).filter(Boolean).length}</span>
               </div>
             </div>
 
@@ -1051,13 +1051,13 @@ export default function Dashboard() {
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="absolute top-16 md:top-20 left-2 right-2 md:left-1/2 md:right-auto md:-translate-x-1/2 z-[300] md:w-[480px] max-h-[65vh] overflow-y-auto styled-scrollbar">
           <div className="glass-panel p-5 mikael-glow">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm font-mono font-bold text-[var(--gold-primary)] tracking-wider">지역 정보 파일</h2>
+              <h2 className="text-sm font-bold text-[var(--gold-primary)] tracking-wider">지역 정보 파일</h2>
               <button onClick={() => { setRegionDossier(null); setDossierLoading(false); }} className="text-[var(--text-muted)] hover:text-[var(--text-primary)] text-xs">✕</button>
             </div>
             {dossierLoading ? (
               <div className="text-center py-8">
                 <div className="w-5 h-5 border-2 border-[var(--gold-primary)] border-t-transparent rounded-full animate-spin mx-auto mb-2" />
-                <span className="text-[8px] font-mono text-[var(--text-muted)] tracking-widest">정보 취합 중...</span>
+                <span className="text-[8px] text-[var(--text-muted)] tracking-widest">정보 취합 중...</span>
               </div>
             ) : regionDossier && (
               <div className="space-y-3">
@@ -1105,7 +1105,7 @@ export default function Dashboard() {
       <GlobalStatusBar />
 
       {/* Shortcut hint */}
-      <div className="desktop-only absolute bottom-[26px] right-5 z-[200] pointer-events-none text-[6px] font-mono text-[var(--text-muted)]/40 tracking-widest">
+      <div className="desktop-only absolute bottom-[26px] right-5 z-[200] pointer-events-none text-[6px] text-[var(--text-muted)]/40 tracking-widest">
         [?] 단축키 · [F] 전체화면 · [S] 공유 · [R] 전세계 초기화
       </div>
 

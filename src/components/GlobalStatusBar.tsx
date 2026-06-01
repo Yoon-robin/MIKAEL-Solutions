@@ -92,7 +92,7 @@ export default function GlobalStatusBar() {
       transition={{ delay: 4, duration: 0.8 }}
       className="hidden md:block absolute bottom-0 left-0 right-0 z-[198] pointer-events-none"
     >
-      <div className="h-[22px] overflow-hidden bg-[var(--bg-panel)]/80 border-t border-[var(--border-secondary)]/50 flex items-center text-[8px] font-mono tracking-wider backdrop-blur-sm">
+      <div className="h-[22px] overflow-hidden bg-[var(--bg-panel)]/80 border-t border-[var(--border-secondary)]/50 flex items-center text-[8px] tracking-wider backdrop-blur-sm">
         {/* Static label */}
         <div className="flex-shrink-0 px-2 h-full flex items-center gap-1 border-r border-[var(--border-secondary)]/50 bg-[var(--bg-panel)] pointer-events-auto">
           <span className="text-[var(--text-muted)]">거래소</span>
@@ -113,7 +113,7 @@ export default function GlobalStatusBar() {
         <div
           className="absolute bottom-[28px] left-1/2 -translate-x-1/2 z-[300] pointer-events-none"
         >
-          <div className="glass-panel px-3 py-2 text-[10px] font-mono text-center whitespace-nowrap" style={{ borderColor: `${riskColor(hoveredRisk.risk_level)}40` }}>
+          <div className="glass-panel px-3 py-2 text-[10px] text-center whitespace-nowrap" style={{ borderColor: `${riskColor(hoveredRisk.risk_level)}40` }}>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-[12px]">{countryFlag(hoveredRisk.code)}</span>
               <span className="font-bold" style={{ color: riskColor(hoveredRisk.risk_level) }}>

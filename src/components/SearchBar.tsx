@@ -86,7 +86,7 @@ export default function SearchBar({ onLocate }: SearchBarProps) {
             if (e.key === 'Enter' && results.length > 0) handleSelect(results[0]);
           }}
           placeholder="좌표 또는 대상명을 입력하세요..."
-          className="flex-1 bg-transparent text-[10px] text-[var(--text-primary)] font-mono tracking-wider outline-none placeholder:text-[var(--text-muted)]"
+          className="flex-1 bg-transparent text-[10px] text-[var(--text-primary)] tracking-wider outline-none placeholder:text-[var(--text-muted)]"
         />
         {loading && <div className="w-3 h-3 border border-[var(--gold-primary)] border-t-transparent rounded-full animate-spin" />}
         <button onClick={() => { setOpen(false); setValue(''); setResults([]); }} className="text-[var(--text-muted)] hover:text-[var(--text-primary)]">
@@ -103,7 +103,7 @@ export default function SearchBar({ onLocate }: SearchBarProps) {
               className="w-full text-left px-3 py-2.5 hover:bg-[var(--hover-accent)] transition-colors border-b border-[var(--border-secondary)] last:border-0 flex items-center gap-2"
             >
               <MapPin className="w-3 h-3 text-[var(--gold-primary)] flex-shrink-0" />
-              <span className="text-[9px] text-[var(--text-secondary)] font-mono truncate">{r.label}</span>
+              <span className="text-[9px] text-[var(--text-secondary)] truncate">{r.label}</span>
             </button>
           ))}
         </div>
