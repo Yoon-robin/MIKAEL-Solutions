@@ -57,10 +57,10 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
       transition={{ delay: 0.6, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="border-[#27272A] bg-[#111113] py-0 gap-0 overflow-hidden rounded-lg">
+      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg">
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#18181B] transition-colors"
+          className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#161018] transition-colors"
         >
           <div className="flex items-center gap-2.5">
             <Newspaper className="w-4 h-4 text-[var(--gold-primary)]" />
@@ -73,8 +73,8 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-[var(--alert-green)]" />
             {expanded
-              ? <ChevronUp className="w-4 h-4 text-[#71717A]" />
-              : <ChevronDown className="w-4 h-4 text-[#71717A]" />}
+              ? <ChevronUp className="w-4 h-4 text-[#6B5748]" />
+              : <ChevronDown className="w-4 h-4 text-[#6B5748]" />}
           </div>
         </button>
 
@@ -87,7 +87,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
               exit={{ height: 0 }}
               className="overflow-hidden"
             >
-              <Separator className="bg-[#27272A]" />
+              <Separator className="bg-[#272027]" />
               <div className="max-h-[400px] overflow-y-auto styled-scrollbar divide-y divide-[var(--border-secondary)]">
                 {news.length === 0 ? (
                   <div className="px-4 py-6 text-center">
@@ -101,7 +101,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                       key={i}
                       role="button"
                       tabIndex={0}
-                      className="px-4 py-3 hover:bg-[#18181B] transition-colors cursor-pointer"
+                      className="px-4 py-3 hover:bg-[#161018] transition-colors cursor-pointer"
                       onClick={() => {
                         if (item.link) window.open(item.link, '_blank', 'noopener,noreferrer');
                         else setSelectedIdx(selectedIdx === i ? null : i);
@@ -116,7 +116,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                         <span className={`text-[9px] font-bold tracking-widest ${getRiskClass(item.risk_score)}`}>
                           {getRiskLabel(item.risk_score)}
                         </span>
-                        <span className="text-[11px] text-[#71717A] bg-[#18181B] px-1.5 py-0.5 rounded-md font-medium">
+                        <span className="text-[11px] text-[#6B5748] bg-[#161018] px-1.5 py-0.5 rounded-md font-medium">
                           {item.source}
                         </span>
                         {item.coords && (

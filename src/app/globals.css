@@ -2,86 +2,87 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   MIKAEL Solutions — shadcn/ui dark exact + Next.js 스타일
+   MIKAEL Solutions — 대천사 미카엘 아이덴티티
+   심연의 어둠 × 핏빛 심홍 × 상아 × 강철
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ── shadcn dark mode 정확한 값 (zinc 팔레트) ── */
-  --bg-void:       #09090B;  /* zinc-950 */
-  --bg-primary:    #09090B;
-  --bg-secondary:  #111113;  /* 카드 배경 */
-  --bg-tertiary:   #18181B;  /* zinc-900 */
-  --bg-panel:      #111113;
-  --bg-panel-solid:#111113;
+  /* ── 배경 — 심연의 어둠 (이미지의 순흑) ── */
+  --bg-void:       #060408;   /* 심연 블랙, 따뜻한 언더톤 */
+  --bg-primary:    #09070B;
+  --bg-secondary:  #0E0C10;   /* 패널 카드 */
+  --bg-tertiary:   #161218;   /* 입력 필드 */
+  --bg-panel:      #0E0C10;
+  --bg-panel-solid:#0E0C10;
 
-  /* ── 브랜드 레드 (Osiris 골드와 차별화) ── */
-  --gold-primary: #EF4444;    /* red-500 */
-  --gold-light:   #FCA5A5;    /* red-300 */
-  --gold-dim:     #991B1B;    /* red-800 */
-  --gold-glow:    rgba(239, 68, 68, 0.2);
+  /* ── 브랜드 — 심홍 (이미지의 핏빛 구름) ── */
+  --gold-primary: #B91C1C;    /* red-700 — 심홍 */
+  --gold-light:   #F87171;    /* red-400 — 판단의 빛 */
+  --gold-dim:     #7F1D1D;    /* red-900 — 심연의 붉음 */
+  --gold-glow:    rgba(185, 28, 28, 0.22);
 
-  /* ── 데이터 스트림 시안 ── */
-  --cyan-primary: #00E5FF;
-  --cyan-dim:     #006B7A;
-  --cyan-glow:    rgba(0, 229, 255, 0.12);
+  /* ── 보조 — 강철 슬레이트 (검의 날) ── */
+  --cyan-primary: #94A3B8;    /* slate-400 — 검 날 */
+  --cyan-dim:     #475569;    /* slate-600 */
+  --cyan-glow:    rgba(148, 163, 184, 0.12);
 
   /* ── 상태 색상 ── */
-  --alert-red:    #EF4444;  /* red-500 */
-  --alert-orange: #F97316;  /* orange-500 */
-  --alert-green:  #22C55E;  /* green-500 */
-  --alert-blue:   #3B82F6;  /* blue-500 */
+  --alert-red:    #EF4444;
+  --alert-orange: #F97316;
+  --alert-green:  #22C55E;
+  --alert-blue:   #60A5FA;
 
-  /* ── 테두리 — zinc 팔레트 ── */
-  --border-neutral:       #27272A;  /* zinc-800 */
-  --border-neutral-hover: #3F3F46;  /* zinc-700 */
-  --border-primary:       #27272A;
-  --border-secondary:     #1C1C1F;
-  --border-active:        rgba(239, 68, 68, 0.5);
-  --border-cyan:          rgba(0, 229, 255, 0.25);
+  /* ── 테두리 — 따뜻한 어둠 ── */
+  --border-neutral:       #272027;   /* 따뜻한 보라빛 어둠 */
+  --border-neutral-hover: #3A303A;
+  --border-primary:       #272027;
+  --border-secondary:     #1A1418;
+  --border-active:        rgba(185, 28, 28, 0.55);
+  --border-cyan:          rgba(148, 163, 184, 0.2);
 
-  /* ── 텍스트 — shadcn 정확한 값 ── */
-  --text-primary:  #FAFAFA;  /* zinc-50 */
-  --text-secondary:#A1A1AA;  /* zinc-400 */
-  --text-muted:    #71717A;  /* zinc-500 */
-  --text-heading:  #FFFFFF;
-  --text-gold:     #EF4444;
-  --text-cyan:     #00E5FF;
+  /* ── 텍스트 — 상아/크림 (천사의 빛) ── */
+  --text-primary:  #F0E6D0;   /* 따뜻한 상아 */
+  --text-secondary:#A08872;   /* 따뜻한 뮤트 */
+  --text-muted:    #6B5748;   /* 어두운 따뜻함 */
+  --text-heading:  #F8F0E0;   /* 밝은 상아 */
+  --text-gold:     #B91C1C;
+  --text-cyan:     #94A3B8;
 
   /* ── 스크롤바 ── */
-  --scrollbar-thumb:       #3F3F46;  /* zinc-700 */
-  --scrollbar-thumb-hover: #52525B;  /* zinc-600 */
+  --scrollbar-thumb:       #3A303A;
+  --scrollbar-thumb-hover: #4A3A4A;
 
   /* ── 호버 ── */
-  --hover-accent: #18181B;  /* zinc-900, 선명한 호버 */
+  --hover-accent: #161018;   /* 따뜻한 어두운 호버 */
 
   /* ── 폰트 ── */
-  --font-hud:  'Inter', -apple-system, sans-serif;  /* mono 제거 — Inter 통일 */
+  --font-hud:  'Inter', -apple-system, sans-serif;
   --font-body: 'Inter', -apple-system, sans-serif;
 
   /* ── 간격 ── */
   --panel-gap: 12px;
   --edge-pad:  20px;
 
-  /* ── shadcn 토큰 (정확한 다크 모드) ── */
-  --radius: 0.5rem;  /* shadcn 기본 */
-  --background:           #09090B;
-  --foreground:           #FAFAFA;
-  --card:                 #111113;
-  --card-foreground:      #FAFAFA;
-  --popover:              #111113;
-  --popover-foreground:   #FAFAFA;
-  --primary:              #FAFAFA;     /* 다크모드: primary = 흰색 */
-  --primary-foreground:   #09090B;
-  --secondary:            #27272A;
-  --secondary-foreground: #FAFAFA;
-  --muted:                #18181B;
-  --muted-foreground:     #A1A1AA;
-  --accent:               #18181B;
-  --accent-foreground:    #FAFAFA;
+  /* ── shadcn 토큰 ── */
+  --radius: 0.5rem;
+  --background:           #060408;
+  --foreground:           #F0E6D0;
+  --card:                 #0E0C10;
+  --card-foreground:      #F0E6D0;
+  --popover:              #0E0C10;
+  --popover-foreground:   #F0E6D0;
+  --primary:              #B91C1C;    /* 심홍이 primary */
+  --primary-foreground:   #F8F0E0;
+  --secondary:            #272027;
+  --secondary-foreground: #F0E6D0;
+  --muted:                #161218;
+  --muted-foreground:     #A08872;
+  --accent:               #161018;
+  --accent-foreground:    #F0E6D0;
   --destructive:          #EF4444;
-  --border:               #27272A;
-  --input:                #27272A;
-  --ring:                 #EF4444;
+  --border:               #272027;
+  --input:                #272027;
+  --ring:                 #B91C1C;
 }
 
 @theme inline {
@@ -137,25 +138,25 @@ html, body {
    PANEL — shadcn/ui dark 정확한 카드 스타일
    ═══════════════════════════════════════════════════════════════ */
 .glass-panel {
-  background: #111113;          /* zinc-950보다 살짝 밝은 카드 */
-  border: 1px solid #27272A;    /* zinc-800 — 눈에 보이는 선명한 테두리 */
+  background: #0E0C10;
+  border: 1px solid #272027;
   border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   transition: border-color 0.15s ease;
 }
 
 .glass-panel:hover {
-  border-color: #3F3F46;        /* zinc-700 */
+  border-color: #3A303A;
 }
 
 .glass-panel-sm {
-  background: #111113;
-  border: 1px solid #27272A;
+  background: #0E0C10;
+  border: 1px solid #272027;
   border-radius: 6px;
 }
 
 .mikael-glow {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
 }
 
 .mikael-glow-cyan {

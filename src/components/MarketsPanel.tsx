@@ -50,7 +50,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
       transition={{ delay: 0.6, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="border-[#27272A] bg-[#111113] py-0 gap-0 overflow-hidden rounded-lg">
+      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg">
         <CardHeader className="px-4 py-3.5">
           <button
             onClick={() => setExpanded(!expanded)}
@@ -66,8 +66,8 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[var(--alert-green)]" />
               {expanded
-                ? <ChevronUp className="w-4 h-4 text-[#71717A]" />
-                : <ChevronDown className="w-4 h-4 text-[#71717A]" />}
+                ? <ChevronUp className="w-4 h-4 text-[#6B5748]" />
+                : <ChevronDown className="w-4 h-4 text-[#6B5748]" />}
             </div>
           </button>
         </CardHeader>
@@ -81,7 +81,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <Separator className="bg-[#27272A]" />
+              <Separator className="bg-[#272027]" />
               <CardContent className="px-3 py-2">
                 {/* 우주기상 배너 */}
                 {spaceWeather && (
@@ -119,8 +119,8 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
                         onClick={() => setActiveSection(s.key)}
                         className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[12px] font-medium whitespace-nowrap transition-colors ${
                           activeSection === s.key
-                            ? 'bg-[#18181B] text-white'
-                            : 'text-[#71717A] hover:text-[#A1A1AA] hover:bg-[#18181B]'
+                            ? 'bg-[#161018] text-white'
+                            : 'text-[#6B5748] hover:text-[#A1A1AA] hover:bg-[#161018]'
                         }`}
                       >
                         <Icon className="w-3.5 h-3.5" />

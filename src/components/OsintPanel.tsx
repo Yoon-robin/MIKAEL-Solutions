@@ -399,7 +399,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
         <div className="grid grid-cols-5 gap-1 mt-1">
           {TABS.filter(t => t.id !== 'sweep').map(tab => (
             <button key={tab.id} onClick={() => { setActiveTab(tab.id); setQuery(''); setResults(null); setError(''); }}
-              className={`flex flex-col items-center gap-1.5 px-0.5 py-2.5 rounded-lg text-[11px] font-medium transition-all border ${activeTab === tab.id ? 'border-opacity-40 bg-opacity-15' : 'border-transparent hover:bg-[#18181B]'}`}
+              className={`flex flex-col items-center gap-1.5 px-0.5 py-2.5 rounded-lg text-[11px] font-medium transition-all border ${activeTab === tab.id ? 'border-opacity-40 bg-opacity-15' : 'border-transparent hover:bg-[#161018]'}`}
               style={{ borderColor: activeTab === tab.id ? tab.color : 'transparent', backgroundColor: activeTab === tab.id ? `${tab.color}15` : undefined, color: activeTab === tab.id ? tab.color : '#71717A' }}>
               <tab.icon className="w-4 h-4 flex-shrink-0" />
               <span className="leading-tight text-center break-keep w-full" style={{ fontSize: '10px', lineHeight: '1.3' }}>{tab.label}</span>
@@ -731,20 +731,20 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
   }
 
   return (
-    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="border border-[#27272A] bg-[#111113] rounded-lg flex flex-col overflow-hidden pointer-events-auto">
-      <div className="flex items-center justify-between px-4 py-3.5 border-b border-[#27272A] hover:bg-[#18181B] transition-colors">
+    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="border border-[#272027] bg-[#0E0C10] rounded-lg flex flex-col overflow-hidden pointer-events-auto">
+      <div className="flex items-center justify-between px-4 py-3.5 border-b border-[#272027] hover:bg-[#161018] transition-colors">
         <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-2.5 flex-1">
           <Radar className="w-4 h-4 text-[var(--cyan-primary)]" />
           <span className="text-[14px] font-semibold text-white tracking-tight">정찰 도구함</span>
           <Badge variant="cyan" className="text-[10px] h-5 px-1.5 rounded font-medium">{TABS.length}개 도구</Badge>
         </button>
         <div className="flex items-center gap-3">
-          <button onClick={() => setIsFullScreen(true)} className="text-[#71717A] hover:text-white transition-colors" title="전체 화면">
+          <button onClick={() => setIsFullScreen(true)} className="text-[#6B5748] hover:text-white transition-colors" title="전체 화면">
              <Maximize2 className="w-4 h-4" />
           </button>
           <div className="w-1.5 h-1.5 rounded-full bg-[var(--cyan-primary)]" />
           <button onClick={() => setExpanded(!expanded)}>
-            {expanded ? <ChevronUp className="w-4 h-4 text-[#71717A]" /> : <ChevronDown className="w-4 h-4 text-[#71717A]" />}
+            {expanded ? <ChevronUp className="w-4 h-4 text-[#6B5748]" /> : <ChevronDown className="w-4 h-4 text-[#6B5748]" />}
           </button>
         </div>
       </div>

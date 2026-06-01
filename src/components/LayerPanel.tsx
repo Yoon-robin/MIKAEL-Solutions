@@ -120,7 +120,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
 
   return (
     <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="pointer-events-auto">
-      <Card className="border-[#27272A] bg-[#111113] py-0 gap-0 overflow-hidden rounded-lg">
+      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg">
 
         {/* ── 패널 헤더 ── */}
         <CardHeader className="px-4 py-3.5">
@@ -145,7 +145,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
           </div>
         </CardHeader>
 
-        <Separator className="bg-[#27272A]" />
+        <Separator className="bg-[#272027]" />
 
         <CardContent className="px-2 py-2">
           <div className="space-y-0.5">
@@ -162,7 +162,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                     <button
                       type="button"
                       onClick={() => toggleGroup(group.label)}
-                      className="flex items-center gap-2 flex-1 py-1.5 px-2 rounded-md hover:bg-[#18181B] transition-colors text-left group"
+                      className="flex items-center gap-2 flex-1 py-1.5 px-2 rounded-md hover:bg-[#161018] transition-colors text-left group"
                     >
                       <GroupIcon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: group.color }} />
                       <span className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-widest flex-1">
@@ -178,7 +178,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                     <button
                       type="button"
                       onClick={() => toggleAllInGroup(group)}
-                      className="p-1 rounded hover:bg-[#18181B] transition-colors"
+                      className="p-1 rounded hover:bg-[#161018] transition-colors"
                       title={allActive ? '전체 끄기' : '전체 켜기'}
                     >
                       {allActive
@@ -197,7 +197,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                         transition={{ duration: 0.15 }}
                         className="overflow-hidden"
                       >
-                        <div className="ml-3 pl-3 border-l border-[#27272A] space-y-px mb-1">
+                        <div className="ml-3 pl-3 border-l border-[#272027] space-y-px mb-1">
                           {group.layers.map((layer) => {
                             const Icon = layer.icon;
                             const isActive = activeLayers[layer.key];
@@ -209,14 +209,14 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                                 onClick={() => toggle(layer.key)}
                                 className={`w-full flex items-center gap-2.5 px-2 py-2 rounded-md transition-colors text-left ${
                                   isActive
-                                    ? 'bg-[#18181B] text-white'
-                                    : 'text-[var(--text-muted)] hover:bg-[#18181B] hover:text-[var(--text-secondary)]'
+                                    ? 'bg-[#161018] text-white'
+                                    : 'text-[var(--text-muted)] hover:bg-[#161018] hover:text-[var(--text-secondary)]'
                                 }`}
                               >
                                 <Icon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: isActive ? layer.color : '#52525B' }} />
                                 <span className="text-[13px] flex-1 font-medium">{layer.label}</span>
                                 {count !== null && (
-                                  <span className="text-[11px] tabular-nums text-[#71717A]">
+                                  <span className="text-[11px] tabular-nums text-[#6B5748]">
                                     {count.toLocaleString()}
                                   </span>
                                 )}

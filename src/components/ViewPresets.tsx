@@ -29,7 +29,7 @@ export default function ViewPresets({ onNavigate }: ViewPresetsProps) {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.7, duration: 0.6 }}
-      className="border border-[#27272A] bg-[#111113] rounded-lg p-3 pointer-events-auto"
+      className="border border-[#272027] bg-[#0E0C10] rounded-lg p-3 pointer-events-auto"
     >
       <div className="flex items-center gap-2 mb-3">
         <Globe className="w-4 h-4 text-[var(--gold-primary)]" />
@@ -43,7 +43,7 @@ export default function ViewPresets({ onNavigate }: ViewPresetsProps) {
           <button
             key={p.label}
             onClick={() => onNavigate(p.lat, p.lng, p.zoom)}
-            className={`flex items-center gap-2 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors ${(p as any).hot ? 'text-[var(--alert-red)] hover:bg-[#18181B]' : 'text-[#A1A1AA] hover:bg-[#18181B] hover:text-white'}`}
+            className={`flex items-center gap-2 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors ${(p as any).hot ? 'text-[var(--alert-red)] hover:bg-[#161018]' : 'text-[#A1A1AA] hover:bg-[#161018] hover:text-white'}`}
           >
             
             <span>{p.label}</span>

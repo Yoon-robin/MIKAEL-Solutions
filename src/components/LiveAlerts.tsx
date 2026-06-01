@@ -118,10 +118,10 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
       transition={{ delay: 0.5, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="border-[#27272A] bg-[#111113] py-0 gap-0 overflow-hidden rounded-lg">
+      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg">
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#18181B] transition-colors"
+        className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#161018] transition-colors"
       >
         <div className="flex items-center gap-2.5">
           <Radio className="w-4 h-4 text-[#FF4081]" />
@@ -135,7 +135,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
         </div>
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-[#FF4081]" />
-          {expanded ? <ChevronUp className="w-4 h-4 text-[#71717A]" /> : <ChevronDown className="w-4 h-4 text-[#71717A]" />}
+          {expanded ? <ChevronUp className="w-4 h-4 text-[#6B5748]" /> : <ChevronDown className="w-4 h-4 text-[#6B5748]" />}
         </div>
       </button>
 
@@ -148,7 +148,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <Separator className="bg-[#27272A]" />
+            <Separator className="bg-[#272027]" />
             <div className="px-2 pb-2 pt-2">
             {/* 필터 */}
             <div className="flex gap-1 mb-2">
@@ -156,7 +156,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-2.5 py-1 rounded-md text-[12px] font-medium transition-colors ${filter === f ? 'bg-[#18181B] text-white' : 'text-[#71717A] hover:text-[#A1A1AA] hover:bg-[#18181B]'}`}
+                  className={`px-2.5 py-1 rounded-md text-[12px] font-medium transition-colors ${filter === f ? 'bg-[#161018] text-white' : 'text-[#6B5748] hover:text-[#A1A1AA] hover:bg-[#161018]'}`}
                 >
                   {{ all: '전체', news: '뉴스', quakes: '지진', feeds: '방송' }[f]}
                 </button>
