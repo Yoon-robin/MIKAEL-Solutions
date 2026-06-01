@@ -399,7 +399,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
         <div className="grid grid-cols-5 gap-1 mt-1">
           {TABS.filter(t => t.id !== 'sweep').map(tab => (
             <button key={tab.id} onClick={() => { setActiveTab(tab.id); setQuery(''); setResults(null); setError(''); }}
-              className={`flex flex-col items-center gap-1.5 px-0.5 py-2.5 rounded-lg text-[11px] font-medium transition-all border ${activeTab === tab.id ? 'border-opacity-40 bg-opacity-15' : 'border-transparent hover:bg-[#161018]'}`}
+              className={`flex flex-col items-center gap-1.5 px-0.5 py-2.5 rounded-lg text-[11px] font-medium transition-all border ${activeTab === tab.id ? 'border-opacity-40 bg-opacity-15' : 'border-transparent hover:bg-[#110E0E]'}`}
               style={{ borderColor: activeTab === tab.id ? tab.color : 'transparent', backgroundColor: activeTab === tab.id ? `${tab.color}15` : undefined, color: activeTab === tab.id ? tab.color : '#71717A' }}>
               <tab.icon className="w-4 h-4 flex-shrink-0" />
               <span className="leading-tight text-center break-keep w-full" style={{ fontSize: '10px', lineHeight: '1.3' }}>{tab.label}</span>
@@ -731,8 +731,8 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
   }
 
   return (
-    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="border border-[#272027] bg-[#0E0C10] rounded-lg flex flex-col overflow-hidden pointer-events-auto">
-      <div className="flex items-center justify-between px-4 py-3.5 border-b border-[#272027] hover:bg-[#161018] transition-colors">
+    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="border border-white/[0.07] bg-[#0A0808] rounded-lg flex flex-col overflow-hidden pointer-events-auto">
+      <div className="flex items-center justify-between px-4 py-3.5 border-b border-white/[0.07] hover:bg-[#110E0E] transition-colors">
         <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-2.5 flex-1">
           <Radar className="w-4 h-4 text-[var(--cyan-primary)]" />
           <span className="mikael-brand text-[13px] text-[var(--text-heading)]">정찰 도구함</span>

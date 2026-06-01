@@ -411,7 +411,21 @@ export default function Dashboard() {
 
 
   return (
-    <main className="fixed inset-0 w-full h-full bg-[var(--bg-void)] overflow-hidden">
+    <main className="fixed inset-0 w-full h-full bg-[var(--bg-void)] overflow-hidden mikael-grid-bg">
+
+      {/* ── Next.js 스타일 원형 장식 — 대천사 헤일로 ── */}
+      <div className="fixed inset-0 pointer-events-none z-[1] overflow-hidden">
+        {/* 좌하단 헤일로 */}
+        <div className="mikael-grid-circle absolute" style={{ width: 320, height: 320, bottom: -80, left: -80 }} />
+        <div className="mikael-grid-circle absolute" style={{ width: 180, height: 180, bottom: -20, left: -20, opacity: 0.6 }} />
+        {/* 우상단 헤일로 */}
+        <div className="mikael-grid-circle absolute" style={{ width: 260, height: 260, top: -60, right: -60, opacity: 0.7 }} />
+        <div className="mikael-grid-circle absolute" style={{ width: 140, height: 140, top: -10, right: -10, opacity: 0.5 }} />
+        {/* 중앙 좌측 패널 주변 */}
+        <div className="mikael-grid-circle absolute" style={{ width: 88, height: 88, top: '38%', left: 240, opacity: 0.3 }} />
+        {/* 중앙 우측 패널 주변 */}
+        <div className="mikael-grid-circle absolute" style={{ width: 88, height: 88, bottom: '30%', right: 340, opacity: 0.3 }} />
+      </div>
 
       {/* ── SPLASH ── */}
       <AnimatePresence>

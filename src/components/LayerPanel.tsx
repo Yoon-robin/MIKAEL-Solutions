@@ -120,7 +120,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
 
   return (
     <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="pointer-events-auto">
-      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg mikael-panel">
+      <Card className="border-white/[0.07] bg-[#0A0808] py-0 gap-0 overflow-hidden rounded mikael-panel">
 
         {/* ── 패널 헤더 ── */}
         <CardHeader className="px-4 py-3.5">
@@ -162,7 +162,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                     <button
                       type="button"
                       onClick={() => toggleGroup(group.label)}
-                      className="flex items-center gap-2 flex-1 py-1.5 px-2 rounded-md hover:bg-[#161018] transition-colors text-left group"
+                      className="flex items-center gap-2 flex-1 py-1.5 px-2 rounded-md hover:bg-[#110E0E] transition-colors text-left group"
                     >
                       <GroupIcon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: group.color }} />
                       <span className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-widest flex-1">
@@ -178,7 +178,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                     <button
                       type="button"
                       onClick={() => toggleAllInGroup(group)}
-                      className="p-1 rounded hover:bg-[#161018] transition-colors"
+                      className="p-1 rounded hover:bg-[#110E0E] transition-colors"
                       title={allActive ? '전체 끄기' : '전체 켜기'}
                     >
                       {allActive
@@ -197,7 +197,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                         transition={{ duration: 0.15 }}
                         className="overflow-hidden"
                       >
-                        <div className="ml-3 pl-3 border-l border-[#272027] space-y-px mb-1">
+                        <div className="ml-3 pl-3 border-l border-white/[0.07] space-y-px mb-1">
                           {group.layers.map((layer) => {
                             const Icon = layer.icon;
                             const isActive = activeLayers[layer.key];

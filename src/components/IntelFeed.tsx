@@ -57,10 +57,10 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
       transition={{ delay: 0.6, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg mikael-panel">
+      <Card className="border-white/[0.07] bg-[#0A0808] py-0 gap-0 overflow-hidden rounded mikael-panel">
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#161018] transition-colors"
+          className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#110E0E] transition-colors"
         >
           <div className="flex items-center gap-2.5">
             <Newspaper className="w-4 h-4 text-[var(--gold-primary)]" />
@@ -104,7 +104,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                       transition={{ delay: i * 0.04, duration: 0.3, ease: 'easeOut' }}
                       role="button"
                       tabIndex={0}
-                      className="px-4 py-3 hover:bg-[#161018] transition-colors cursor-pointer"
+                      className="px-4 py-3 hover:bg-[#110E0E] transition-colors cursor-pointer"
                       onClick={() => {
                         if (item.link) window.open(item.link, '_blank', 'noopener,noreferrer');
                         else setSelectedIdx(selectedIdx === i ? null : i);
@@ -119,7 +119,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                         <span className={`text-[9px] font-bold tracking-widest ${getRiskClass(item.risk_score)}`}>
                           {getRiskLabel(item.risk_score)}
                         </span>
-                        <span className="text-[11px] text-[#6B5748] bg-[#161018] px-1.5 py-0.5 rounded-md font-medium">
+                        <span className="text-[11px] text-[#6B5748] bg-[#110E0E] px-1.5 py-0.5 rounded-md font-medium">
                           {item.source}
                         </span>
                         {item.coords && (

@@ -65,7 +65,7 @@ export default function SearchBar({ onLocate }: SearchBarProps) {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-1.5 border border-white/[0.08] bg-[#0E1018] rounded-lg px-3 py-2 text-[12px] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-white/[0.14] transition-all"
+        className="flex items-center gap-1.5 border border-white/[0.08] bg-[#0A0808] rounded px-3 py-2 text-[12px] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-white/[0.14] transition-all"
       >
         <Search className="w-3.5 h-3.5" />
         위치 검색
@@ -75,7 +75,7 @@ export default function SearchBar({ onLocate }: SearchBarProps) {
 
   return (
     <div className="relative w-full">
-      <div className="flex items-center gap-2 border border-[var(--gold-primary)]/30 bg-[#0E1018] rounded-xl px-3 py-2.5">
+      <div className="flex items-center gap-2 border border-[var(--gold-primary)]/30 bg-[#0A0808] rounded px-3 py-2.5">
         <Search className="w-3.5 h-3.5 text-[var(--gold-primary)] flex-shrink-0" />
         <input
           ref={inputRef}

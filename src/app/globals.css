@@ -7,13 +7,13 @@
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ── 배경 — 심연의 어둠 (이미지의 순흑) ── */
-  --bg-void:       #060408;   /* 심연 블랙, 따뜻한 언더톤 */
-  --bg-primary:    #09070B;
-  --bg-secondary:  #0E0C10;   /* 패널 카드 */
-  --bg-tertiary:   #161218;   /* 입력 필드 */
-  --bg-panel:      #0E0C10;
-  --bg-panel-solid:#0E0C10;
+  /* ── 배경 — Next.js 스타일 순흑 ── */
+  --bg-void:       #000000;   /* 순흑 */
+  --bg-primary:    #000000;
+  --bg-secondary:  #0A0808;   /* 패널 카드 — 미세하게 따뜻한 언더톤 */
+  --bg-tertiary:   #110E0E;   /* 입력 필드 */
+  --bg-panel:      #0A0808;
+  --bg-panel-solid:#0A0808;
 
   /* ── 브랜드 — 심홍 (이미지의 핏빛 구름) ── */
   --gold-primary: #B91C1C;    /* red-700 — 심홍 */
@@ -64,12 +64,12 @@
   --edge-pad:  20px;
 
   /* ── shadcn 토큰 ── */
-  --radius: 0.5rem;
-  --background:           #060408;
+  --radius: 0.25rem;
+  --background:           #000000;
   --foreground:           #F0E6D0;
-  --card:                 #0E0C10;
+  --card:                 #0A0808;
   --card-foreground:      #F0E6D0;
-  --popover:              #0E0C10;
+  --popover:              #0A0808;
   --popover-foreground:   #F0E6D0;
   --primary:              #B91C1C;    /* 심홍이 primary */
   --primary-foreground:   #F8F0E0;
@@ -138,21 +138,40 @@ html, body {
    PANEL — shadcn/ui dark 정확한 카드 스타일
    ═══════════════════════════════════════════════════════════════ */
 .glass-panel {
-  background: #0E0C10;
-  border: 1px solid #272027;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-  transition: border-color 0.15s ease;
+  background: #0A0808;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .glass-panel:hover {
-  border-color: #3A303A;
+  border-color: rgba(185, 28, 28, 0.25);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.6), 0 0 0 1px rgba(185,28,28,0.1);
 }
 
 .glass-panel-sm {
-  background: #0E0C10;
-  border: 1px solid #272027;
-  border-radius: 6px;
+  background: #0A0808;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Next.js 스타일 기하학적 그리드 배경
+   ═══════════════════════════════════════════════════════════════ */
+.mikael-grid-bg {
+  background-image:
+    linear-gradient(rgba(185, 28, 28, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(185, 28, 28, 0.04) 1px, transparent 1px);
+  background-size: 88px 88px;
+}
+
+/* 그리드 교점 원형 장식 */
+.mikael-grid-circle {
+  border: 1px solid rgba(185, 28, 28, 0.12);
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
 }
 
 .mikael-glow {

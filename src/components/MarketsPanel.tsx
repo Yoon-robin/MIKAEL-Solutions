@@ -50,7 +50,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
       transition={{ delay: 0.6, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg mikael-panel">
+      <Card className="border-white/[0.07] bg-[#0A0808] py-0 gap-0 overflow-hidden rounded mikael-panel">
         <CardHeader className="px-4 py-3.5">
           <button
             onClick={() => setExpanded(!expanded)}
@@ -119,8 +119,8 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
                         onClick={() => setActiveSection(s.key)}
                         className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[12px] font-medium whitespace-nowrap transition-colors ${
                           activeSection === s.key
-                            ? 'bg-[#161018] text-white'
-                            : 'text-[#6B5748] hover:text-[#A1A1AA] hover:bg-[#161018]'
+                            ? 'bg-[#110E0E] text-white'
+                            : 'text-[#6B5748] hover:text-[#A1A1AA] hover:bg-[#110E0E]'
                         }`}
                       >
                         <Icon className="w-3.5 h-3.5" />

@@ -118,10 +118,10 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
       transition={{ delay: 0.5, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg mikael-panel">
+      <Card className="border-white/[0.07] bg-[#0A0808] py-0 gap-0 overflow-hidden rounded mikael-panel">
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#161018] transition-colors"
+        className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#110E0E] transition-colors"
       >
         <div className="flex items-center gap-2.5">
           <Radio className="w-4 h-4 text-[#FF4081]" />
@@ -156,7 +156,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-2.5 py-1 rounded-md text-[12px] font-medium transition-colors ${filter === f ? 'bg-[#161018] text-white' : 'text-[#6B5748] hover:text-[#A1A1AA] hover:bg-[#161018]'}`}
+                  className={`px-2.5 py-1 rounded-md text-[12px] font-medium transition-colors ${filter === f ? 'bg-[#110E0E] text-white' : 'text-[#6B5748] hover:text-[#A1A1AA] hover:bg-[#110E0E]'}`}
                 >
                   {{ all: '전체', news: '뉴스', quakes: '지진', feeds: '방송' }[f]}
                 </button>
