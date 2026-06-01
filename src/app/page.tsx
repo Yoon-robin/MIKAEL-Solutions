@@ -458,21 +458,26 @@ export default function Dashboard() {
               </div>
             </motion.div>
 
-            {/* ── MIKAEL Solutions title — letter-by-letter stagger ── */}
-            <div className="flex items-center gap-[2px] mb-3 z-[2]">
-              {'MIKAEL Solutions'.split('').map((letter, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  transition={{ delay: 0.5 + i * 0.08, duration: 0.5, ease: 'easeOut' }}
-                  className="text-4xl md:text-5xl font-bold tracking-[0.5em]"
-                  style={{ color: 'var(--text-heading)', textShadow: '0 0 30px rgba(185,28,28,0.15)' }}
-                >
-                  {letter}
-                </motion.span>
-              ))}
-            </div>
+            {/* ── MIKAEL Solutions title — Cinzel 서체 ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+              className="mb-3 z-[2] text-center"
+            >
+              <span
+                className="mikael-brand text-4xl md:text-5xl"
+                style={{ color: 'var(--text-heading)', textShadow: '0 2px 24px rgba(185,28,28,0.2)', letterSpacing: '0.35em' }}
+              >
+                MIKAEL
+              </span>
+              <span
+                className="block text-xl md:text-2xl mt-1"
+                style={{ fontFamily: 'Cinzel, serif', color: 'var(--text-secondary)', letterSpacing: '0.55em', fontWeight: 400 }}
+              >
+                Solutions
+              </span>
+            </motion.div>
 
             {/* ── Subtitle — typewriter reveal ── */}
             <div className="overflow-hidden mb-8 z-[2]">
@@ -597,31 +602,32 @@ export default function Dashboard() {
 
       {/* ── HEADER ── */}
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 2.5 }} className={`absolute top-3 left-3 md:top-5 md:left-5 z-[200] pointer-events-none flex items-center gap-2 md:gap-3`}>
-        <div className="w-7 h-7 md:w-9 md:h-9 flex items-center justify-center relative">
-          {/* Ambient glow ring — slow rotating */}
-          <div className="absolute inset-[-4px] md:inset-[-5px] rounded-full border border-[var(--gold-primary)]/20" style={{ animation: 'mikael-rotate 12s linear infinite' }}>
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-[var(--gold-primary)] shadow-[0_0_6px_var(--gold-primary)]" />
-          </div>
-          <div className="absolute inset-[-8px] md:inset-[-10px] rounded-full border border-[var(--gold-primary)]/10" style={{ animation: 'mikael-rotate 20s linear infinite reverse' }}>
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-0.5 h-0.5 rounded-full bg-[var(--gold-primary)]/60" />
-          </div>
-          <div className="w-5 h-5 md:w-7 md:h-7 rounded-full border-2 border-[var(--gold-primary)] flex items-center justify-center animate-glow-pulse">
-            <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-[var(--gold-primary)]/30 border border-[var(--gold-primary)]/60" />
-          </div>
-          <div className="absolute w-[1px] h-full bg-[var(--gold-primary)]/30" />
-          <div className="absolute w-full h-[1px] bg-[var(--gold-primary)]/30" />
+        {/* ── MIKAEL 검 엠블럼 — SVG ── */}
+        <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center flex-shrink-0">
+          <svg viewBox="0 0 40 40" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            {/* 외원 */}
+            <circle cx="20" cy="20" r="18.5" stroke="#B91C1C" strokeWidth="0.8" strokeOpacity="0.5"/>
+            {/* 내원 */}
+            <circle cx="20" cy="20" r="13" stroke="#B91C1C" strokeWidth="0.5" strokeOpacity="0.25"/>
+            {/* 검 날 (세로) */}
+            <line x1="20" y1="4" x2="20" y2="28" stroke="#F0E6D0" strokeWidth="1.2" strokeLinecap="round"/>
+            {/* 검 손잡이 가드 (가로) */}
+            <line x1="13" y1="20" x2="27" y2="20" stroke="#B91C1C" strokeWidth="1.4" strokeLinecap="round"/>
+            {/* 검 끝 (pommel) */}
+            <circle cx="20" cy="30" r="2.2" fill="#B91C1C" fillOpacity="0.8"/>
+            {/* 검 날 끝 다이아몬드 */}
+            <polygon points="20,2 21.2,5 20,7 18.8,5" fill="#F0E6D0" fillOpacity="0.9"/>
+          </svg>
         </div>
-        {/* Horizontal rule extending from logo */}
-        <div className="hidden md:block absolute top-1/2 left-[52px] w-[200px] h-[1px] bg-gradient-to-r from-[var(--gold-primary)]/40 via-[var(--gold-primary)]/15 to-transparent" />
+
         <div className="flex flex-col">
           <div className="flex items-center gap-2">
-            <h1 className="text-base md:text-xl font-bold tracking-[0.22em] md:tracking-[0.28em] text-[var(--text-heading)]">MIKAEL Solutions</h1>
-            <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-[1px] rounded-sm border border-[var(--cyan-primary)]/40 bg-[var(--cyan-primary)]/10 text-[7px] font-bold tracking-[0.15em] text-[var(--cyan-primary)] uppercase" style={{ lineHeight: '1.4' }}>
-              <Globe className="w-2.5 h-2.5" />
-              개인 그리드
+            <h1 className="mikael-brand text-[13px] md:text-[17px] text-[var(--text-heading)]">MIKAEL Solutions</h1>
+            <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-[1px] rounded-sm border border-[var(--cyan-primary)]/30 bg-[var(--cyan-primary)]/8 text-[8px] tracking-[0.1em] text-[var(--cyan-primary)]" style={{ lineHeight: '1.4' }}>
+              GRID
             </span>
           </div>
-          <span className="text-[8px] md:text-[9px] text-[var(--gold-primary)] tracking-[0.2em] md:tracking-[0.3em] opacity-80">OSINT 상황인식 지휘 콘솔</span>
+          <span className="text-[8px] md:text-[9px] text-[var(--text-muted)] tracking-[0.18em] md:tracking-[0.22em] mikael-brand" style={{ fontWeight: 400 }}>OSINT 상황인식 지휘 콘솔</span>
         </div>
       </motion.div>
 

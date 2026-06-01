@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
@@ -161,6 +161,75 @@ html, body {
 
 .mikael-glow-cyan {
   box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MIKAEL 고유 UI 언어 — 대천사 미카엘 디자인 시스템
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Cinzel 브랜드 서체 ── */
+.mikael-brand {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+}
+
+.mikael-brand-heavy {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+/* ── 패널 심홍 탑 액센트 — 권위의 선 ── */
+.mikael-panel {
+  position: relative;
+}
+
+.mikael-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(185, 28, 28, 0.55), transparent);
+  border-radius: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── 레이어 활성 → 왼쪽 심홍 세로선 ── */
+.mikael-layer-active {
+  border-left: 2px solid rgba(185, 28, 28, 0.7) !important;
+  padding-left: calc(0.5rem - 2px) !important;
+}
+
+/* ── 키보드 단축키 <kbd> 스타일 ── */
+.mikael-kbd {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  background: rgba(185, 28, 28, 0.1);
+  border: 1px solid rgba(185, 28, 28, 0.3);
+  color: var(--gold-light);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ── Separator 심홍 그라디언트 ── */
+.mikael-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(185, 28, 28, 0.3), transparent);
+  border: none;
+}
+
+/* ── 패널 헤더 하단 구분선 ── */
+.mikael-panel-header {
+  border-bottom: 1px solid transparent;
+  background-image: linear-gradient(#0E0C10, #0E0C10),
+    linear-gradient(90deg, transparent, rgba(185,28,28,0.25), transparent);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
 }
 
 /* ═══════════════════════════════════════════════════════════════

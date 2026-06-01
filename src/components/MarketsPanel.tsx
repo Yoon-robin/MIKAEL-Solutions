@@ -50,7 +50,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
       transition={{ delay: 0.6, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg">
+      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg mikael-panel">
         <CardHeader className="px-4 py-3.5">
           <button
             onClick={() => setExpanded(!expanded)}
@@ -58,7 +58,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
           >
             <div className="flex items-center gap-2.5">
               <BarChart3 className="w-4 h-4 text-[var(--gold-primary)]" />
-              <CardTitle className="text-[14px] font-semibold text-white tracking-tight">
+              <CardTitle className="mikael-brand text-[13px] text-[var(--text-heading)]">
                 시장·정보
               </CardTitle>
               <Badge variant="success" className="text-[10px] h-5 px-1.5 rounded font-medium">실시간</Badge>

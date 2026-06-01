@@ -57,14 +57,14 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
       transition={{ delay: 0.6, duration: 0.6 }}
       className="pointer-events-auto"
     >
-      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg">
+      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg mikael-panel">
         <button
           onClick={() => setExpanded(!expanded)}
           className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#161018] transition-colors"
         >
           <div className="flex items-center gap-2.5">
             <Newspaper className="w-4 h-4 text-[var(--gold-primary)]" />
-            <span className="text-[14px] font-semibold text-white tracking-tight">정보 피드</span>
+            <span className="mikael-brand text-[13px] text-[var(--text-heading)]">정보 피드</span>
             <Badge variant="cyan" className="text-[10px] h-5 px-1.5 rounded font-medium">{news.length}</Badge>
             {news.some((n: any) => n.risk_score >= 8) && (
               <Badge variant="danger" className="text-[10px] h-5 px-1.5 rounded font-medium">경보</Badge>

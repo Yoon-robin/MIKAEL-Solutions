@@ -735,7 +735,7 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
       <div className="flex items-center justify-between px-4 py-3.5 border-b border-[#272027] hover:bg-[#161018] transition-colors">
         <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-2.5 flex-1">
           <Radar className="w-4 h-4 text-[var(--cyan-primary)]" />
-          <span className="text-[14px] font-semibold text-white tracking-tight">정찰 도구함</span>
+          <span className="mikael-brand text-[13px] text-[var(--text-heading)]">정찰 도구함</span>
           <Badge variant="cyan" className="text-[10px] h-5 px-1.5 rounded font-medium">{TABS.length}개 도구</Badge>
         </button>
         <div className="flex items-center gap-3">

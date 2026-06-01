@@ -120,7 +120,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
 
   return (
     <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.6 }} className="pointer-events-auto">
-      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg">
+      <Card className="border-[#272027] bg-[#0E0C10] py-0 gap-0 overflow-hidden rounded-lg mikael-panel">
 
         {/* ── 패널 헤더 ── */}
         <CardHeader className="px-4 py-3.5">
@@ -130,7 +130,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                 <Eye className="w-4 h-4 text-[var(--gold-primary)]" />
                 <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[var(--alert-green)]" />
               </div>
-              <CardTitle className="text-[14px] font-semibold text-white tracking-tight">
+              <CardTitle className="mikael-brand text-[13px] text-[var(--text-heading)]">
                 데이터 레이어
               </CardTitle>
             </div>
@@ -209,7 +209,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                                 onClick={() => toggle(layer.key)}
                                 className={`w-full flex items-center gap-2.5 px-2 py-2 rounded-md transition-colors text-left ${
                                   isActive
-                                    ? 'bg-[#161018] text-white'
+                                    ? 'bg-[#1A0E0E] text-white mikael-layer-active'
                                     : 'text-[var(--text-muted)] hover:bg-[#161018] hover:text-[var(--text-secondary)]'
                                 }`}
                               >
