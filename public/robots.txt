@@ -1,0 +1,17 @@
+# MIKAEL Solutions — 개인 OSINT 상황인식 플랫폼
+# https://43.200.203.218
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /api/scanner
+Disallow: /api/osint/*
+
+# 메인 페이지와 health endpoint는 인덱싱 허용
+Allow: /api/health
+
+# Sitemap
+Sitemap: https://43.200.203.218/sitemap.xml
+
+# 과도한 크롤링 방지
+Crawl-delay: 10
