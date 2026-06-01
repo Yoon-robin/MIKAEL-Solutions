@@ -47,7 +47,7 @@ export default function ViewPresets({ onNavigate }: ViewPresetsProps) {
           >
             
             <span>{p.label}</span>
-            {(p as any).hot && <span className="w-1.5 h-1.5 rounded-full bg-[var(--alert-red)] animate-mikael-pulse ml-auto flex-shrink-0" />}
+            {(p as any).hot && <span className="w-1.5 h-1.5 rounded-full bg-[var(--alert-red)] animate-beacon ml-auto flex-shrink-0" />}
           </button>
         ))}
       </div>

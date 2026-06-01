@@ -203,25 +203,36 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                             const isActive = activeLayers[layer.key];
                             const count = getCount(layer.dataKey);
                             return (
-                              <button
+                              <motion.button
                                 key={layer.key}
                                 type="button"
                                 onClick={() => toggle(layer.key)}
-                                className={`w-full flex items-center gap-2.5 px-2 py-2 rounded-md transition-colors text-left ${
-                                  isActive
-                                    ? 'bg-[#1A0E0E] text-white mikael-layer-active'
-                                    : 'text-[var(--text-muted)] hover:bg-[#161018] hover:text-[var(--text-secondary)]'
-                                }`}
+                                whileTap={{ scale: 0.97 }}
+                                animate={{
+                                  backgroundColor: isActive ? 'rgba(26,14,14,1)' : 'rgba(0,0,0,0)',
+                                  borderLeftColor: isActive ? 'rgba(185,28,28,0.7)' : 'rgba(185,28,28,0)',
+                                }}
+                                transition={{ duration: 0.18 }}
+                                className="w-full flex items-center gap-2.5 px-2 py-2 rounded-md text-left border-l-2"
+                                style={{ color: isActive ? '#F0E6D0' : '#6B5748' }}
                               >
-                                <Icon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: isActive ? layer.color : '#52525B' }} />
+                                <motion.div animate={{ color: isActive ? layer.color : '#52525B' }} transition={{ duration: 0.18 }}>
+                                  <Icon className="w-3.5 h-3.5 flex-shrink-0" />
+                                </motion.div>
                                 <span className="text-[13px] flex-1 font-medium">{layer.label}</span>
                                 {count !== null && (
-                                  <span className="text-[11px] tabular-nums text-[#6B5748]">
+                                  <motion.span
+                                    key={count}
+                                    initial={{ opacity: 0, scale: 1.2 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                                    className="text-[11px] tabular-nums text-[#6B5748]"
+                                  >
                                     {count.toLocaleString()}
-                                  </span>
+                                  </motion.span>
                                 )}
                                 <div className={`layer-toggle flex-shrink-0 ${isActive ? 'active' : ''}`} />
-                              </button>
+                              </motion.button>
                             );
                           })}
                         </div>

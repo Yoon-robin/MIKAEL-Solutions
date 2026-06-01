@@ -97,8 +97,11 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                   </div>
                 ) : (
                   news.slice(0, 25).map((item: any, i: number) => (
-                    <div
+                    <motion.div
                       key={i}
+                      initial={{ opacity: 0, x: 8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.04, duration: 0.3, ease: 'easeOut' }}
                       role="button"
                       tabIndex={0}
                       className="px-4 py-3 hover:bg-[#161018] transition-colors cursor-pointer"
@@ -172,7 +175,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </div>
+                    </motion.div>
                   ))
                 )}
               </div>

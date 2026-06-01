@@ -156,11 +156,64 @@ html, body {
 }
 
 .mikael-glow {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(185, 28, 28, 0.08);
 }
 
 .mikael-glow-cyan {
   box-shadow: none;
+}
+
+/* ── 패널 호버 리프트 ── */
+.glass-panel {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.glass-panel:hover {
+  border-color: #3A303A;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.5), 0 0 0 1px rgba(185,28,28,0.12);
+}
+
+/* ── 지도 포커스 비네트 (Osiris 것과 다름 — 테두리 페이드) ── */
+.map-vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(6,4,8,0.35) 80%,
+    rgba(6,4,8,0.65) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── 비콘 펄스 (세련된 버전) ── */
+@keyframes mikael-beacon {
+  0%   { opacity: 1; transform: scale(1); }
+  40%  { opacity: 0.6; transform: scale(1.15); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.animate-beacon {
+  animation: mikael-beacon 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ── 얼럿 링 펄스 ── */
+@keyframes mikael-ring {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.animate-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  animation: mikael-ring 2s ease-out infinite;
+}
+
+/* ── 숫자 변경 flash ── */
+@keyframes value-flash {
+  0%   { color: #F87171; }
+  100% { color: inherit; }
+}
+.animate-value-flash {
+  animation: value-flash 0.4s ease-out;
 }
 
 /* ═══════════════════════════════════════════════════════════════

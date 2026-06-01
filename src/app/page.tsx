@@ -441,21 +441,64 @@ export default function Dashboard() {
 
 
 
-            {/* ── 로고 마크 — 단순 정적 디자인 (회전 링 제거) ── */}
+            {/* ── 검 엠블럼 — SVG self-draw 애니메이션 ── */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
-              className="relative w-20 h-20 mb-10 flex items-center justify-center z-[2]"
+              transition={{ delay: 0.2, duration: 0.7, ease: [0.34, 1.56, 0.64, 1] }}
+              className="relative w-28 h-28 mb-10 flex items-center justify-center z-[2]"
             >
-              {/* 정적 원형 테두리 */}
-              <div className="absolute inset-0 rounded-full" style={{ border: '1px solid rgba(239,68,68,0.25)' }} />
-              <div className="absolute rounded-full" style={{ inset: '8px', border: '1px solid rgba(239,68,68,0.12)' }} />
-              {/* 중앙 도트 */}
-              <div className="w-8 h-8 rounded-full flex items-center justify-center"
-                style={{ background: 'rgba(239,68,68,0.15)', border: '2px solid rgba(239,68,68,0.6)' }}>
-                <div className="w-2 h-2 rounded-full" style={{ background: '#EF4444' }} />
-              </div>
+              <svg viewBox="0 0 80 80" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                {/* 외원 — fade in */}
+                <motion.circle
+                  cx="40" cy="40" r="37"
+                  stroke="#B91C1C" strokeWidth="0.8" strokeOpacity="0.45"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 1.2, ease: 'easeInOut' }}
+                />
+                {/* 내원 */}
+                <motion.circle
+                  cx="40" cy="40" r="27"
+                  stroke="#B91C1C" strokeWidth="0.5" strokeOpacity="0.2"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 1.0, ease: 'easeInOut' }}
+                />
+                {/* 검 날 — 위에서 아래로 그려짐 */}
+                <motion.line
+                  x1="40" y1="8" x2="40" y2="58"
+                  stroke="#F0E6D0" strokeWidth="1.6" strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ delay: 0.6, duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+                />
+                {/* 크로스가드 — 퍼지듯 등장 */}
+                <motion.line
+                  x1="26" y1="40" x2="54" y2="40"
+                  stroke="#B91C1C" strokeWidth="2" strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ delay: 1.2, duration: 0.45, ease: 'easeOut' }}
+                />
+                {/* 포멜 */}
+                <motion.circle
+                  cx="40" cy="62" r="3.5"
+                  fill="#B91C1C" fillOpacity="0.85"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 1.55, duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
+                />
+                {/* 검 끝 */}
+                <motion.polygon
+                  points="40,5 41.8,10 40,13.5 38.2,10"
+                  fill="#F0E6D0" fillOpacity="0.9"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.55, duration: 0.3 }}
+                  style={{ transformOrigin: '40px 9px' }}
+                />
+              </svg>
             </motion.div>
 
             {/* ── MIKAEL Solutions title — Cinzel 서체 ── */}
@@ -663,7 +706,7 @@ export default function Dashboard() {
       {isMobile && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
           <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[7px] tracking-widest hover:opacity-80 transition-opacity border-[var(--gold-primary)]/40 bg-[var(--gold-primary)]/10">
-            <div className="w-1 h-1 rounded-full bg-[var(--gold-primary)] animate-mikael-pulse" />
+            <div className="w-1 h-1 rounded-full bg-[var(--gold-primary)] animate-beacon" />
             <span className="text-[var(--gold-primary)] font-bold">MIKAEL GRID</span>
           </a>
         </motion.div>
@@ -727,7 +770,7 @@ export default function Dashboard() {
               {/* Header */}
               <div className="flex items-center justify-between px-4 py-2.5 bg-[#111] border-b border-[var(--border-primary)]">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-[#FF4081] animate-mikael-pulse" />
+                  <div className="w-2 h-2 rounded-full bg-[#FF4081] animate-beacon" />
                   <span className="text-[12px] font-bold text-white tracking-wider">{liveFeedName}</span>
                   <span className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 text-[9px] font-bold">실시간 방송</span>
                   {!liveFeedEmbedAllowed && (
@@ -1020,7 +1063,16 @@ export default function Dashboard() {
         onLocate={(lat, lng) => setFlyToLocation({ lat, lng, ts: Date.now() })}
       />
 
-      {/* ── OVERLAYS — CRT·비네트·코너프레임 제거됨 ── */}
+      {/* ── OVERLAYS ── */}
+      {/* 심연 분위기 배경 — 코너 심홍 radial gradient */}
+      <div className="fixed inset-0 pointer-events-none z-[1]" style={{
+        background: `
+          radial-gradient(ellipse 45% 35% at 0% 100%, rgba(120,0,0,0.07) 0%, transparent 100%),
+          radial-gradient(ellipse 30% 45% at 100% 0%, rgba(80,0,0,0.05) 0%, transparent 100%)
+        `
+      }} />
+      {/* 지도 포커스 비네트 — 테두리 페이드 */}
+      <div className="fixed inset-0 map-vignette z-[1]" />
 
       {/* Keyboard Shortcuts Overlay */}
       <KeyboardShortcuts />
