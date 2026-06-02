@@ -1,219 +1,161 @@
 <div align="center">
 
-# ⬡ MIKAEL Solutions
+# MIKAEL Solutions
 
-### 개인 OSINT 상황인식·조사 에이전트 플랫폼
+### 개인 OSINT 상황인식·조사 지휘 콘솔
 
-> 이 서버의 대시보드는 오픈소스 OSINT 대시보드 기반을 MIKAEL Solutions 운영 콘솔로 재구성한 1차 리브랜딩한 개인 인텔리전스 콘솔입니다.
-
-[![Live Demo](https://img.shields.io/badge/mikael-solutions.local-00E5FF?style=for-the-badge&logo=vercel&logoColor=white)](https://mikael-solutions.local)
-[![Support MIKAEL Solutions](https://img.shields.io/badge/Support_Project-Patreon-FF424D?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/posts/159077425)
+[![Live](https://img.shields.io/badge/Live-43.200.203.218-white?style=for-the-badge)](https://43.200.203.218)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
-[![MapLibre](https://img.shields.io/badge/MapLibre_GL-GPU_Rendered-396CB2?style=for-the-badge)](https://maplibre.org)
-[![License](https://img.shields.io/badge/License-MIT-D4AF37?style=for-the-badge)](LICENSE)
+[![MapLibre](https://img.shields.io/badge/MapLibre_GL-v5-396CB2?style=for-the-badge)](https://maplibre.org)
+[![License](https://img.shields.io/badge/License-MIT-white?style=for-the-badge)](LICENSE)
 
-**MIKAEL Solutions는 항공, 위성, CCTV, 지진, 화재, 뉴스, 사이버 위협을 하나의 어두운 사이버 인텔리전스 UI로 통합하는 개인 OSINT 상황인식 플랫폼입니다.**
-
-[Live Demo](https://mikael-solutions.local) · [Report Bug](https://github.com/MIKAEL-Solutions/mikael-solutions/issues) · [Request Feature](https://github.com/MIKAEL-Solutions/mikael-solutions/issues) · [Join Discord](https://discord.gg/umBykEpb98)
+**항공 · 위성 · CCTV · 지진 · 화재 · 뉴스 · 사이버 위협 · 글로벌 사건을  
+단일 인텔리전스 콘솔에서 실시간 통합 분석하는 개인 OSINT 플랫폼**
 
 </div>
 
 ---
 
-## Overview
+## 개요
 
-MIKAEL Solutions는 오픈소스 OSINT 대시보드 기반을 MIKAEL Solutions 운영 콘솔로 재구성한 한 개인용 OSINT 상황인식 플랫폼이며, 여러 인텔리전스 도메인을 하나의 콘솔에서 확인하도록 구성합니다. Built with Next.js 16 and MapLibre GL, every data point is rendered via WebGL for 60fps performance even with thousands of concurrent entities on-screen.
-
-### Key Capabilities
-
-| Domain | Data Points | Sources |
-|--------|------------|---------|
-| **Aviation** | Commercial, Private, Military, Jets | OpenSky Network |
-| **Maritime** | 39 Global Ports, 10 Chokepoints | Static Naval Intel |
-| **CCTV** | 2,000+ Cameras | TfL, WSDOT, Caltrans, NYC DOT, VicRoads + more |
-| **Seismic** | Real-time M2.5+ | USGS Earthquake API |
-| **Fires** | Active Hotspots | NASA FIRMS |
-| **News** | 24/7 Live Streams | 25+ Global Broadcasters |
-| **Weather** | Severe Events | NASA EONET |
-| **Space** | Solar Weather, Satellites | NOAA SWPC, N2YO |
-| **Cyber** | CVE Threats, Vulnerability Scanning | NVD, Custom Scanner |
-| **Conflict** | 13 Active Zones | Static OSINT Intel |
+MIKAEL Solutions는 Palantir 스타일의 개인 OSINT 상황인식 지휘 플랫폼입니다.  
+Next.js 16 App Router + MapLibre GL WebGL 렌더링으로 수천 개의 엔티티를 60fps로 표시합니다.
 
 ---
 
-## Architecture
+## 데이터 도메인
+
+| 도메인 | 내용 | 소스 |
+|--------|------|------|
+| **항공** | 민항기 · 개인기 · 전용기 · 군용기 | OpenSky Network |
+| **해상** | 함정 · 39개 주요 항구 · 10개 해상 요충지 | 정적 해군 인텔 |
+| **CCTV** | 2,000+ 실시간 카메라 | TfL, WSDOT, Caltrans, NYC DOT 外 |
+| **지진** | 실시간 M2.5+ 지진 | USGS Earthquake API |
+| **화재** | 활성 산불 핫스팟 | NASA FIRMS |
+| **뉴스** | 24/7 글로벌 생방송 | 25개+ 방송국 |
+| **기상** | 극한 기상 이벤트 | NASA EONET |
+| **우주** | 태양풍 · 위성 추적 | NOAA SWPC, N2YO |
+| **사이버** | CVE 위협 · 포트 스캔 | NVD, 자체 스캐너 |
+| **글로벌 사건** | 분쟁 · 위기 지역 | GDELT, 정적 인텔 |
+
+---
+
+## 아키텍처
 
 ```
 ┌─────────────────────────────────────────────────┐
-│                  MIKAEL SOLUTIONS CLIENT                   │
+│              MIKAEL Solutions CLIENT             │
 │  ┌──────────┐  ┌──────────┐  ┌───────────────┐ │
-│  │ MapLibre  │  │  HUD     │  │  RECON Toolkit│ │
-│  │  GL (GPU) │  │ Panels   │  │  Port Scan    │ │
-│  │  WebGL    │  │ Layers   │  │  DNS / WHOIS  │ │
-│  │  Render   │  │ Controls │  │  Vuln Scanner │ │
+│  │ MapLibre  │  │  HUD     │  │ 정찰 도구함   │ │
+│  │  GL (GPU) │  │ Panels   │  │  포트 스캔    │ │
+│  │  WebGL    │  │ 레이어   │  │  DNS / WHOIS  │ │
+│  │  렌더링   │  │ 토글     │  │  취약점 스캔  │ │
 │  └──────────┘  └──────────┘  └───────────────┘ │
 ├─────────────────────────────────────────────────┤
-│               NEXT.JS API ROUTES                 │
+│              NEXT.JS API ROUTES (25개)           │
 │  /api/flights  /api/earthquakes  /api/cctv      │
 │  /api/news     /api/fires        /api/maritime  │
 │  /api/gdelt    /api/satellites   /api/weather   │
-│  /api/scanner  /api/sentinel     /api/osint/*   │
+│  /api/scanner  /api/osint/*                     │
 ├─────────────────────────────────────────────────┤
-│              EXTERNAL DATA SOURCES               │
+│              외부 데이터 소스                    │
 │  OpenSky · USGS · NASA · NOAA · TfL · NVD      │
-│  GDACS · EONET · FIRMS · N2YO · RSS Feeds      │
+│  GDELT · EONET · FIRMS · N2YO · RSS 피드       │
 └─────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Features
+## 주요 기능
 
-### Intelligence Layers
-- **15 toggleable data layers** with real-time entity counts
-- **GPU-accelerated rendering** — all map data rendered via WebGL, not DOM
-- **Progressive loading** — data fetched on-demand when layers are activated
-- **Viewport-aware** — only loads relevant data for the visible region
+### 인텔리전스 레이어
+- **15개 토글 가능한 데이터 레이어** — 실시간 엔티티 카운트
+- **GPU 가속 렌더링** — MapLibre GL WebGL, DOM 아님
+- **프로그레시브 로딩** — 레이어 활성화 시 온디맨드 페치
+- **레이어 토글 애니메이션** — Framer Motion 기반
 
-### RECON Toolkit
-- **Port Scanner** — TCP connect scan with service fingerprinting
-- **DNS Lookup** — Full record resolution (A, AAAA, MX, NS, TXT, CNAME)
-- **WHOIS** — Domain/IP registration data
-- **SSL/TLS Inspector** — Certificate chain analysis
-- **IP Intelligence** — Geolocation, ASN, and threat reputation
-- **Vulnerability Scanner** — CVE lookup against NVD database
+### 정찰 도구함 (OSINT Toolkit)
+- **포트 스캐너** — TCP 연결 스캔 + 서비스 핑거프린팅
+- **DNS 조회** — A, AAAA, MX, NS, TXT, CNAME 전체 레코드
+- **WHOIS** — 도메인/IP 등록 정보
+- **SSL/TLS 인스펙터** — 인증서 체인 분석
+- **IP 인텔리전스** — 지리정보, ASN, 위협 평판
+- **취약점 스캐너** — NVD CVE 데이터베이스 조회
+- **IP 스윕** — 서브넷 장비 탐색
 
-### Live Broadcast Network
-- **25+ live 24/7 news streams** from global broadcasters
-- Click any news dot on the map to open the live stream
-- Feeds from NBC, CBS, ABC, Sky News, Al Jazeera, France 24, NHK, WION, and more
-
-### Conflict Zone Monitoring
-- **13 active conflict/tension zones** with severity-coded warning markers
-- Active Wars: Ukraine, Gaza, Sudan, Myanmar, DRC, Yemen
-- High Tension: Syria, Lebanon, Sahel, Somalia, Red Sea
-- Elevated: Taiwan Strait, Korean DMZ
-
-### Performance Optimized
-- **75% reduction in edge requests** vs initial release
-- Aggressive polling relaxation (15-30 min intervals for stable data)
-- Static data served from memory (zero external API calls for news feeds)
-- `layerFetchedRef` prevents duplicate API requests
+### 실시간 방송 네트워크
+- **25개+ 24/7 글로벌 뉴스 스트림**
+- 지도 위 뉴스 도트 클릭 → 생방송 오픈
+- NBC, CBS, ABC, Sky News, Al Jazeera, France 24, NHK, WION 外
 
 ---
 
-## Quick Start
+## 빠른 시작
 
 ```bash
-git clone <MIKAEL Solutions repository URL>
-cd mikael-solutions
+git clone https://github.com/Yoon-robin/MIKAEL-Solutions.git
+cd MIKAEL-Solutions
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+[http://localhost:3000](http://localhost:3000) 접속
 
-### Docker / Self-Hosting
-
-```bash
-git clone <MIKAEL Solutions repository URL>
-cd mikael-solutions
-cp .env.template .env     # optional — configure keys / port
-docker compose up -d
-```
-
-Open [http://localhost:3000](http://localhost:3000). The image is a multi-stage
-`node:22-alpine` standalone build (~220 MB, non-root). The compose file also
-carries CasaOS app metadata (`x-casaos:`) for one-click install on
-[CasaOS](https://casaos.io). See **[DOCKER.md](DOCKER.md)** for the full Docker,
-CasaOS and API-key guide.
-
-**Prebuilt image (GHCR)** — skip the build and pull it directly:
+### Docker 셀프호스팅
 
 ```bash
-docker pull ghcr.io/aiacos/mikael-solutions:latest
-docker run -d -p 3000:3000 --env-file .env ghcr.io/aiacos/mikael-solutions:latest
+git clone https://github.com/Yoon-robin/MIKAEL-Solutions.git
+cd MIKAEL-Solutions
+docker build -t mikael:local .
+docker run -d --name mikael \
+  -p 3000:3000 \
+  -e NODE_ENV=production \
+  -e PORT=3000 \
+  -e HOSTNAME=0.0.0.0 \
+  mikael:local
 ```
 
-**Custom port** — the container always listens on `3000`; set `MIKAEL_PORT` in
-`.env` to change the published host port (e.g. `MIKAEL_PORT=3005`) without
-editing the compose file.
+---
 
-### Environment Variables
+## 기술 스택
 
-MIKAEL Solutions works **partially without any API keys** — all core feeds use public,
-keyless sources. Copy [`.env.template`](.env.template) to `.env` and set only
-what you need:
-
-```env
-# Published host port (container always listens on 3000). Default: 3000
-MIKAEL_PORT=3000
-
-# RECON scanner backend (the only vars the current code reads).
-# SCANNER_KEY must match the backend's MIKAEL_KEY — generate with: openssl rand -hex 32
-SCANNER_URL=
-SCANNER_KEY=
-
-# Optional, for higher rate limits / future sources (see DOCKER.md for signup links)
-FIRMS_API_KEY=                # NASA FIRMS  — firms.modaps.eosdis.nasa.gov/api/map_key/
-OPENSKY_CLIENT_ID=            # OpenSky OAuth2 (since Mar 2025) — opensky-network.org
-OPENSKY_CLIENT_SECRET=
-N2YO_API_KEY=                 # N2YO satellites — n2yo.com (Profile → API key)
-AIS_API_KEY=                 # aisstream.io maritime
-```
-
-> Without `SCANNER_URL`/`SCANNER_KEY` the RECON toolkit returns `503`; every
-> other layer works out of the box. `.env` is gitignored — only the template is committed.
+| 레이어 | 기술 |
+|--------|------|
+| 프레임워크 | Next.js 16 (App Router, Turbopack) |
+| 언어 | TypeScript 5 |
+| 스타일링 | Tailwind CSS v4 + shadcn/ui |
+| 지도 엔진 | MapLibre GL JS v5 + react-map-gl v8 |
+| 애니메이션 | Framer Motion v12 |
+| 아이콘 | Lucide React |
+| 폰트 | Inter + Cinzel (브랜드) |
 
 ---
 
-## Tech Stack
+## 키보드 단축키
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 16 (App Router, Turbopack) |
-| Language | TypeScript 5 |
-| Map Engine | MapLibre GL JS (WebGL) |
-| Animations | Framer Motion |
-| Icons | Lucide React |
-| Styling | Custom CSS Design System |
-| Deployment | Vercel Edge Network |
-
----
-
-## Keyboard Shortcuts
-
-| Key | Action |
-|-----|--------|
-| `F` | Toggle flight layers |
-| `E` | Toggle earthquakes |
-| `S` | Toggle satellites |
-| `D` | Toggle day/night cycle |
-| `Escape` | Close panels |
+| 키 | 동작 |
+|----|------|
+| `F` | 항공 레이어 토글 |
+| `G` | 3D 글로브 ↔ 2D 지도 전환 |
+| `S` | 현재 보기 공유 |
+| `L` | 레이어 패널 토글 |
+| `M` | 시장 패널 토글 |
+| `I` | 정보 피드 토글 |
+| `R` | 전세계 보기 초기화 |
+| `?` | 단축키 도움말 |
+| `ESC` | 패널/팝업 닫기 |
 
 ---
 
-## License
+## 라이선스
 
-MIT — see [LICENSE](LICENSE) for details.
+MIT — [LICENSE](LICENSE) 참조
 
 ---
 
 <div align="center">
 
-**🛠️ SUPPORT THE MIKAEL SOLUTIONS PROJECT**
-The MIKAEL Solutions Intelligence Grid is entirely open-source, but running the backend scanners and data firehoses isn't cheap.
-
-If you want to help keep the servers alive, and support us to get access to better tools  unlock the **Special MIKAEL Solutions Console**, Currently Just a Cool UI. a you can officially support the project here : 
-
-🔗 [Support MIKAEL Solutions on Patreon](https://www.patreon.com/posts/159077425)
-
-*Supporters receive the `🔴 RedTeam Console` role and access to encrypted developer comms.*
-
-
-**Built by [simplifaisoul](https://github.com/simplifaisoul)**
-
-[Join our Discord to be a part of this movement!](https://discord.gg/umBykEpb98)
+**Built by [Yoon-robin](https://github.com/Yoon-robin)**
 
 </div>

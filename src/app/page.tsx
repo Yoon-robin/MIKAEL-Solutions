@@ -711,18 +711,16 @@ export default function Dashboard() {
 
         <UptimeClock />
         
-        <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="pointer-events-auto hover:opacity-80 transition-opacity ml-1 flex items-center">
-          <span className="px-3 py-1 rounded-sm border border-white/[0.15] bg-white/[0.04] text-white text-[13px] font-bold tracking-[0.2em] hover:bg-white/[0.08] transition-colors">MIKAEL GRID</span>
-        </a>
+        <span className="px-3 py-1 rounded-sm border border-white/[0.15] bg-white/[0.04] text-white text-[13px] font-bold tracking-[0.2em]">MIKAEL GRID</span>
       </motion.div>
 
       {/* ── MOBILE: Compact top status ── */}
       {isMobile && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
-          <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[13px] tracking-widest hover:bg-white/[0.06] transition-colors">
+          <span className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[13px] tracking-widest">
             <div className="w-1 h-1 rounded-full bg-white/60 animate-beacon" />
             <span className="text-white/80 font-bold">MIKAEL GRID</span>
-          </a>
+          </span>
         </motion.div>
       )}
 
