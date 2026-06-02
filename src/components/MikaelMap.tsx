@@ -198,7 +198,12 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
       // Fires
       map.addLayer({ id: 'fires-heat', type: 'circle', source: 'fires', paint: {
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,2, 5,4, 10,8],
-        'circle-color': '#FF6B00', 'circle-opacity': 0.5, 'circle-blur': 0.5,
+        'circle-color': '#FF6B00', 'circle-opacity': 0.4, 'circle-blur': 0.5,
+      }});
+      map.addLayer({ id: 'fires-icon', type: 'symbol', source: 'fires', layout: {
+        'text-field': '🔥',
+        'text-size': ['interpolate',['linear'],['zoom'], 1,7, 5,10, 10,14],
+        'text-allow-overlap': false,
       }});
 
       // CCTV — outer glow ring
@@ -211,6 +216,12 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
         'circle-radius': ['interpolate',['linear'],['zoom'], 1,3, 5,5, 10,8, 14,12],
         'circle-color': '#39FF14', 'circle-opacity': 0.8,
         'circle-stroke-width': 2, 'circle-stroke-color': '#39FF14', 'circle-stroke-opacity': 0.5,
+      }});
+      // CCTV — 이모지 아이콘
+      map.addLayer({ id: 'cctv-icon', type: 'symbol', source: 'cctv', layout: {
+        'text-field': '📷',
+        'text-size': ['interpolate',['linear'],['zoom'], 1,8, 5,11, 10,15],
+        'text-allow-overlap': false, 'text-ignore-placement': false,
       }});
       // CCTV — labels at zoom 10+
       map.addLayer({ id: 'cctv-label', type: 'symbol', source: 'cctv', minzoom: 10, layout: {
@@ -240,9 +251,15 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
         'circle-opacity': 0.8,
         'circle-stroke-width': 2, 'circle-stroke-color': '#E040FB', 'circle-stroke-opacity': 0.4,
       }});
+      // 기상 — 이모지 아이콘
+      map.addLayer({ id: 'weather-icon', type: 'symbol', source: 'weather', layout: {
+        'text-field': ['match', ['get','icon'], 'cyclone','🌀', 'volcano','🌋', 'storm','⛈️', '🌩️'],
+        'text-size': ['interpolate',['linear'],['zoom'], 1,12, 5,16, 10,20],
+        'text-allow-overlap': false,
+      }});
       map.addLayer({ id: 'weather-label', type: 'symbol', source: 'weather', layout: {
         'text-field': ['get','title'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
-        'text-offset': [0, 2], 'text-max-width': 14, 'text-allow-overlap': false,
+        'text-offset': [0, 2.2], 'text-max-width': 14, 'text-allow-overlap': false,
       }, paint: { 'text-color': '#E040FB', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.8 }});
 
       // Nuclear Infrastructure
@@ -256,17 +273,28 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
         'circle-opacity': 0.8,
         'circle-stroke-width': 2, 'circle-stroke-color': '#76FF03', 'circle-stroke-opacity': 0.4,
       }});
+      // 원자력 — 이모지 아이콘
+      map.addLayer({ id: 'infra-icon', type: 'symbol', source: 'infrastructure', layout: {
+        'text-field': '☢️',
+        'text-size': ['interpolate',['linear'],['zoom'], 1,10, 5,13, 10,17],
+        'text-allow-overlap': false,
+      }});
       map.addLayer({ id: 'infra-label', type: 'symbol', source: 'infrastructure', minzoom: 5, layout: {
         'text-field': ['get','name'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
-        'text-offset': [0, 2], 'text-max-width': 14, 'text-allow-overlap': false,
+        'text-offset': [0, 2.2], 'text-max-width': 14, 'text-allow-overlap': false,
       }, paint: { 'text-color': '#76FF03', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.7 }});
 
-      // Satellites
+      // Satellites — 이모지 아이콘
       map.addLayer({ id: 'sat-glow', type: 'circle', source: 'satellites', paint: {
-        'circle-radius': ['interpolate',['linear'],['zoom'], 1,3, 5,6], 'circle-color': ['get','color'], 'circle-opacity': 0.3, 'circle-blur': 1,
+        'circle-radius': ['interpolate',['linear'],['zoom'], 1,3, 5,6], 'circle-color': ['get','color'], 'circle-opacity': 0.2, 'circle-blur': 1,
       }});
       map.addLayer({ id: 'sat-dots', type: 'circle', source: 'satellites', paint: {
-        'circle-radius': ['interpolate',['linear'],['zoom'], 1,1.5, 5,3], 'circle-color': ['get','color'], 'circle-opacity': 1.0,
+        'circle-radius': ['interpolate',['linear'],['zoom'], 1,1.5, 5,3], 'circle-color': ['get','color'], 'circle-opacity': 0.6,
+      }});
+      map.addLayer({ id: 'sat-icon', type: 'symbol', source: 'satellites', layout: {
+        'text-field': '🛰️',
+        'text-size': ['interpolate',['linear'],['zoom'], 1,8, 5,11, 10,15],
+        'text-allow-overlap': false,
       }});
 
       // Maritime — ports & naval bases
@@ -281,9 +309,15 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
         'circle-opacity': 0.85,
         'circle-stroke-width': 2, 'circle-stroke-color': ['match', ['get','type'], 'naval','#FF3D3D', 'energy','#FF9500', '#00BCD4'], 'circle-stroke-opacity': 0.4,
       }});
+      // 해상 — 타입별 이모지 아이콘
+      map.addLayer({ id: 'maritime-icon', type: 'symbol', source: 'maritime', layout: {
+        'text-field': ['match', ['get','type'], 'naval','⚓', 'energy','⛽', '🏗️'],
+        'text-size': ['interpolate',['linear'],['zoom'], 1,10, 5,13, 10,17],
+        'text-allow-overlap': false,
+      }});
       map.addLayer({ id: 'maritime-label', type: 'symbol', source: 'maritime', minzoom: 4, layout: {
         'text-field': ['get','name'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
-        'text-offset': [0, 1.8], 'text-max-width': 12, 'text-allow-overlap': false,
+        'text-offset': [0, 2.2], 'text-max-width': 12, 'text-allow-overlap': false,
       }, paint: { 'text-color': '#00BCD4', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.7 }});
 
       // Maritime chokepoints — pulsing warning diamonds
@@ -312,9 +346,15 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
         'circle-color': '#FF4081', 'circle-opacity': 0.85,
         'circle-stroke-width': 2, 'circle-stroke-color': '#FF4081', 'circle-stroke-opacity': 0.5,
       }});
+      // 뉴스 — 이모지 아이콘
+      map.addLayer({ id: 'news-icon', type: 'symbol', source: 'live-news', layout: {
+        'text-field': '📺',
+        'text-size': ['interpolate',['linear'],['zoom'], 1,9, 5,12, 10,16],
+        'text-allow-overlap': false,
+      }});
       map.addLayer({ id: 'news-label', type: 'symbol', source: 'live-news', minzoom: 4, layout: {
         'text-field': ['get','name'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
-        'text-offset': [0, 1.8], 'text-max-width': 12, 'text-allow-overlap': false,
+        'text-offset': [0, 2], 'text-max-width': 12, 'text-allow-overlap': false,
       }, paint: { 'text-color': '#FF4081', 'text-halo-color': '#000', 'text-halo-width': 1, 'text-opacity': 0.8 }});
 
       // SIGINT RSS news - gold markers
@@ -394,10 +434,16 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
         'circle-opacity': 0.8,
         'circle-stroke-width': 1, 'circle-stroke-color': '#fff', 'circle-stroke-opacity': 0.5,
       }});
-      map.addLayer({ id: 'balloon-label', type: 'symbol', source: 'balloons', minzoom: 4, layout: {
-        'text-field': ['get','callsign'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
-        'text-offset': [0, 1.2], 'text-max-width': 12, 'text-allow-overlap': false,
-      }, paint: { 'text-color': ['get', 'color'], 'text-halo-color': '#000', 'text-halo-width': 1 }});
+      // 기구 이모지 아이콘
+      map.addLayer({ id: 'balloon-icon', type: 'symbol', source: 'balloons', layout: {
+        'text-field': '🎈',
+        'text-size': ['interpolate',['linear'],['zoom'], 1,9, 5,12, 10,16],
+        'text-allow-overlap': false,
+      }});
+      map.addLayer({ id: 'balloon-label', type: 'symbol', source: 'balloons', minzoom: 5, layout: {
+        'text-field': ['get','serial'], 'text-size': 9, 'text-font': ['Open Sans Regular'],
+        'text-offset': [0, 1.8], 'text-max-width': 12, 'text-allow-overlap': false,
+      }, paint: { 'text-color': '#E0E0E0', 'text-halo-color': '#000', 'text-halo-width': 1 }});
 
       // Radiation (glow based on reading level)
       map.addLayer({ id: 'rad-glow', type: 'circle', source: 'radiation', paint: {
@@ -447,8 +493,10 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
       popupRef.current?.remove();
       popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: '420px', offset: 14 }).setLngLat(coords).setHTML(html).addTo(map);
     };
-    const pStyle = `background:rgba(12,14,26,0.95);backdrop-filter:blur(16px);border-radius:10px;padding:16px;font-family:'JetBrains Mono',monospace;`;
-    const linkStyle = `display:inline-block;margin-top:8px;padding:5px 12px;font-size:10px;letter-spacing:0.12em;text-decoration:none;border-radius:5px;font-family:'JetBrains Mono',monospace;`;
+    const pStyle = `background:rgba(8,8,12,0.97);backdrop-filter:blur(20px);border-radius:10px;padding:14px 16px;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',sans-serif;min-width:200px;`;
+    const lbl = `font-size:10px;font-weight:600;letter-spacing:0.08em;color:rgba(255,255,255,0.38);text-transform:uppercase;display:block;margin-bottom:2px;`;
+    const val = `font-size:13px;font-weight:600;color:rgba(255,255,255,0.88);`;
+    const linkStyle = `display:inline-flex;align-items:center;justify-content:center;margin-top:10px;padding:7px 14px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-decoration:none;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;cursor:pointer;`;
 
     // ── Flights (with FlightAware + ADS-B Exchange links) ──
     ['fl-commercial','fl-private','fl-jets','fl-military'].forEach(layer => {
@@ -457,23 +505,22 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
         const p = e.features[0].properties as any;
         const coords = (e.features[0].geometry as any).coordinates;
         const cs = (p.callsign||'').trim();
-        popup(coords, `<div style="${pStyle}border:1px solid rgba(212,175,55,0.3);">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-            <span style="color:#FFFFFF;font-size:16px;font-weight:700;letter-spacing:0.1em;">${cs}</span>
-            <span style="color:#5C5A54;font-size:10px;">${p.icao24||''}</span>
+        popup(coords, `<div style="${pStyle}border:1px solid rgba(255,255,255,0.12);">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <span style="color:#FFFFFF;font-size:18px;font-weight:700;letter-spacing:0.04em;">${cs||'—'}</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.35);font-weight:500;">${p.icao24||''}</span>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:11px;">
-            <div><span style="color:#5C5A54;font-size:9px;">MODEL</span><br/><span style="color:#E8E6E0;">${p.model||'—'}</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">ALT</span><br/><span style="color:#00E5FF;">${p.alt?Math.round(p.alt)+'m':'—'}</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">SPEED</span><br/><span style="color:#E8E6E0;">${p.speed_knots||'—'}kt</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">HDG</span><br/><span style="color:#E8E6E0;">${Math.round(p.heading||0)}°</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">REG</span><br/><span style="color:#E8E6E0;">${p.registration||'—'}</span></div>
-            <div><span style="color:#5C5A54;font-size:9px;">POS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(2)},${coords[0].toFixed(2)}</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:4px;">
+            <div><span style="${lbl}">기종</span><span style="${val}">${p.model||'—'}</span></div>
+            <div><span style="${lbl}">고도</span><span style="font-size:13px;font-weight:600;color:#00E5FF;">${p.alt?Math.round(p.alt)+'m':'—'}</span></div>
+            <div><span style="${lbl}">속도</span><span style="${val}">${p.speed_knots||'—'}kt</span></div>
+            <div><span style="${lbl}">방위</span><span style="${val}">${Math.round(p.heading||0)}°</span></div>
+            <div><span style="${lbl}">등록</span><span style="${val}">${p.registration||'—'}</span></div>
+            <div><span style="${lbl}">좌표</span><span style="font-size:11px;font-weight:500;color:rgba(255,255,255,0.6);">${coords[1].toFixed(2)},${coords[0].toFixed(2)}</span></div>
           </div>
           <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;">
-            <a href="https://www.flightaware.com/live/flight/${cs}" target="_blank" style="${linkStyle}color:#FFFFFF;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.06);">⚡ FLIGHTAWARE</a>
-            <a href="https://globe.adsbexchange.com/?icao=${p.icao24||''}" target="_blank" style="${linkStyle}color:#00E5FF;border:1px solid rgba(0,229,255,0.4);background:rgba(0,229,255,0.1);">📡 ADS-B</a>
-            <a href="https://www.radarbox.com/data/flights/${cs}" target="_blank" style="${linkStyle}color:#FF69B4;border:1px solid rgba(255,105,180,0.4);background:rgba(255,105,180,0.1);">📍 RADARBOX</a>
+            <a href="https://www.flightaware.com/live/flight/${cs}" target="_blank" style="${linkStyle}color:#fff;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.06);">FlightAware</a>
+            <a href="https://globe.adsbexchange.com/?icao=${p.icao24||''}" target="_blank" style="${linkStyle}color:#00E5FF;border:1px solid rgba(0,229,255,0.35);background:rgba(0,229,255,0.08);">ADS-B</a>
           </div>
         </div>`);
         onEntityClick?.(p);
@@ -512,13 +559,15 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
       popup(coords, `<div style="${pStyle}border:1px solid rgba(255,149,0,0.3);">
-        <div style="color:#FF9500;font-size:14px;font-weight:700;margin-bottom:4px;">M${p.magnitude} EARTHQUAKE</div>
-        <div style="font-size:9px;color:#E8E6E0;margin-bottom:8px;">${p.place||'Unknown location'}</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;">
-          <div><span style="color:#5C5A54;">DEPTH</span><br/><span style="color:#E8E6E0;">${p.depth||'—'}km</span></div>
-          <div><span style="color:#5C5A54;">COORDS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(3)}, ${coords[0].toFixed(3)}</span></div>
+        <div style="margin-bottom:12px;">
+          <div style="font-size:20px;font-weight:800;color:#FF9500;">M${p.magnitude}</div>
+          <div style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.75);margin-top:2px;">${p.place||'위치 불명'}</div>
         </div>
-        <a href="${p.source === 'NIGGG-BAS' ? 'https://ndc.niggg.bas.bg/' : `https://earthquake.usgs.gov/earthquakes/eventpage/${p.id||''}`}" target="_blank" style="${linkStyle}color:#FF9500;border:1px solid rgba(255,149,0,0.4);background:rgba(255,149,0,0.1);">📊 ${p.source === 'NIGGG-BAS' ? 'NIGGG-BAS' : 'USGS DETAILS'}</a>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;">
+          <div><span style="${lbl}">깊이</span><span style="${val}">${p.depth||'—'}km</span></div>
+          <div><span style="${lbl}">좌표</span><span style="font-size:11px;font-weight:500;color:rgba(255,255,255,0.5);">${coords[1].toFixed(3)}, ${coords[0].toFixed(3)}</span></div>
+        </div>
+        <a href="${p.source === 'NIGGG-BAS' ? 'https://ndc.niggg.bas.bg/' : `https://earthquake.usgs.gov/earthquakes/eventpage/${p.id||''}`}" target="_blank" style="${linkStyle}color:#FF9500;border:1px solid rgba(255,149,0,0.35);background:rgba(255,149,0,0.08);">상세 보기</a>
       </div>`);
     });
 
@@ -527,14 +576,17 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
       if (!e.features?.length) return;
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
-      popup(coords, `<div style="${pStyle}border:1px solid rgba(212,175,55,0.3);">
-        <div style="color:#FFFFFF;font-size:12px;font-weight:700;letter-spacing:0.1em;margin-bottom:4px;">🛰️ ${p.name}</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#5C5A54;">MISSION</span><br/><span style="color:${p.color||'#aaa'};">${p.mission||'Unknown'}</span></div>
-          <div><span style="color:#5C5A54;">ALT</span><br/><span style="color:#00E5FF;">${p.alt ? p.alt+' km' : '—'}</span></div>
-          <div><span style="color:#5C5A54;">POS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(2)}°, ${coords[0].toFixed(2)}°</span></div>
+      popup(coords, `<div style="${pStyle}border:1px solid rgba(148,163,184,0.25);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <span style="font-size:16px;">🛰️</span>
+          <span style="font-size:14px;font-weight:700;color:#fff;">${p.name}</span>
         </div>
-        ${p.noradId ? `<a href="https://db.satnogs.org/satellite/${p.noradId}/" target="_blank" style="display:block;text-align:center;padding:4px;margin-top:6px;font-size:8px;font-family:monospace;letter-spacing:0.1em;text-decoration:none;color:#00E5FF;border:1px solid rgba(0,229,255,0.4);background:rgba(0,229,255,0.1);border-radius:2px;cursor:pointer;">🔭 SOURCE: SATNOGS</a>` : ''}
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:4px;">
+          <div><span style="${lbl}">임무</span><span style="font-size:12px;font-weight:600;color:${p.color||'#94A3B8'};">${p.mission||'—'}</span></div>
+          <div><span style="${lbl}">고도</span><span style="font-size:13px;font-weight:600;color:#00E5FF;">${p.alt ? p.alt+' km' : '—'}</span></div>
+          <div><span style="${lbl}">위치</span><span style="font-size:11px;font-weight:500;color:rgba(255,255,255,0.5);">${coords[1].toFixed(2)}°, ${coords[0].toFixed(2)}°</span></div>
+        </div>
+        ${p.noradId ? `<a href="https://db.satnogs.org/satellite/${p.noradId}/" target="_blank" style="${linkStyle}color:#00E5FF;border:1px solid rgba(0,229,255,0.35);background:rgba(0,229,255,0.08);">SatNOGS 상세</a>` : ''}
       </div>`);
     });
 
@@ -544,12 +596,15 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
       popup(coords, `<div style="${pStyle}border:1px solid rgba(255,107,0,0.3);">
-        <div style="color:#FF6B00;font-size:12px;font-weight:700;margin-bottom:6px;">🔥 ACTIVE FIRE DETECTED</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#5C5A54;">BRIGHTNESS</span><br/><span style="color:#FF6B00;">${p.brightness||'—'}K</span></div>
-          <div><span style="color:#5C5A54;">COORDS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <span style="font-size:18px;">🔥</span>
+          <span style="font-size:14px;font-weight:700;color:#FF6B00;">활성 화재 감지</span>
         </div>
-        <a href="https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;l:noaa20-viirs,viirs,modis_a,modis_t;@${coords[0]},${coords[1]},10z" target="_blank" style="${linkStyle}color:#FF6B00;border:1px solid rgba(255,107,0,0.4);background:rgba(255,107,0,0.1);">🛰️ NASA FIRMS MAP</a>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;">
+          <div><span style="${lbl}">밝기</span><span style="font-size:13px;font-weight:700;color:#FF6B00;">${p.brightness||'—'}K</span></div>
+          <div><span style="${lbl}">좌표</span><span style="font-size:11px;font-weight:500;color:rgba(255,255,255,0.5);">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+        </div>
+        <a href="https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;l:noaa20-viirs,viirs,modis_a,modis_t;@${coords[0]},${coords[1]},10z" target="_blank" style="${linkStyle}color:#FF6B00;border:1px solid rgba(255,107,0,0.35);background:rgba(255,107,0,0.08);">🛰️ NASA FIRMS</a>
       </div>`);
     });
 
@@ -708,17 +763,20 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
       const p = e.features[0].properties as any;
       const coords = (e.features[0].geometry as any).coordinates;
       const statusColor = p.status === 'Active Conflict Zone' ? '#FF1744' : p.status === 'Operational' ? '#76FF03' : '#757575';
-      popup(coords, `<div style="${pStyle}border:1px solid rgba(118,255,3,0.3);">
-        <div style="color:#76FF03;font-size:14px;font-weight:700;margin-bottom:4px;">☢️ ${p.name || 'Nuclear Facility'}</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:9px;margin-bottom:8px;">
-          <div><span style="color:#5C5A54;">STATUS</span><br/><span style="color:${statusColor};">${p.status || '—'}</span></div>
-          <div><span style="color:#5C5A54;">CITY</span><br/><span style="color:#E8E6E0;">${p.city || '—'}, ${p.country || ''}</span></div>
-          <div><span style="color:#5C5A54;">REACTORS</span><br/><span style="color:#76FF03;">${p.reactors || '—'}</span></div>
-          <div><span style="color:#5C5A54;">CAPACITY</span><br/><span style="color:#E8E6E0;">${p.capacityMW ? p.capacityMW.toLocaleString() + ' MW' : '—'}</span></div>
-          <div><span style="color:#5C5A54;">OWNER</span><br/><span style="color:#E8E6E0;">${p.owner || '—'}</span></div>
-          <div><span style="color:#5C5A54;">COORDS</span><br/><span style="color:#E8E6E0;">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+      popup(coords, `<div style="${pStyle}border:1px solid rgba(118,255,3,0.25);">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <span style="font-size:18px;">☢️</span>
+          <span style="color:#76FF03;font-size:15px;font-weight:700;">${p.name || '원자력 시설'}</span>
         </div>
-        <a href="https://www.google.com/maps/@${coords[1]},${coords[0]},14z/data=!3m1!1e3" target="_blank" style="${linkStyle}color:#76FF03;border:1px solid rgba(118,255,3,0.4);background:rgba(118,255,3,0.1);">SATELLITE VIEW</a>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;">
+          <div><span style="${lbl}">상태</span><span style="font-size:13px;font-weight:600;color:${statusColor};">${p.status || '—'}</span></div>
+          <div><span style="${lbl}">위치</span><span style="${val}">${p.city || '—'}, ${p.country || ''}</span></div>
+          <div><span style="${lbl}">원자로</span><span style="font-size:13px;font-weight:700;color:#76FF03;">${p.reactors || '—'}</span></div>
+          <div><span style="${lbl}">용량</span><span style="${val}">${p.capacityMW ? p.capacityMW.toLocaleString() + ' MW' : '—'}</span></div>
+          <div><span style="${lbl}">운영사</span><span style="${val}">${p.owner || '—'}</span></div>
+          <div><span style="${lbl}">좌표</span><span style="font-size:11px;font-weight:500;color:rgba(255,255,255,0.5);">${coords[1].toFixed(3)}°, ${coords[0].toFixed(3)}°</span></div>
+        </div>
+        <a href="https://www.google.com/maps/@${coords[1]},${coords[0]},14z/data=!3m1!1e3" target="_blank" style="${linkStyle}width:100%;color:#76FF03;border:1px solid rgba(118,255,3,0.35);background:rgba(118,255,3,0.08);">🛰️ 위성 보기</a>
       </div>`);
     });
 
@@ -916,7 +974,7 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
   useEffect(() => {
     if (!mapReady) return;
     setVis(['eq-circles','eq-label'], activeLayers.earthquakes);
-    setVis(['sat-dots'], activeLayers.satellites);
+    setVis(['sat-dots','sat-glow','sat-icon'], activeLayers.satellites);
     setVis(['gdelt-dots'], activeLayers.global_incidents);
     setVis(['jam-fill','jam-label'], activeLayers.gps_jamming);
     setVis(['day-night-fill'], activeLayers.day_night);
@@ -924,18 +982,18 @@ function MikaelMap({ data, activeLayers, onEntityClick, onMouseCoords, onRightCl
     setVis(['fl-private'], activeLayers.private);
     setVis(['fl-jets'], activeLayers.jets);
     setVis(['fl-military'], activeLayers.military);
-    setVis(['cctv-glow','cctv-dots','cctv-label'], activeLayers.cctv);
-    setVis(['fires-heat'], activeLayers.fires);
-    setVis(['weather-glow','weather-dots','weather-label'], activeLayers.weather);
-    setVis(['infra-glow','infra-dots','infra-label'], activeLayers.infrastructure);
-    setVis(['maritime-glow','maritime-dots','maritime-label'], activeLayers.maritime);
+    setVis(['cctv-glow','cctv-dots','cctv-icon','cctv-label'], activeLayers.cctv);
+    setVis(['fires-heat','fires-icon'], activeLayers.fires);
+    setVis(['weather-glow','weather-dots','weather-icon','weather-label'], activeLayers.weather);
+    setVis(['infra-glow','infra-dots','infra-icon','infra-label'], activeLayers.infrastructure);
+    setVis(['maritime-glow','maritime-dots','maritime-icon','maritime-label'], activeLayers.maritime);
     setVis(['choke-glow','choke-dots','choke-label'], activeLayers.maritime);
     setVis(['ship-dots','ship-label'], activeLayers.maritime);
-    setVis(['news-glow','news-dots','news-label'], activeLayers.live_news);
+    setVis(['news-glow','news-dots','news-icon','news-label'], activeLayers.live_news);
     setVis(['sigint-news-glow','sigint-news-dots','sigint-news-label'], activeLayers.news_intel);
     setVis(['conflict-icons'], activeLayers.conflict_zones !== false);
 
-    setVis(['balloon-dots','balloon-label'], activeLayers.balloons);
+    setVis(['balloon-dots','balloon-icon','balloon-label'], activeLayers.balloons);
     setVis(['rad-glow','rad-dots','rad-label'], activeLayers.radiation);
     // Sweep layers always visible when data is present (controlled by useEffect)
     setVis(['sweep-connections','sweep-pulse-ring','sweep-device-glow','sweep-device-dots','sweep-device-labels'], true);

@@ -8,6 +8,7 @@ import IntelFeed from '@/components/IntelFeed';
 import MarketsPanel from '@/components/MarketsPanel';
 import SearchBar from '@/components/SearchBar';
 import ScaleBar from '@/components/ScaleBar';
+import MapLegend from '@/components/MapLegend';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import SharePanel from '@/components/SharePanel';
 import ViewPresets from '@/components/ViewPresets';
@@ -1071,8 +1072,9 @@ export default function Dashboard() {
       )}
 
       {/* ── Scale Bar (desktop) ── */}
-      <div className="desktop-only absolute bottom-[4.5rem] left-[20rem] z-[201] pointer-events-none">
+      <div className="desktop-only absolute bottom-[4.5rem] left-[20rem] z-[201] pointer-events-none flex items-end gap-3">
         <ScaleBar zoom={mapView.zoom} latitude={mapView.latitude} />
+        <div className="pointer-events-auto relative"><MapLegend activeLayers={activeLayers} /></div>
       </div>
 
       {/* ── Region Dossier ── */}
