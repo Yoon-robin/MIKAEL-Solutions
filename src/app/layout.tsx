@@ -7,7 +7,7 @@ const SITE_TITLE = "MIKAEL Solutions — 개인 OSINT 상황인식 플랫폼";
 const SITE_DESCRIPTION = "MIKAEL Solutions는 개인 Palantir 스타일의 OSINT·상황인식·조사 에이전트 플랫폼입니다. 항공, 위성, CCTV, 지진, 화재, 사이버 위협, 시장, 글로벌 사건 데이터를 어두운 사이버 인텔리전스 UI에서 통합 분석합니다.";
 
 export const viewport: Viewport = {
-  themeColor: "#D4AF37",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -98,7 +98,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     images: [
       {
-        url: `${SITE_URL}/og-image.png`,
+        url: `${SITE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "MIKAEL Solutions — 개인 OSINT 상황인식 플랫폼",
@@ -112,7 +112,7 @@ export const metadata: Metadata = {
     description: "글로벌 항공·위성·CCTV·재난·사이버 위협 데이터를 하나의 개인 인텔리전스 콘솔에서 확인합니다.",
     creator: "@simplifaisoul",
     site: "@simplifaisoul",
-    images: [`${SITE_URL}/og-image.png`],
+    images: [`${SITE_URL}/opengraph-image`],
   },
   category: "technology",
   classification: "Intelligence & Security",
@@ -165,7 +165,7 @@ const jsonLd = {
     "Interactive 3D globe with day/night cycle",
     "Region intelligence dossier reports",
   ],
-  screenshot: `${SITE_URL}/og-image.png`,
+  screenshot: `${SITE_URL}/opengraph-image`,
   author: {
     "@type": "Organization",
     name: "MIKAEL Solutions",
