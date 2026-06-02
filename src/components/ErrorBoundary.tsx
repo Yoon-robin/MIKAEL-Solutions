@@ -34,12 +34,12 @@ export default class ErrorBoundary extends React.Component<Props, State> {
             <div className="text-xs text-red-400 tracking-widest mb-2">
               ⚠ {this.props.name?.toUpperCase() || '컴포넌트'} 오류
             </div>
-            <div className="text-[10px] text-[var(--text-muted)] max-w-[300px] truncate">
+            <div className="text-[12px] text-[var(--text-muted)] max-w-[300px] truncate">
               {this.state.error?.message}
             </div>
             <button
               onClick={() => this.setState({ hasError: false })}
-              className="mt-3 px-3 py-1 text-[9px] tracking-widest text-[var(--gold-primary)] border border-[var(--border-primary)] rounded hover:bg-[var(--hover-accent)] transition-colors"
+              className="mt-3 px-3 py-1 text-[12px] tracking-widest text-[var(--gold-primary)] border border-[var(--border-primary)] rounded hover:bg-[var(--hover-accent)] transition-colors"
             >
               재시도
             </button>

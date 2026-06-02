@@ -109,8 +109,8 @@ export default function CameraViewer({ camera, onClose, onLocate }: CameraViewer
               <div className="w-2 h-2 rounded-full bg-[#39FF14] animate-beacon flex-shrink-0" />
               <Camera className="w-3.5 h-3.5 text-[#39FF14] flex-shrink-0" />
               <div className="min-w-0">
-                <h3 className="text-[10px] md:text-[11px] font-bold text-[#39FF14] tracking-wider truncate">{camera.name}</h3>
-                <p className="text-[6px] md:text-[7px] text-[var(--text-muted)]">{camera.city}, {camera.country} · {camera.source}</p>
+                <h3 className="text-[12px] md:text-[13px] font-bold text-[#39FF14] tracking-wider truncate">{camera.name}</h3>
+                <p className="text-[6px] md:text-[13px] text-[var(--text-muted)]">{camera.city}, {camera.country} · {camera.source}</p>
               </div>
             </div>
             <div className="flex items-center gap-1 flex-shrink-0">
@@ -139,7 +139,7 @@ export default function CameraViewer({ camera, onClose, onLocate }: CameraViewer
               <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-10">
                 <div className="text-center">
                   <div className="w-6 h-6 border-2 border-[#39FF14] border-t-transparent rounded-full animate-spin mx-auto mb-2" />
-                  <span className="text-[8px] text-[#39FF14] tracking-widest">피드 연결 중...</span>
+                  <span className="text-[13px] text-[#39FF14] tracking-widest">피드 연결 중...</span>
                 </div>
               </div>
             )}
@@ -148,10 +148,10 @@ export default function CameraViewer({ camera, onClose, onLocate }: CameraViewer
               <div className="absolute inset-0 flex items-center justify-center bg-black/90">
                 <div className="text-center px-6">
                   <div className="w-8 h-8 rounded-full bg-[#39FF14]/15 flex items-center justify-center mx-auto mb-2"><ExternalLink className="w-4 h-4 text-[#39FF14]" /></div>
-                  <span className="text-[9px] text-[#39FF14] tracking-widest block mb-1">외부 피드</span>
-                  <span className="text-[7px] text-[var(--text-muted)]">실시간 영상은 원본 뷰어에서 열립니다</span>
+                  <span className="text-[12px] text-[#39FF14] tracking-widest block mb-1">외부 피드</span>
+                  <span className="text-[13px] text-[var(--text-muted)]">실시간 영상은 원본 뷰어에서 열립니다</span>
                   {externalFeedUrl && (
-                    <a href={externalFeedUrl} target="_blank" rel="noopener noreferrer" className="block mx-auto mt-3 px-3 py-1 text-[8px] text-[#39FF14] border border-[#39FF14]/30 rounded hover:bg-[#39FF14]/10 transition-colors tracking-wider">
+                    <a href={externalFeedUrl} target="_blank" rel="noopener noreferrer" className="block mx-auto mt-3 px-3 py-1 text-[13px] text-[#39FF14] border border-[#39FF14]/30 rounded hover:bg-[#39FF14]/10 transition-colors tracking-wider">
                       피드 열기
                     </a>
                   )}
@@ -161,9 +161,9 @@ export default function CameraViewer({ camera, onClose, onLocate }: CameraViewer
               <div className="absolute inset-0 flex items-center justify-center bg-black/90">
                 <div className="text-center">
                   <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center mb-2 mx-auto"><Camera className="w-4 h-4 text-red-400" /></div>
-                  <span className="text-[9px] text-red-400 tracking-widest block mb-1">피드 사용 불가</span>
-                  <span className="text-[7px] text-[var(--text-muted)]">카메라가 오프라인이거나 접근이 제한됐을 수 있습니다</span>
-                  <button onClick={() => { setError(false); setRefreshKey(k => k + 1); }} className="block mx-auto mt-3 px-3 py-1 text-[8px] text-[#39FF14] border border-[#39FF14]/30 rounded hover:bg-[#39FF14]/10 transition-colors tracking-wider">
+                  <span className="text-[12px] text-red-400 tracking-widest block mb-1">피드 사용 불가</span>
+                  <span className="text-[13px] text-[var(--text-muted)]">카메라가 오프라인이거나 접근이 제한됐을 수 있습니다</span>
+                  <button onClick={() => { setError(false); setRefreshKey(k => k + 1); }} className="block mx-auto mt-3 px-3 py-1 text-[13px] text-[#39FF14] border border-[#39FF14]/30 rounded hover:bg-[#39FF14]/10 transition-colors tracking-wider">
                     재시도
                   </button>
                 </div>
@@ -198,7 +198,7 @@ export default function CameraViewer({ camera, onClose, onLocate }: CameraViewer
             {!error && !loading && !externalOnly && (
               <div className="absolute top-2 left-2 flex items-center gap-1.5 bg-black/70 backdrop-blur-sm px-2 py-1 rounded">
                 <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-beacon" />
-                <span className="text-[7px] text-white tracking-widest">
+                <span className="text-[13px] text-white tracking-widest">
                   {streamType === 'jpg' ? '실시간 스냅샷' : '실시간 영상'}
                 </span>
               </div>
@@ -207,18 +207,18 @@ export default function CameraViewer({ camera, onClose, onLocate }: CameraViewer
 
           {/* Footer with coords + links */}
           <div className="px-3 md:px-4 py-2 border-t border-[var(--border-secondary)] bg-black/40 flex items-center justify-between">
-            <div className="text-[7px] md:text-[8px] text-[var(--text-muted)]">
+            <div className="text-[13px] md:text-[13px] text-[var(--text-muted)]">
               {camera.lat?.toFixed(4)}, {camera.lng?.toFixed(4)}
             </div>
             <div className="flex gap-2">
               {(camera.feed_url || camera.external_url) && (
                 <a href={camera.external_url || camera.feed_url} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-[7px] text-[#39FF14] hover:underline tracking-wider">
+                  className="flex items-center gap-1 text-[13px] text-[#39FF14] hover:underline tracking-wider">
                   <ExternalLink className="w-2.5 h-2.5" /> 피드
                 </a>
               )}
               <a href={`https://www.google.com/maps/@${camera.lat},${camera.lng},17z`} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-1 text-[7px] text-[var(--cyan-primary)] hover:underline tracking-wider">
+                className="flex items-center gap-1 text-[13px] text-[var(--cyan-primary)] hover:underline tracking-wider">
                 <MapPin className="w-2.5 h-2.5" /> 지도
               </a>
             </div>

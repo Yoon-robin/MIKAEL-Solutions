@@ -135,10 +135,10 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
               </CardTitle>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="text-xs text-[var(--text-muted)] tabular-nums font-medium">
+              <span className="text-xs text-[var(--text-muted)] tabular-nums font-semibold">
                 {activeCount}/{ALL_LAYERS.length}
               </span>
-              <Badge variant="success" className="text-[10px] h-5 px-1.5 rounded font-medium">
+              <Badge variant="success" className="text-[12px] h-5 px-1.5 rounded font-semibold">
                 {totalEntities.toLocaleString()}
               </Badge>
             </div>
@@ -165,10 +165,10 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                       className="flex items-center gap-2 flex-1 py-1.5 px-2 rounded-md hover:bg-[#110E0E] transition-colors text-left group"
                     >
                       <GroupIcon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: group.color }} />
-                      <span className="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-widest flex-1">
+                      <span className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-widest flex-1">
                         {group.label}
                       </span>
-                      <span className="text-[10px] tabular-nums text-[var(--text-muted)] mr-1">
+                      <span className="text-[12px] tabular-nums text-[var(--text-muted)] mr-1">
                         {groupActiveCount}/{group.layers.length}
                       </span>
                       {isExpanded
@@ -219,14 +219,14 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                                 <motion.div animate={{ color: isActive ? layer.color : '#52525B' }} transition={{ duration: 0.18 }}>
                                   <Icon className="w-3.5 h-3.5 flex-shrink-0" />
                                 </motion.div>
-                                <span className="text-[13px] flex-1 font-medium">{layer.label}</span>
+                                <span className="text-[13px] flex-1 font-semibold">{layer.label}</span>
                                 {count !== null && (
                                   <motion.span
                                     key={count}
                                     initial={{ opacity: 0, scale: 1.2 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                                    className="text-[11px] tabular-nums text-[#6B5748]"
+                                    className="text-[13px] tabular-nums text-[#6B5748]"
                                   >
                                     {count.toLocaleString()}
                                   </motion.span>

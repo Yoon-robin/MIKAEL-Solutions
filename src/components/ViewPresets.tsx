@@ -34,7 +34,7 @@ export default function ViewPresets({ onNavigate }: ViewPresetsProps) {
       <div className="flex items-center gap-2 mb-3">
         <Globe className="w-4 h-4 text-[var(--gold-primary)]" />
         <span className="text-[14px] font-semibold text-white tracking-tight">지역 프리셋</span>
-        <Badge variant="danger" className="text-[7px] px-1.5 py-0 ml-auto">
+        <Badge variant="danger" className="text-[13px] px-1.5 py-0 ml-auto">
           {PRESETS.filter(p => (p as any).hot).length} 주의
         </Badge>
       </div>
@@ -43,7 +43,7 @@ export default function ViewPresets({ onNavigate }: ViewPresetsProps) {
           <button
             key={p.label}
             onClick={() => onNavigate(p.lat, p.lng, p.zoom)}
-            className={`flex items-center gap-2 px-2.5 py-2 rounded-md text-[13px] font-medium transition-colors ${(p as any).hot ? 'text-[var(--alert-red)] hover:bg-[#110E0E]' : 'text-[#A1A1AA] hover:bg-[#110E0E] hover:text-white'}`}
+            className={`flex items-center gap-2 px-2.5 py-2 rounded-md text-[13px] font-semibold transition-colors ${(p as any).hot ? 'text-[var(--alert-red)] hover:bg-[#110E0E]' : 'text-[#A1A1AA] hover:bg-[#110E0E] hover:text-white'}`}
           >
             
             <span>{p.label}</span>

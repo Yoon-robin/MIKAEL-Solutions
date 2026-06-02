@@ -448,7 +448,7 @@ export default function Dashboard() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.6 }}
               transition={{ delay: 0.8, duration: 0.5 }}
-              className="absolute top-6 left-6 z-[2] text-[10px] tracking-[0.3em] text-[var(--gold-primary)]"
+              className="absolute top-6 left-6 z-[2] text-[12px] tracking-[0.3em] text-[var(--gold-primary)]"
             >
               V4.2
             </motion.div>
@@ -544,7 +544,7 @@ export default function Dashboard() {
                 transition={{ delay: 1.2, duration: 0.8, ease: 'easeInOut' }}
                 className="overflow-hidden whitespace-nowrap"
               >
-                <p className="text-[10px] md:text-[11px] tracking-[0.5em] text-[var(--gold-primary)]" style={{ opacity: 0.8 }}>
+                <p className="text-[12px] md:text-[13px] tracking-[0.5em] text-[var(--gold-primary)]" style={{ opacity: 0.8 }}>
                   개인 OSINT 상황인식 센터
                 </p>
               </motion.div>
@@ -576,7 +576,7 @@ export default function Dashboard() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: [0, 1, 1, 0] }}
                     transition={{ delay: stage.delay, duration: 0.6, times: [0, 0.1, 0.7, 1] }}
-                    className="absolute text-[9px] tracking-[0.25em]"
+                    className="absolute text-[12px] tracking-[0.25em]"
                     style={{ color: i === 3 ? 'var(--cyan-primary)' : 'var(--text-muted)' }}
                   >
                     {stage.text}
@@ -635,7 +635,7 @@ export default function Dashboard() {
           ) : (
             <Globe className="w-4 h-4 text-[var(--cyan-primary)] group-hover:scale-110 transition-transform" />
           )}
-          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
+          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[12px] text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
             {mapProjection === 'globe' ? '2D 지도' : '3D 글로브'}
           </span>
         </button>
@@ -651,7 +651,7 @@ export default function Dashboard() {
           ) : (
             <Moon className="w-4 h-4 text-[var(--cyan-primary)] group-hover:scale-110 transition-transform" />
           )}
-          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[9px] text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
+          <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 text-[12px] text-[var(--text-muted)] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity glass-panel px-2 py-1 z-[300]">
             {mapStyle === 'dark' ? '위성' : '야간 모드'}
           </span>
         </button>
@@ -680,16 +680,16 @@ export default function Dashboard() {
         <div className="flex flex-col">
           <div className="flex items-center gap-2">
             <h1 className="mikael-brand text-[13px] md:text-[17px] text-[var(--text-heading)]">MIKAEL Solutions</h1>
-            <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-[1px] rounded-sm border border-[var(--cyan-primary)]/30 bg-[var(--cyan-primary)]/8 text-[8px] tracking-[0.1em] text-[var(--cyan-primary)]" style={{ lineHeight: '1.4' }}>
+            <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-[1px] rounded-sm border border-[var(--cyan-primary)]/30 bg-[var(--cyan-primary)]/8 text-[13px] tracking-[0.1em] text-[var(--cyan-primary)]" style={{ lineHeight: '1.4' }}>
               GRID
             </span>
           </div>
-          <span className="text-[8px] md:text-[9px] text-[var(--text-muted)] tracking-[0.18em] md:tracking-[0.22em] mikael-brand" style={{ fontWeight: 400 }}>OSINT 상황인식 지휘 콘솔</span>
+          <span className="text-[13px] md:text-[12px] text-[var(--text-muted)] tracking-[0.18em] md:tracking-[0.22em] mikael-brand" style={{ fontWeight: 400 }}>OSINT 상황인식 지휘 콘솔</span>
         </div>
       </motion.div>
 
       {/* ── TOP-RIGHT STATUS (desktop) — C2 DISPLAY ── */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }} className="status-bar-desktop absolute top-3 right-3 md:top-4 md:right-5 z-[200] pointer-events-none flex items-center gap-1.5 md:gap-3 text-[9px] md:text-[10px] tracking-widest text-[var(--text-muted)]">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }} className="status-bar-desktop absolute top-3 right-3 md:top-4 md:right-5 z-[200] pointer-events-none flex items-center gap-1.5 md:gap-3 text-[12px] md:text-[12px] tracking-widest text-[var(--text-muted)]">
 
         {/* Zulu Clock */}
         <span className="hidden lg:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm border border-[var(--border-primary)] bg-black/30">
@@ -712,14 +712,14 @@ export default function Dashboard() {
         <UptimeClock />
         
         <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="pointer-events-auto hover:opacity-80 transition-opacity ml-1 flex items-center">
-          <span className="px-3 py-1 rounded-sm border border-white/[0.15] bg-white/[0.04] text-white text-[11px] font-bold tracking-[0.2em] hover:bg-white/[0.08] transition-colors">MIKAEL GRID</span>
+          <span className="px-3 py-1 rounded-sm border border-white/[0.15] bg-white/[0.04] text-white text-[13px] font-bold tracking-[0.2em] hover:bg-white/[0.08] transition-colors">MIKAEL GRID</span>
         </a>
       </motion.div>
 
       {/* ── MOBILE: Compact top status ── */}
       {isMobile && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
-          <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[7px] tracking-widest hover:bg-white/[0.06] transition-colors">
+          <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[13px] tracking-widest hover:bg-white/[0.06] transition-colors">
             <div className="w-1 h-1 rounded-full bg-white/60 animate-beacon" />
             <span className="text-white/80 font-bold">MIKAEL GRID</span>
           </a>
@@ -735,11 +735,11 @@ export default function Dashboard() {
             <LayerPanel data={data} activeLayers={activeLayers} setActiveLayers={setActiveLayers} />
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }} className="glass-panel px-3 py-2.5 pointer-events-auto">
               <div className="grid grid-cols-5 gap-2 text-center">
-                <div><div className="hud-label">항공</div><div className="hud-value text-[10px] animate-data-pulse">{globalStats ? globalStats.flights.toLocaleString() : '0'}</div></div>
-                <div><div className="hud-label">위성</div><div className="hud-value text-[10px]">{globalStats ? globalStats.sats.toLocaleString() : '0'}</div></div>
-                <div><div className="hud-label">CCTV</div><div className="hud-value text-[10px]">{globalStats ? globalStats.cctv.toLocaleString() : '0'}</div></div>
-                <div><div className="hud-label">기상</div><div className="hud-value text-[10px]" style={{ color: '#E040FB' }}>{globalStats ? globalStats.weather.toLocaleString() : '0'}</div></div>
-                <div><div className="hud-label">원전</div><div className="hud-value text-[10px]" style={{ color: '#76FF03' }}>{globalStats ? globalStats.nuclear.toLocaleString() : '0'}</div></div>
+                <div><div className="hud-label">항공</div><div className="hud-value text-[12px] animate-data-pulse">{globalStats ? globalStats.flights.toLocaleString() : '0'}</div></div>
+                <div><div className="hud-label">위성</div><div className="hud-value text-[12px]">{globalStats ? globalStats.sats.toLocaleString() : '0'}</div></div>
+                <div><div className="hud-label">CCTV</div><div className="hud-value text-[12px]">{globalStats ? globalStats.cctv.toLocaleString() : '0'}</div></div>
+                <div><div className="hud-label">기상</div><div className="hud-value text-[12px]" style={{ color: '#E040FB' }}>{globalStats ? globalStats.weather.toLocaleString() : '0'}</div></div>
+                <div><div className="hud-label">원전</div><div className="hud-value text-[12px]" style={{ color: '#76FF03' }}>{globalStats ? globalStats.nuclear.toLocaleString() : '0'}</div></div>
               </div>
             </motion.div>
             <ViewPresets onNavigate={(lat, lng, zoom) => { setFlyToLocation({ lat, lng, ts: Date.now() }); setMapView(v => ({ ...v, zoom })); }} />
@@ -786,9 +786,9 @@ export default function Dashboard() {
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[#FF4081] animate-beacon" />
                   <span className="text-[12px] font-bold text-white tracking-wider">{liveFeedName}</span>
-                  <span className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 text-[9px] font-bold">실시간 방송</span>
+                  <span className="px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 text-[12px] font-bold">실시간 방송</span>
                   {!liveFeedEmbedAllowed && (
-                    <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[9px]">외부 전용</span>
+                    <span className="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[12px]">외부 전용</span>
                   )}
                 </div>
                 <div className="flex items-center gap-3">
@@ -802,7 +802,7 @@ export default function Dashboard() {
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--border-primary)] hover:bg-[var(--gold-primary)] hover:text-black text-white transition-colors text-[11px]"
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--border-primary)] hover:bg-[var(--gold-primary)] hover:text-black text-white transition-colors text-[13px]"
                   >
                     <span>YouTube에서 열기</span>
                     <ExternalLink className="w-3 h-3" />
@@ -830,7 +830,7 @@ export default function Dashboard() {
                       <ExternalLink className="w-6 h-6 text-[#39FF14]" />
                     </div>
                     <p className="text-[13px] font-bold text-white tracking-widest mb-2">임베드 제한됨</p>
-                    <p className="text-[11px] text-white/50 mb-6 max-w-xs">
+                    <p className="text-[13px] text-white/50 mb-6 max-w-xs">
                       {liveFeedName} 은(는) 외부 임베드를 허용하지 않습니다. 아래 버튼으로 원본 실시간 스트림을 직접 여세요.
                     </p>
                     <a
@@ -856,7 +856,7 @@ export default function Dashboard() {
               {liveFeedEmbedAllowed && (
                 <div className="bg-[#111]/90 px-4 py-2.5 border-t border-[var(--border-primary)] flex items-center gap-2.5">
                   <AlertTriangle className="w-4 h-4 text-[var(--gold-primary)] shrink-0" />
-                  <span className="text-[11px] text-white/70 leading-relaxed">
+                  <span className="text-[13px] text-white/70 leading-relaxed">
                     &ldquo;동영상을 재생할 수 없음&rdquo;이 보이면 위의 <strong className="text-[var(--gold-primary)]">YouTube에서 열기</strong>를 사용하세요.
                   </span>
                 </div>
@@ -913,7 +913,7 @@ export default function Dashboard() {
                 <div className="mobile-drawer-handle" />
                 <div className="px-3 pb-3">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="hud-text text-[9px] text-[var(--text-primary)]">
+                    <span className="hud-text text-[12px] text-[var(--text-primary)]">
                       {mobilePanel === 'layers' ? '레이어·통계' : mobilePanel === 'markets' ? '시장·정보' : mobilePanel === 'intel' ? '정보 피드' : mobilePanel === 'alerts' ? '실시간 경보' : mobilePanel === 'recon' ? 'MIKAEL 정찰' : '검색'}
                     </span>
                     <button onClick={() => setMobilePanel(null)} className="text-[var(--text-muted)] p-1"><X className="w-4 h-4" /></button>
@@ -922,11 +922,11 @@ export default function Dashboard() {
                     <>
                       <div className="glass-panel-sm p-2 mb-2">
                         <div className="grid grid-cols-5 gap-1 text-center">
-                          <div><div className="hud-label" style={{fontSize:'6px'}}>AIR</div><div className="hud-value text-[9px]">{totalFlights.toLocaleString()}</div></div>
-                          <div><div className="hud-label" style={{fontSize:'6px'}}>SAT</div><div className="hud-value text-[9px]">{(data.satellites?.length||0)}</div></div>
-                          <div><div className="hud-label" style={{fontSize:'6px'}}>CAM</div><div className="hud-value text-[9px]">{(data.cameras?.length||0)}</div></div>
-                          <div><div className="hud-label" style={{fontSize:'6px'}}>WX</div><div className="hud-value text-[9px]" style={{color:'#E040FB'}}>{(data.weather_events?.length||0)}</div></div>
-                          <div><div className="hud-label" style={{fontSize:'6px'}}>NUC</div><div className="hud-value text-[9px]" style={{color:'#76FF03'}}>{(data.infrastructure?.length||0)}</div></div>
+                          <div><div className="hud-label" style={{fontSize:'6px'}}>AIR</div><div className="hud-value text-[12px]">{totalFlights.toLocaleString()}</div></div>
+                          <div><div className="hud-label" style={{fontSize:'6px'}}>SAT</div><div className="hud-value text-[12px]">{(data.satellites?.length||0)}</div></div>
+                          <div><div className="hud-label" style={{fontSize:'6px'}}>CAM</div><div className="hud-value text-[12px]">{(data.cameras?.length||0)}</div></div>
+                          <div><div className="hud-label" style={{fontSize:'6px'}}>WX</div><div className="hud-value text-[12px]" style={{color:'#E040FB'}}>{(data.weather_events?.length||0)}</div></div>
+                          <div><div className="hud-label" style={{fontSize:'6px'}}>NUC</div><div className="hud-value text-[12px]" style={{color:'#76FF03'}}>{(data.infrastructure?.length||0)}</div></div>
                         </div>
                       </div>
                       <LayerPanel data={data} activeLayers={activeLayers} setActiveLayers={setActiveLayers} />
@@ -975,7 +975,7 @@ export default function Dashboard() {
             {/* 좌표 */}
             <div className="flex flex-col items-center min-w-[110px] px-3">
               <div className="hud-label">좌표</div>
-              <div ref={coordsDisplayRef} className="text-[10px] font-bold text-[var(--gold-primary)] tracking-wide tabular-nums">—</div>
+              <div ref={coordsDisplayRef} className="text-[12px] font-bold text-[var(--gold-primary)] tracking-wide tabular-nums">—</div>
             </div>
 
             <div className="w-px h-8 bg-gradient-to-b from-transparent via-[var(--border-primary)] to-transparent flex-shrink-0" />
@@ -983,7 +983,7 @@ export default function Dashboard() {
             {/* 위치 */}
             <div className="flex flex-col items-center min-w-[160px] max-w-[280px] px-3">
               <div className="hud-label">위치</div>
-              <div className="text-[9px] text-[var(--text-secondary)] truncate max-w-[280px]">{locationLabel || '지도 위에 마우스를 올리세요...'}</div>
+              <div className="text-[12px] text-[var(--text-secondary)] truncate max-w-[280px]">{locationLabel || '지도 위에 마우스를 올리세요...'}</div>
             </div>
 
             <div className="w-px h-8 bg-gradient-to-b from-transparent via-[var(--border-primary)] to-transparent flex-shrink-0" />
@@ -991,7 +991,7 @@ export default function Dashboard() {
             {/* 줌 */}
             <div className="flex flex-col items-center px-3">
               <div className="hud-label">줌</div>
-              <div className="text-[10px] font-bold text-[var(--gold-primary)] tabular-nums">{mapView.zoom.toFixed(1)}</div>
+              <div className="text-[12px] font-bold text-[var(--gold-primary)] tabular-nums">{mapView.zoom.toFixed(1)}</div>
             </div>
 
             <div className="w-px h-8 bg-gradient-to-b from-transparent via-[var(--border-primary)] to-transparent flex-shrink-0" />
@@ -1001,7 +1001,7 @@ export default function Dashboard() {
               <div className="hud-label">활성 레이어</div>
               <div className="flex items-center gap-1">
                 <Layers className="w-3 h-3 text-[var(--gold-primary)]" />
-                <span className="text-[10px] font-bold text-[var(--gold-primary)] tabular-nums">{Object.values(activeLayers).filter(Boolean).length}</span>
+                <span className="text-[12px] font-bold text-[var(--gold-primary)] tabular-nums">{Object.values(activeLayers).filter(Boolean).length}</span>
               </div>
             </div>
 
@@ -1012,7 +1012,7 @@ export default function Dashboard() {
               <div className="hud-label">피드</div>
               <div className="flex items-center gap-1">
                 <Activity className="w-3 h-3 text-[var(--cyan-primary)]" />
-                <span className="text-[10px] font-bold text-[var(--cyan-primary)] tabular-nums">{Object.values(activeLayers).filter(Boolean).length}</span>
+                <span className="text-[12px] font-bold text-[var(--cyan-primary)] tabular-nums">{Object.values(activeLayers).filter(Boolean).length}</span>
               </div>
             </div>
 
@@ -1047,7 +1047,7 @@ export default function Dashboard() {
             {dossierLoading ? (
               <div className="text-center py-8">
                 <div className="w-5 h-5 border-2 border-[var(--gold-primary)] border-t-transparent rounded-full animate-spin mx-auto mb-2" />
-                <span className="text-[8px] text-[var(--text-muted)] tracking-widest">정보 취합 중...</span>
+                <span className="text-[13px] text-[var(--text-muted)] tracking-widest">정보 취합 중...</span>
               </div>
             ) : regionDossier && (
               <div className="space-y-3">
@@ -1062,8 +1062,8 @@ export default function Dashboard() {
                     <div><div className="hud-label mb-0.5">면적</div><div className="text-xs text-[var(--text-primary)]">{regionDossier.country.area?.toLocaleString()} km²</div></div>
                   </div>
                 )}
-                {regionDossier.head_of_state && (<div><div className="hud-label mb-0.5">국가원수</div><div className="text-xs text-[var(--gold-primary)]">{regionDossier.head_of_state.name}</div><div className="text-[8px] text-[var(--text-muted)]">{regionDossier.head_of_state.position}</div></div>)}
-                {regionDossier.wikipedia && (<div><div className="hud-label mb-1">정보 요약</div><div className="flex gap-3">{regionDossier.wikipedia.thumbnail && <img src={regionDossier.wikipedia.thumbnail} alt="" className="w-14 h-14 rounded object-cover flex-shrink-0" />}<p className="text-[8px] text-[var(--text-secondary)] leading-relaxed">{regionDossier.wikipedia.extract}</p></div></div>)}
+                {regionDossier.head_of_state && (<div><div className="hud-label mb-0.5">국가원수</div><div className="text-xs text-[var(--gold-primary)]">{regionDossier.head_of_state.name}</div><div className="text-[13px] text-[var(--text-muted)]">{regionDossier.head_of_state.position}</div></div>)}
+                {regionDossier.wikipedia && (<div><div className="hud-label mb-1">정보 요약</div><div className="flex gap-3">{regionDossier.wikipedia.thumbnail && <img src={regionDossier.wikipedia.thumbnail} alt="" className="w-14 h-14 rounded object-cover flex-shrink-0" />}<p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">{regionDossier.wikipedia.extract}</p></div></div>)}
               </div>
             )}
           </div>

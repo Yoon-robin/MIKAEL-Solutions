@@ -126,10 +126,10 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
         <div className="flex items-center gap-2.5">
           <Radio className="w-4 h-4 text-[#FF4081]" />
           <span className="mikael-brand text-[13px] text-[var(--text-heading)]">실시간 경보</span>
-          <Badge variant="warning" className="text-[10px] h-5 px-1.5 rounded font-medium">
+          <Badge variant="warning" className="text-[12px] h-5 px-1.5 rounded font-semibold">
             {alerts.filter(a => a.type === 'news' || a.type === 'quake').length}
           </Badge>
-          <Badge variant="cyan" className="text-[10px] h-5 px-1.5 rounded font-medium">
+          <Badge variant="cyan" className="text-[12px] h-5 px-1.5 rounded font-semibold">
             {BUILTIN_FEEDS.length}개 피드
           </Badge>
         </div>
@@ -156,7 +156,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-2.5 py-1 rounded-md text-[12px] font-medium transition-colors ${filter === f ? 'bg-[#110E0E] text-white' : 'text-[#6B5748] hover:text-[#A1A1AA] hover:bg-[#110E0E]'}`}
+                  className={`px-2.5 py-1 rounded-md text-[12px] font-semibold transition-colors ${filter === f ? 'bg-[#110E0E] text-white' : 'text-[#6B5748] hover:text-[#A1A1AA] hover:bg-[#110E0E]'}`}
                 >
                   {{ all: '전체', news: '뉴스', quakes: '지진', feeds: '방송' }[f]}
                 </button>
@@ -190,15 +190,15 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5 mb-1">
                           <Icon className="w-3 h-3 flex-shrink-0" style={{ color: sevColor }} />
-                          <span className={`text-[13px] text-white font-medium ${alert.type === 'news' ? 'line-clamp-4 leading-snug' : 'truncate leading-tight'}`}>
+                          <span className={`text-[13px] text-white font-semibold ${alert.type === 'news' ? 'line-clamp-4 leading-snug' : 'truncate leading-tight'}`}>
                             {alert.description || alert.title}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className="text-[8px] text-[var(--text-muted)]">{alert.source}</span>
+                            <span className="text-[13px] text-[var(--text-muted)]">{alert.source}</span>
                             {alert.time && (
-                              <span className="text-[8px] text-[var(--text-muted)] flex items-center gap-0.5">
+                              <span className="text-[13px] text-[var(--text-muted)] flex items-center gap-0.5">
                                 <Clock className="w-2 h-2" />
                                 {new Date(alert.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </span>
@@ -209,7 +209,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                               href={alert.url} 
                               target="_blank" 
                               rel="noopener noreferrer" 
-                              className="text-[8px] text-[var(--cyan-primary)] hover:underline"
+                              className="text-[13px] text-[var(--cyan-primary)] hover:underline"
                               onClick={(e) => e.stopPropagation()}
                             >
                               원문
@@ -227,7 +227,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                 );
               })}
               {filtered.length === 0 && (
-                <div className="text-center py-4 text-[10px] text-[var(--text-muted)]">
+                <div className="text-center py-4 text-[12px] text-[var(--text-muted)]">
                   이 필터에 표시할 경보가 없습니다
                 </div>
               )}

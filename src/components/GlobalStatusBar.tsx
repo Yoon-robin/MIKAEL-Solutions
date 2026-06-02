@@ -73,7 +73,7 @@ export default function GlobalStatusBar() {
           onMouseEnter={() => setHoveredRisk(r)}
           onMouseLeave={() => setHoveredRisk(null)}
         >
-          <span className="text-[10px]">{countryFlag(r.code)}</span>
+          <span className="text-[12px]">{countryFlag(r.code)}</span>
           <span style={{ color: riskColor(r.risk_level) }} className="font-bold">{r.risk_score}</span>
         </span>
       ))}
@@ -92,7 +92,7 @@ export default function GlobalStatusBar() {
       transition={{ delay: 4, duration: 0.8 }}
       className="hidden md:block absolute bottom-0 left-0 right-0 z-[198] pointer-events-none"
     >
-      <div className="h-[22px] overflow-hidden bg-[var(--bg-panel)]/80 border-t border-[var(--border-secondary)]/50 flex items-center text-[8px] tracking-wider backdrop-blur-sm">
+      <div className="h-[22px] overflow-hidden bg-[var(--bg-panel)]/80 border-t border-[var(--border-secondary)]/50 flex items-center text-[13px] tracking-wider backdrop-blur-sm">
         {/* Static label */}
         <div className="flex-shrink-0 px-2 h-full flex items-center gap-1 border-r border-[var(--border-secondary)]/50 bg-[var(--bg-panel)] pointer-events-auto">
           <span className="text-[var(--text-muted)]">거래소</span>
@@ -113,7 +113,7 @@ export default function GlobalStatusBar() {
         <div
           className="absolute bottom-[28px] left-1/2 -translate-x-1/2 z-[300] pointer-events-none"
         >
-          <div className="glass-panel px-3 py-2 text-[10px] text-center whitespace-nowrap" style={{ borderColor: `${riskColor(hoveredRisk.risk_level)}40` }}>
+          <div className="glass-panel px-3 py-2 text-[12px] text-center whitespace-nowrap" style={{ borderColor: `${riskColor(hoveredRisk.risk_level)}40` }}>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-[12px]">{countryFlag(hoveredRisk.code)}</span>
               <span className="font-bold" style={{ color: riskColor(hoveredRisk.risk_level) }}>
@@ -121,13 +121,13 @@ export default function GlobalStatusBar() {
               </span>
               <span className="text-[var(--text-muted)]">점수: {hoveredRisk.risk_score}/100</span>
             </div>
-            <div className="text-[9px] text-[var(--text-secondary)]">
+            <div className="text-[12px] text-[var(--text-secondary)]">
               {RISK_TOOLTIPS[hoveredRisk.risk_level] || '글로벌 위협 데이터 기반 위험 평가'}
             </div>
             {hoveredRisk.tags?.length > 0 && (
               <div className="flex gap-1 mt-1 justify-center flex-wrap">
                 {hoveredRisk.tags.slice(0, 3).map(t => (
-                  <span key={t} className="px-1.5 py-0.5 rounded text-[8px]" style={{ backgroundColor: `${riskColor(hoveredRisk.risk_level)}15`, color: riskColor(hoveredRisk.risk_level) }}>
+                  <span key={t} className="px-1.5 py-0.5 rounded text-[13px]" style={{ backgroundColor: `${riskColor(hoveredRisk.risk_level)}15`, color: riskColor(hoveredRisk.risk_level) }}>
                     {t}
                   </span>
                 ))}

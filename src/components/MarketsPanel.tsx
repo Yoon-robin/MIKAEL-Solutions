@@ -24,12 +24,12 @@ function Ticker({ name, data: d }: { name: string; data: any }) {
   if (!d) return null;
   return (
     <div className="flex items-center justify-between py-1.5 px-2 rounded hover:bg-[var(--hover-accent)] transition-colors">
-      <span className="text-[13px] text-[#A1A1AA] font-medium">{name}</span>
+      <span className="text-[13px] text-[#A1A1AA] font-semibold">{name}</span>
       <div className="flex items-center gap-2">
         <span className="text-[13px] font-semibold text-white tabular-nums">
           {d.price >= 1000 ? `${(d.price / 1000).toFixed(1)}K` : d.price?.toFixed(2)}
         </span>
-        <span className={`text-[11px] font-bold flex items-center gap-0.5 ${d.up ? 'text-[var(--alert-green)]' : 'text-[var(--alert-red)]'}`}>
+        <span className={`text-[13px] font-bold flex items-center gap-0.5 ${d.up ? 'text-[var(--alert-green)]' : 'text-[var(--alert-red)]'}`}>
           {d.up ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
           {d.change_percent > 0 ? '+' : ''}{d.change_percent?.toFixed(2)}%
         </span>
@@ -61,7 +61,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
               <CardTitle className="mikael-brand text-[13px] text-[var(--text-heading)]">
                 시장·정보
               </CardTitle>
-              <Badge variant="success" className="text-[10px] h-5 px-1.5 rounded font-medium">실시간</Badge>
+              <Badge variant="success" className="text-[12px] h-5 px-1.5 rounded font-semibold">실시간</Badge>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-[var(--alert-green)]" />
@@ -95,14 +95,14 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1.5">
                         <Zap className="w-3 h-3" style={{ color: spaceWeather.storm_color }} />
-                        <span className="text-[10px] tracking-widest text-[var(--text-muted)]">우주기상</span>
+                        <span className="text-[12px] tracking-widest text-[var(--text-muted)]">우주기상</span>
                       </div>
-                      <span className="text-[10px] font-bold" style={{ color: spaceWeather.storm_color }}>
+                      <span className="text-[12px] font-bold" style={{ color: spaceWeather.storm_color }}>
                         Kp {spaceWeather.kp_index} — {spaceWeather.storm_level}
                       </span>
                     </div>
                     {spaceWeather.solar_flares?.length > 0 && (
-                      <div className="mt-1 text-[8px] text-[var(--text-muted)]">
+                      <div className="mt-1 text-[13px] text-[var(--text-muted)]">
                         최근 태양 플레어: {spaceWeather.solar_flares[0].class}
                       </div>
                     )}
@@ -117,7 +117,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
                       <button
                         key={s.key}
                         onClick={() => setActiveSection(s.key)}
-                        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[12px] font-medium whitespace-nowrap transition-colors ${
+                        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[12px] font-semibold whitespace-nowrap transition-colors ${
                           activeSection === s.key
                             ? 'bg-[#110E0E] text-white'
                             : 'text-[#6B5748] hover:text-[#A1A1AA] hover:bg-[#110E0E]'
@@ -138,7 +138,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
                     ))}
                   {(!markets[activeSection] ||
                     Object.keys(markets[activeSection]).length === 0) && (
-                    <div className="text-center py-3 text-[10px] text-[var(--text-muted)]">
+                    <div className="text-center py-3 text-[12px] text-[var(--text-muted)]">
                       {activeSection} 불러오는 중...
                     </div>
                   )}
