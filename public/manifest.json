@@ -4,8 +4,8 @@
   "description": "개인 Palantir 스타일 OSINT·상황인식·조사 에이전트 대시보드. 항공, 위성, CCTV, 지진, 화재, 사이버 위협과 글로벌 사건을 통합 확인합니다.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#06060C",
-  "theme_color": "#D4AF37",
+  "background_color": "#000000",
+  "theme_color": "#ffffff",
   "orientation": "landscape-primary",
   "categories": ["security", "intelligence", "analytics", "news"],
   "icons": [
