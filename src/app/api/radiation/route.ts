@@ -56,8 +56,8 @@ export async function GET() {
 
     const raw: any[] = await res.json();
 
-    // 최근 30일 이내, 유효한 좌표만 필터
-    const cutoff = Date.now() - 30 * 24 * 60 * 60 * 1000;
+    // Safecast는 업데이트 주기가 느림 — 2년 이내 데이터 허용
+    const cutoff = Date.now() - 730 * 24 * 60 * 60 * 1000;
     const stations = raw
       .filter((m: any) => {
         if (!m.latitude || !m.longitude) return false;
