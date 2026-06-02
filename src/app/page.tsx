@@ -19,6 +19,7 @@ const MikaelMap = dynamic(() => import('@/components/MikaelMap'), { ssr: false }
 const LayerPanel = dynamic(() => import('@/components/LayerPanel'));
 const CameraViewer = dynamic(() => import('@/components/CameraViewer'));
 const OsintPanel = dynamic(() => import('@/components/OsintPanel'));
+const MikaelAIChat = dynamic(() => import('@/components/MikaelAIChat'), { ssr: false });
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -959,6 +960,12 @@ export default function Dashboard() {
           </AnimatePresence>
         </>
       )}
+
+      {/* ── MIKAEL AI CHAT (desktop) ── */}
+      {!isMobile && <MikaelAIChat isMobile={false} />}
+
+      {/* ── MIKAEL AI CHAT (mobile) ── */}
+      {isMobile && <MikaelAIChat isMobile={true} />}
 
       {/* ── BOTTOM CENTER (desktop) ── */}
       {!isMobile && (
