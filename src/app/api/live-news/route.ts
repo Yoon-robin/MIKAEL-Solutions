@@ -11,6 +11,14 @@ import { NextResponse } from 'next/server';
  */
 
 const LIVE_FEEDS = [
+  // ══ 한국 방송 (최우선) ══
+  { id: 'ytn',        name: 'YTN 24시',       city: '서울', country: 'KR', lat: 37.566, lng: 126.978, url: 'https://www.youtube.com/embed/live_stream?channel=UCbtzJjz2FkT6mXXbB2jS9cA&autoplay=1&mute=1', embed_allowed: true,  category: 'korean', language: 'ko' },
+  { id: 'yonhaptv',  name: '연합뉴스TV',     city: '서울', country: 'KR', lat: 37.566, lng: 126.978, url: 'https://www.youtube.com/embed/live_stream?channel=UCjKpEIHNcELB_zAAvOvYsJA&autoplay=1&mute=1', embed_allowed: true,  category: 'korean', language: 'ko' },
+  { id: 'kbsnews',   name: 'KBS 뉴스',       city: '서울', country: 'KR', lat: 37.528, lng: 126.927, url: 'https://www.youtube.com/embed/live_stream?channel=UCcQTRi69dsVYHN3exePtZ1A&autoplay=1&mute=1', embed_allowed: true,  category: 'korean', language: 'ko' },
+  { id: 'mbcnews',   name: 'MBC 뉴스',       city: '서울', country: 'KR', lat: 37.566, lng: 126.978, url: 'https://www.youtube.com/embed/live_stream?channel=UCF1bXWOzfbIEuNxEBiyMkCA&autoplay=1&mute=1', embed_allowed: true,  category: 'korean', language: 'ko' },
+  { id: 'sbsnews',   name: 'SBS 뉴스',       city: '서울', country: 'KR', lat: 37.494, lng: 126.953, url: 'https://www.youtube.com/embed/live_stream?channel=UC8pXcFMJnHNhPCmTuTD-w3w&autoplay=1&mute=1', embed_allowed: true,  category: 'korean', language: 'ko' },
+  { id: 'jtbcnews',  name: 'JTBC 뉴스',      city: '서울', country: 'KR', lat: 37.566, lng: 126.978, url: 'https://www.youtube.com/embed/live_stream?channel=UCgwKQMB87Gb_wQNgJc5K0aA&autoplay=1&mute=1', embed_allowed: true,  category: 'korean', language: 'ko' },
+  { id: 'arirang',   name: 'Arirang News',   city: '서울', country: 'KR', lat: 37.566, lng: 126.978, url: 'https://www.youtube.com/embed/live_stream?channel=UCFFjMNPFwpkP1T8S_w_44BA&autoplay=1&mute=1', embed_allowed: true,  category: 'korean', language: 'en' },
   // ── North America ──
   // NBC/CBS/ABC/Bloomberg block YouTube embeds for their live streams
   { id: 'nbcnews',   name: 'NBC News NOW',  city: 'New York',      country: 'US', lat: 40.759, lng: -73.980, url: 'https://www.youtube.com/channel/UCeY0bbntWzzVIaj2z3QigXg/live', embed_allowed: false, category: 'mainstream', language: 'en' },

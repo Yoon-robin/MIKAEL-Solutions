@@ -9,8 +9,9 @@ export const revalidate = 300; // 5분 캐시
  * Fallback: RSS geo-mapping
  */
 
-// GDELT DOC API — 최근 15분 글로벌 이벤트
-const GDELT_DOC_URL = 'https://api.gdeltproject.org/api/v2/doc/doc?query=conflict%20OR%20war%20OR%20attack%20OR%20military&mode=artlist&maxrecords=75&format=json&sort=DateDesc&timespan=24h';
+// GDELT DOC API — 한국/동북아 우선 쿼리
+const GDELT_KR_URL = 'https://api.gdeltproject.org/api/v2/doc/doc?query=%22South%20Korea%22%20OR%20%22North%20Korea%22%20OR%20Seoul%20OR%20DPRK%20OR%20Pyongyang%20OR%20missile%20OR%20DMZ%20OR%20%22Korean%20Peninsula%22%20OR%20Japan%20OR%20China%20OR%20Taiwan%20OR%20nuclear&mode=artlist&maxrecords=50&format=json&sort=DateDesc&timespan=24h';
+const GDELT_DOC_URL = 'https://api.gdeltproject.org/api/v2/doc/doc?query=conflict%20OR%20war%20OR%20attack%20OR%20military&mode=artlist&maxrecords=40&format=json&sort=DateDesc&timespan=24h';
 
 // RSS Fallback
 const RSS_FEEDS = [
@@ -64,10 +65,10 @@ function jitter(v: number, amount = 0.8): number {
   return v + (Math.random() - 0.5) * amount;
 }
 
-// GDELT DOC API 시도
-async function fetchGdelt(): Promise<any[]> {
+// GDELT DOC API — 한국 우선, 글로벌 fallback 합산
+async function fetchGdeltUrl(url: string, tag: string): Promise<any[]> {
   try {
-    const res = await fetch(GDELT_DOC_URL, {
+    const res = await fetch(url, {
       signal: AbortSignal.timeout(10000),
       headers: { 'User-Agent': 'MIKAEL-OSINT/1.0' },
     });
@@ -84,20 +85,35 @@ async function fetchGdelt(): Promise<any[]> {
           id:          `gdelt-${a.url?.slice(-12) || Math.random()}`,
           title:       a.title || '',
           description: a.title || '',
-          source:      a.domain || 'GDELT',
+          source:      tag === 'kr' ? `GDELT-KR / ${a.domain || ''}` : (a.domain || 'GDELT'),
           url:         a.url || '',
           lat:         jitter(coords[1], 0.5),
           lng:         jitter(coords[0], 0.5),
           time:        a.seendate || new Date().toISOString(),
-          severity:    'ELEVATED',
-          type:        'conflict',
+          severity:    tag === 'kr' ? 'HIGH' : 'ELEVATED',
+          type:        tag === 'kr' ? 'korea-priority' : 'conflict',
+          korea_priority: tag === 'kr',
         };
       })
-      .filter(Boolean)
-      .slice(0, 60);
+      .filter(Boolean);
   } catch {
     return [];
   }
+}
+
+async function fetchGdelt(): Promise<any[]> {
+  const [krItems, globalItems] = await Promise.all([
+    fetchGdeltUrl(GDELT_KR_URL, 'kr'),
+    fetchGdeltUrl(GDELT_DOC_URL, 'global'),
+  ]);
+  // 한국 우선, 중복 URL 제거
+  const seen = new Set<string>();
+  const merged = [...krItems, ...globalItems].filter(it => {
+    if (seen.has(it.url)) return false;
+    seen.add(it.url);
+    return true;
+  });
+  return merged.slice(0, 80);
 }
 
 // RSS fallback
@@ -146,7 +162,8 @@ export async function GET() {
   return NextResponse.json({
     events,
     total: events.length,
-    source: usedGdelt ? 'GDELT v2 DOC API' : 'RSS Geo-mapping (GDELT fallback)',
+    source: usedGdelt ? 'GDELT v2 DOC API (Korea-priority)' : 'RSS Geo-mapping (GDELT fallback)',
+    priority_region: 'KR',
     timestamp: new Date().toISOString(),
   });
 }
