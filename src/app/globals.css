@@ -15,11 +15,11 @@
   --bg-panel:      #0A0808;
   --bg-panel-solid:#0A0808;
 
-  /* ── 브랜드 — 심홍 (이미지의 핏빛 구름) ── */
-  --gold-primary: #B91C1C;    /* red-700 — 심홍 */
-  --gold-light:   #F87171;    /* red-400 — 판단의 빛 */
-  --gold-dim:     #7F1D1D;    /* red-900 — 심연의 붉음 */
-  --gold-glow:    rgba(185, 28, 28, 0.22);
+  /* ── 브랜드 — Next.js처럼 흰색 중심 ── */
+  --gold-primary: #FFFFFF;    /* 흰색 — Next.js 스타일 */
+  --gold-light:   #E4E4E7;    /* zinc-200 */
+  --gold-dim:     #71717A;    /* zinc-500 */
+  --gold-glow:    rgba(255, 255, 255, 0.08);
 
   /* ── 보조 — 강철 슬레이트 (검의 날) ── */
   --cyan-primary: #94A3B8;    /* slate-400 — 검 날 */
@@ -45,7 +45,7 @@
   --text-secondary:#A08872;   /* 따뜻한 뮤트 */
   --text-muted:    #6B5748;   /* 어두운 따뜻함 */
   --text-heading:  #F8F0E0;   /* 밝은 상아 */
-  --text-gold:     #B91C1C;
+  --text-gold:     #FFFFFF;
   --text-cyan:     #94A3B8;
 
   /* ── 스크롤바 ── */
@@ -71,9 +71,9 @@
   --card-foreground:      #F0E6D0;
   --popover:              #0A0808;
   --popover-foreground:   #F0E6D0;
-  --primary:              #B91C1C;    /* 심홍이 primary */
-  --primary-foreground:   #F8F0E0;
-  --secondary:            #272027;
+  --primary:              #FFFFFF;
+  --primary-foreground:   #000000;
+  --secondary:            #1A1A1A;
   --secondary-foreground: #F0E6D0;
   --muted:                #161218;
   --muted-foreground:     #A08872;

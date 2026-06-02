@@ -12,7 +12,7 @@ const badgeVariants = cva(
         secondary: 'border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90',
         destructive: 'border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline: 'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
-        gold: 'border-[rgba(185,28,28,0.35)] bg-[rgba(185,28,28,0.12)] text-[var(--gold-light)]',
+        gold: 'border-white/[0.15] bg-white/[0.06] text-white',
         cyan: 'border-[rgba(148,163,184,0.26)] bg-[rgba(148,163,184,0.08)] text-[var(--cyan-primary)]',
         success: 'border-[rgba(0,230,118,0.26)] bg-[rgba(0,230,118,0.08)] text-[var(--alert-green)]',
         danger: 'border-[rgba(255,61,61,0.28)] bg-[rgba(255,61,61,0.10)] text-[var(--alert-red)]',

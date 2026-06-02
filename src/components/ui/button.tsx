@@ -17,7 +17,7 @@ const buttonVariants = cva(
         link: 'text-primary underline-offset-4 hover:underline',
         hud: 'border border-[var(--border-primary)] bg-[#111113] text-[var(--text-primary)] hover:border-[var(--border-active)] hover:bg-[#18181B] hover:text-[var(--gold-light)]',
         cyan: 'border border-[var(--border-cyan)] bg-[rgba(148,163,184,0.06)] text-[var(--cyan-primary)] hover:bg-[rgba(148,163,184,0.10)]',
-        gold: 'border border-[rgba(185,28,28,0.4)] bg-[rgba(185,28,28,0.12)] text-[var(--gold-light)] hover:bg-[rgba(185,28,28,0.20)]',
+        gold: 'border border-white/[0.15] bg-white/[0.06] text-white hover:bg-white/[0.10]',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

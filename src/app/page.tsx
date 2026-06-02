@@ -466,7 +466,7 @@ export default function Dashboard() {
                 {/* 외원 — fade in */}
                 <motion.circle
                   cx="40" cy="40" r="37"
-                  stroke="#B91C1C" strokeWidth="0.8" strokeOpacity="0.45"
+                  stroke="#FFFFFF" strokeWidth="0.8" strokeOpacity="0.12"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ delay: 0.3, duration: 1.2, ease: 'easeInOut' }}
@@ -474,7 +474,7 @@ export default function Dashboard() {
                 {/* 내원 */}
                 <motion.circle
                   cx="40" cy="40" r="27"
-                  stroke="#B91C1C" strokeWidth="0.5" strokeOpacity="0.2"
+                  stroke="#FFFFFF" strokeWidth="0.5" strokeOpacity="0.06"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ delay: 0.5, duration: 1.0, ease: 'easeInOut' }}
@@ -490,7 +490,7 @@ export default function Dashboard() {
                 {/* 크로스가드 — 퍼지듯 등장 */}
                 <motion.line
                   x1="26" y1="40" x2="54" y2="40"
-                  stroke="#B91C1C" strokeWidth="2" strokeLinecap="round"
+                  stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
                   transition={{ delay: 1.2, duration: 0.45, ease: 'easeOut' }}
@@ -498,7 +498,7 @@ export default function Dashboard() {
                 {/* 포멜 */}
                 <motion.circle
                   cx="40" cy="62" r="3.5"
-                  fill="#B91C1C" fillOpacity="0.85"
+                  fill="#FFFFFF" fillOpacity="0.5"
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 1.55, duration: 0.35, ease: [0.34, 1.56, 0.64, 1] }}
@@ -663,15 +663,15 @@ export default function Dashboard() {
         <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center flex-shrink-0">
           <svg viewBox="0 0 40 40" fill="none" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             {/* 외원 */}
-            <circle cx="20" cy="20" r="18.5" stroke="#B91C1C" strokeWidth="0.8" strokeOpacity="0.5"/>
+            <circle cx="20" cy="20" r="18.5" stroke="#FFFFFF" strokeWidth="0.8" strokeOpacity="0.15"/>
             {/* 내원 */}
-            <circle cx="20" cy="20" r="13" stroke="#B91C1C" strokeWidth="0.5" strokeOpacity="0.25"/>
+            <circle cx="20" cy="20" r="13" stroke="#FFFFFF" strokeWidth="0.5" strokeOpacity="0.07"/>
             {/* 검 날 (세로) */}
             <line x1="20" y1="4" x2="20" y2="28" stroke="#F0E6D0" strokeWidth="1.2" strokeLinecap="round"/>
             {/* 검 손잡이 가드 (가로) */}
-            <line x1="13" y1="20" x2="27" y2="20" stroke="#B91C1C" strokeWidth="1.4" strokeLinecap="round"/>
+            <line x1="13" y1="20" x2="27" y2="20" stroke="#FFFFFF" strokeWidth="1.4" strokeLinecap="round"/>
             {/* 검 끝 (pommel) */}
-            <circle cx="20" cy="30" r="2.2" fill="#B91C1C" fillOpacity="0.8"/>
+            <circle cx="20" cy="30" r="2.2" fill="#FFFFFF" fillOpacity="0.5"/>
             {/* 검 날 끝 다이아몬드 */}
             <polygon points="20,2 21.2,5 20,7 18.8,5" fill="#F0E6D0" fillOpacity="0.9"/>
           </svg>
@@ -712,16 +712,16 @@ export default function Dashboard() {
         <UptimeClock />
         
         <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="pointer-events-auto hover:opacity-80 transition-opacity ml-1 flex items-center">
-          <span className="px-3 py-1 rounded-sm border border-[var(--gold-primary)]/40 bg-[var(--gold-primary)]/10 text-[var(--gold-primary)] text-[11px] font-bold tracking-[0.2em]">MIKAEL GRID</span>
+          <span className="px-3 py-1 rounded-sm border border-white/[0.15] bg-white/[0.04] text-white text-[11px] font-bold tracking-[0.2em] hover:bg-white/[0.08] transition-colors">MIKAEL GRID</span>
         </a>
       </motion.div>
 
       {/* ── MOBILE: Compact top status ── */}
       {isMobile && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }} className="absolute top-3 right-3 z-[200] pointer-events-auto flex items-center gap-2">
-          <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[7px] tracking-widest hover:opacity-80 transition-opacity border-[var(--gold-primary)]/40 bg-[var(--gold-primary)]/10">
-            <div className="w-1 h-1 rounded-full bg-[var(--gold-primary)] animate-beacon" />
-            <span className="text-[var(--gold-primary)] font-bold">MIKAEL GRID</span>
+          <a href='https://ko-fi.com/M8D41ZYW4Z' target='_blank' className="glass-panel px-2 py-1 flex items-center gap-1.5 text-[7px] tracking-widest hover:bg-white/[0.06] transition-colors">
+            <div className="w-1 h-1 rounded-full bg-white/60 animate-beacon" />
+            <span className="text-white/80 font-bold">MIKAEL GRID</span>
           </a>
         </motion.div>
       )}
