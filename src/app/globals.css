@@ -32,28 +32,28 @@
   --alert-green:  #22C55E;
   --alert-blue:   #60A5FA;
 
-  /* ── 테두리 — 따뜻한 어둠 ── */
-  --border-neutral:       #272027;   /* 따뜻한 보라빛 어둠 */
-  --border-neutral-hover: #3A303A;
-  --border-primary:       #272027;
-  --border-secondary:     #1A1418;
-  --border-active:        rgba(185, 28, 28, 0.55);
+  /* ── 테두리 — Next.js 중립 ── */
+  --border-neutral:       rgba(255,255,255,0.08);
+  --border-neutral-hover: rgba(255,255,255,0.14);
+  --border-primary:       rgba(255,255,255,0.08);
+  --border-secondary:     rgba(255,255,255,0.04);
+  --border-active:        rgba(255,255,255,0.2);
   --border-cyan:          rgba(148, 163, 184, 0.2);
 
-  /* ── 텍스트 — 상아/크림 (천사의 빛) ── */
-  --text-primary:  #F0E6D0;   /* 따뜻한 상아 */
-  --text-secondary:#A08872;   /* 따뜻한 뮤트 */
-  --text-muted:    #6B5748;   /* 어두운 따뜻함 */
-  --text-heading:  #F8F0E0;   /* 밝은 상아 */
+  /* ── 텍스트 — Next.js 중립 ── */
+  --text-primary:  #EDEDED;   /* 밝은 흰색 */
+  --text-secondary:#A1A1AA;   /* zinc-400 */
+  --text-muted:    #71717A;   /* zinc-500 */
+  --text-heading:  #FFFFFF;
   --text-gold:     #FFFFFF;
   --text-cyan:     #94A3B8;
 
   /* ── 스크롤바 ── */
-  --scrollbar-thumb:       #3A303A;
-  --scrollbar-thumb-hover: #4A3A4A;
+  --scrollbar-thumb:       #3F3F46;
+  --scrollbar-thumb-hover: #52525B;
 
   /* ── 호버 ── */
-  --hover-accent: #161018;   /* 따뜻한 어두운 호버 */
+  --hover-accent: #111111;
 
   /* ── 폰트 ── */
   --font-hud:  'Inter', -apple-system, sans-serif;
@@ -75,10 +75,10 @@
   --primary-foreground:   #000000;
   --secondary:            #1A1A1A;
   --secondary-foreground: #F0E6D0;
-  --muted:                #161218;
-  --muted-foreground:     #A08872;
-  --accent:               #161018;
-  --accent-foreground:    #F0E6D0;
+  --muted:                #111111;
+  --muted-foreground:     #71717A;
+  --accent:               #111111;
+  --accent-foreground:    #FFFFFF;
   --destructive:          #EF4444;
   --border:               #272027;
   --input:                #272027;
