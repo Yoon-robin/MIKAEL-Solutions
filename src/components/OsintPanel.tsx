@@ -428,8 +428,11 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
         {/* Secondary Controls */}
         {activeTab === 'scanner' && (
           <select value={scanType} onChange={e => setScanType(e.target.value)}
-            className="bg-[var(--bg-primary)]/60 border border-[var(--border-primary)] rounded-lg px-2 py-1.5 text-[12px] text-[var(--text-muted)] outline-none w-full">
-            <option value="quick">빠른 스캔</option><option value="deep">심층 스캔</option><option value="ports">상위 1000 포트</option>
+            className="w-full px-3 py-2 rounded text-[13px] font-semibold text-white outline-none cursor-pointer appearance-none"
+            style={{ background: '#111111', border: '1px solid rgba(255,255,255,0.1)', colorScheme: 'dark' }}>
+            <option value="quick">빠른 스캔</option>
+            <option value="deep">심층 스캔</option>
+            <option value="ports">상위 1000 포트</option>
           </select>
         )}
         {(activeTab === 'sweep' || activeTab === 'vuln') && (
