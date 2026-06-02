@@ -122,19 +122,82 @@ html, body {
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 14px;
-  font-weight: 500;            /* 기본 medium — 전체적으로 더 굵게 */
+  font-weight: 500;
+  line-height: 1.5;            /* UX Skill: 가독성 기본 line-height */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 
+/* ── UX Skill: 접근성 — 포커스 링 ── */
+:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.5);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* ── UX Skill: prefers-reduced-motion 지원 ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── UX Skill: 클릭 가능한 요소 커서 ── */
+button, [role="button"], select, label[for] {
+  cursor: pointer;
+}
+
+/* ── UX Skill: 터치 타깃 최소 44×44px ── */
+button:not(.icon-compact), [role="button"]:not(.icon-compact) {
+  min-height: 36px;
+}
+
 /* ── Scrollbar ── */
-.styled-scrollbar::-webkit-scrollbar { width: 3px; }
+.styled-scrollbar::-webkit-scrollbar { width: 4px; }
 .styled-scrollbar::-webkit-scrollbar-track { background: transparent; }
-.styled-scrollbar::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+.styled-scrollbar::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 4px; }
 .styled-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
 .styled-scrollbar { scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) transparent; }
+
+/* ── UX Skill: 데이터 덴스 대시보드 — 정보 계층 강화 ── */
+.data-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.data-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
+}
+/* 실시간 데이터 펄스 — 스킬 권고: Real-time number animations */
+.data-live::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22C55E;
+  margin-right: 6px;
+  animation: mikael-beacon 2.8s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+/* ── UX Skill: 패널 구조 강화 ── */
+.panel-section {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.panel-section:last-child {
+  border-bottom: none;
+}
 
 /* ═══════════════════════════════════════════════════════════════
    PANEL — shadcn/ui dark 정확한 카드 스타일

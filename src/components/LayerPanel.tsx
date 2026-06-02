@@ -157,37 +157,39 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
 
               return (
                 <div key={group.label}>
-                  {/* ── 그룹 헤더 — Next.js 사이드바 섹션 스타일 ── */}
-                  <div className="flex items-center gap-1 px-1 py-0.5">
+                  {/* ── 그룹 헤더 ── */}
+                  <div className="flex items-center gap-1 px-1 mt-1">
                     <button
                       type="button"
                       onClick={() => toggleGroup(group.label)}
-                      className="flex items-center gap-2 flex-1 py-1.5 px-2 rounded-md hover:bg-[#110E0E] transition-colors text-left group"
+                      aria-expanded={isExpanded}
+                      aria-label={`${group.label} 그룹 ${isExpanded ? '접기' : '펼치기'}`}
+                      className="flex items-center gap-2 flex-1 py-2 px-2 rounded hover:bg-white/[0.04] transition-colors text-left"
                     >
-                      <GroupIcon className="w-3.5 h-3.5 flex-shrink-0" style={{ color: group.color }} />
-                      <span className="text-[13px] font-semibold text-[var(--text-muted)] uppercase tracking-widest flex-1">
+                      <GroupIcon className="w-4 h-4 flex-shrink-0" style={{ color: group.color }} />
+                      <span className="text-[12px] font-bold text-white/50 uppercase tracking-[0.12em] flex-1">
                         {group.label}
                       </span>
-                      <span className="text-[12px] tabular-nums text-[var(--text-muted)] mr-1">
+                      <span className="text-[12px] tabular-nums font-semibold text-white/30 mr-1">
                         {groupActiveCount}/{group.layers.length}
                       </span>
                       {isExpanded
-                        ? <ChevronUp className="w-3 h-3 text-[var(--text-muted)]" />
-                        : <ChevronDown className="w-3 h-3 text-[var(--text-muted)]" />}
+                        ? <ChevronUp className="w-3.5 h-3.5 text-white/30" />
+                        : <ChevronDown className="w-3.5 h-3.5 text-white/30" />}
                     </button>
                     <button
                       type="button"
                       onClick={() => toggleAllInGroup(group)}
-                      className="p-1 rounded hover:bg-[#110E0E] transition-colors"
-                      title={allActive ? '전체 끄기' : '전체 켜기'}
+                      aria-label={allActive ? `${group.label} 전체 끄기` : `${group.label} 전체 켜기`}
+                      className="p-2 rounded hover:bg-white/[0.04] transition-colors"
                     >
                       {allActive
                         ? <ToggleRight className="w-4 h-4" style={{ color: group.color }} />
-                        : <ToggleLeft className="w-4 h-4 text-[#3F3F46]" />}
+                        : <ToggleLeft className="w-4 h-4 text-white/20" />}
                     </button>
                   </div>
 
-                  {/* ── 레이어 아이템 — Next.js 사이드바 리스트 ── */}
+                  {/* ── 레이어 아이템 ── */}
                   <AnimatePresence>
                     {isExpanded && (
                       <motion.div
@@ -197,7 +199,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                         transition={{ duration: 0.15 }}
                         className="overflow-hidden"
                       >
-                        <div className="ml-3 pl-3 border-l border-white/[0.07] space-y-px mb-1">
+                        <div className="ml-4 pl-3 border-l border-white/[0.07] space-y-px mb-2">
                           {group.layers.map((layer) => {
                             const Icon = layer.icon;
                             const isActive = activeLayers[layer.key];
@@ -207,26 +209,27 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                                 key={layer.key}
                                 type="button"
                                 onClick={() => toggle(layer.key)}
-                                whileTap={{ scale: 0.97 }}
+                                whileTap={{ scale: 0.98 }}
                                 animate={{
-                                  backgroundColor: isActive ? 'rgba(26,14,14,1)' : 'rgba(0,0,0,0)',
-                                  borderLeftColor: isActive ? 'rgba(185,28,28,0.7)' : 'rgba(185,28,28,0)',
+                                  backgroundColor: isActive ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0)',
                                 }}
-                                transition={{ duration: 0.18 }}
-                                className="w-full flex items-center gap-2.5 px-2 py-2 rounded-md text-left border-l-2"
-                                style={{ color: isActive ? '#F0E6D0' : '#6B5748' }}
+                                transition={{ duration: 0.15 }}
+                                aria-pressed={isActive}
+                                aria-label={`${layer.label} 레이어 ${isActive ? '끄기' : '켜기'}`}
+                                className="w-full flex items-center gap-2.5 px-2 py-2.5 rounded text-left"
+                                style={{ color: isActive ? '#EDEDED' : '#71717A' }}
                               >
                                 <motion.div animate={{ color: isActive ? layer.color : '#52525B' }} transition={{ duration: 0.18 }}>
                                   <Icon className="w-3.5 h-3.5 flex-shrink-0" />
                                 </motion.div>
-                                <span className="text-[13px] flex-1 font-semibold">{layer.label}</span>
+                                <span className="text-[14px] flex-1 font-semibold leading-tight">{layer.label}</span>
                                 {count !== null && (
                                   <motion.span
                                     key={count}
                                     initial={{ opacity: 0, scale: 1.2 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                                    className="text-[13px] tabular-nums text-[#6B5748]"
+                                    className="text-[12px] tabular-nums font-semibold text-white/30"
                                   >
                                     {count.toLocaleString()}
                                   </motion.span>

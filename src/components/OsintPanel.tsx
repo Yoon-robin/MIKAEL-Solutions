@@ -414,15 +414,24 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
         <div className="flex gap-1.5">
           <div className="flex-1 relative">
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--text-muted)]" />
-            <input type="text" value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => e.key === 'Enter' && runLookup()}
+            <input
+              type="text"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && runLookup()}
               placeholder={currentTab?.placeholder}
-              className="w-full bg-[var(--bg-primary)]/60 border border-[var(--border-primary)] rounded-lg pl-8 pr-3 py-2.5 text-[13px] text-[var(--text-primary)] placeholder:text-[var(--text-muted)]/40 focus:outline-none transition-colors"
-              style={{ borderColor: query ? `${currentTab?.color}40` : undefined }} />
+              aria-label={currentTab?.placeholder}
+              className="w-full bg-transparent border border-white/[0.1] rounded pl-9 pr-3 py-3 text-[14px] font-semibold text-white placeholder:text-white/25 focus:outline-none focus:border-white/[0.25] transition-colors"
+              style={{ borderColor: query ? `${currentTab?.color}50` : undefined }}
+            />
           </div>
-          <button onClick={runLookup} disabled={loading || !query.trim()}
-            className="px-4 py-2 rounded-lg text-[12px] font-bold tracking-wider disabled:opacity-30 transition-all flex items-center justify-center min-w-[70px]"
-            style={{ backgroundColor: `${currentTab?.color}20`, border: `1px solid ${currentTab?.color}40`, color: currentTab?.color }}>
-            {loading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : '스캔'}
+          <button
+            onClick={runLookup}
+            disabled={loading || !query.trim()}
+            aria-label="스캔 실행"
+            className="px-5 py-3 rounded text-[13px] font-bold tracking-wide disabled:opacity-30 transition-all flex items-center justify-center min-w-[72px] border"
+            style={{ backgroundColor: `${currentTab?.color}18`, borderColor: `${currentTab?.color}45`, color: currentTab?.color }}>
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : '스캔'}
           </button>
         </div>
         

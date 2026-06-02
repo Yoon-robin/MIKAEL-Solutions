@@ -104,7 +104,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                       transition={{ delay: i * 0.04, duration: 0.3, ease: 'easeOut' }}
                       role="button"
                       tabIndex={0}
-                      className="px-4 py-3 hover:bg-[#110E0E] transition-colors cursor-pointer"
+                      className="px-4 py-3.5 hover:bg-white/[0.03] transition-colors cursor-pointer"
                       onClick={() => {
                         if (item.link) window.open(item.link, '_blank', 'noopener,noreferrer');
                         else setSelectedIdx(selectedIdx === i ? null : i);
