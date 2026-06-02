@@ -43,7 +43,7 @@
 ## 의도적으로 바꾸지 않은 영역
 
 - API route 이름: `/api/flights`, `/api/health`, `/api/osint/*` 등 유지.
-- 코드 내부 컴포넌트명: `MikaelMap`, `OsintPanel`, `osiris-*` CSS class 등 유지.
+- 코드 내부 컴포넌트명: `MikaelMap`, `OsintPanel`, `` CSS class 등 유지.
 - 컨테이너명: `osiris` 유지.
 - Docker image/tag: `mikael-solutions:local` 유지.
 - 기존 favicon/icon 이미지 파일: 유지.
@@ -61,7 +61,7 @@
 - `public/android-chrome-192x192.png`
 - `public/android-chrome-512x512.png`
 - `public/og-image.png`
-- `public/osiris-icon.png`
+- ``
 - `public/icon-192.png`
 
 ## 검증 권장
@@ -73,7 +73,7 @@ cd /home/ubuntu/osiris
 npm run lint
 npm run build
 docker build -t mikael-solutions:local .
-docker restart osiris
+# 서버에서 직접 실행
 curl -sS -I http://127.0.0.1:3000
 curl -k -sS -I https://43.200.203.218
 ```

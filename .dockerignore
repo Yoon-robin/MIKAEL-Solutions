@@ -16,8 +16,6 @@ build
 
 # Large fork artifacts not needed at runtime
 *.diff
-fork.diff
-ito69_fork.diff
 
 # Docs / meta
 README.md
