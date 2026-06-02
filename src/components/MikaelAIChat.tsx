@@ -71,7 +71,7 @@ function MessageBubble({ msg, index }: { msg: Message; index: number }) {
    Main component
 ───────────────────────────────────────────── */
 
-export default function MikaelAIChat({ isMobile = false }: { isMobile?: boolean }) {
+export default function MikaelAIChat({ isMobile = false, externalInput, onExternalInputClear }: { isMobile?: boolean; externalInput?: string; onExternalInputClear?: () => void }) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([WELCOME]);
   const [input, setInput] = useState('');
@@ -82,6 +82,20 @@ export default function MikaelAIChat({ isMobile = false }: { isMobile?: boolean 
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const prefersReducedMotion = useReducedMotion();
+
+  // StockPanel에서 외부 메시지 주입
+  useEffect(() => {
+    if (externalInput && externalInput.trim()) {
+      setOpen(true);
+      setInput(externalInput);
+      onExternalInputClear?.();
+      // 약간 딜레이 후 자동 전송
+      setTimeout(() => {
+        setInput('');
+        send(externalInput);
+      }, 300);
+    }
+  }, [externalInput]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Escape 키로 닫기 (#31)
   useEffect(() => {
@@ -114,15 +128,46 @@ export default function MikaelAIChat({ isMobile = false }: { isMobile?: boolean 
     if (!text || loading) return;
 
     setLastInput(text);
-    const userMsg: Message = { role: 'user', content: text };
-    const history = retryText ? messages : [...messages, userMsg];
+
+    // 종목명 감지 → 실시간 가격 자동 주입
+    const KR_STOCK_DETECT: Record<string, string> = {
+      '삼성전자':'005930.KS','SK하이닉스':'000660.KS','현대차':'005380.KS',
+      'NAVER':'035420.KS','네이버':'035420.KS','카카오':'035720.KS',
+      'LG에너지':'373220.KS','셀트리온':'068270.KS','LG화학':'051910.KS',
+      '기아':'000270.KS','POSCO':'005490.KS','삼성SDI':'006400.KS',
+      'NVIDIA':'NVDA','애플':'AAPL','테슬라':'TSLA','마이크로소프트':'MSFT',
+      '코스피':'%5EKS11','KOSPI':'%5EKS11','코스닥':'%5EKQ11',
+    };
+    let enriched = text;
+    for (const [name, sym] of Object.entries(KR_STOCK_DETECT)) {
+      if (text.includes(name)) {
+        try {
+          const r = await fetch(`/api/stock/quote?symbols=${encodeURIComponent(sym)}`);
+          if (r.ok) {
+            const d = await r.json();
+            const q = Object.values(d.quotes)[0] as any;
+            if (q && !q.error) {
+              const currency = q.currency === 'KRW' ? '원' : '$';
+              const sign = q.change_pct >= 0 ? '+' : '';
+              enriched += `\n\n[실시간 시세 - ${name}] 현재가: ${q.price.toLocaleString()}${currency} (${sign}${q.change_pct.toFixed(2)}%) | 52주 고: ${q.high_52w.toLocaleString()}${currency} | 52주 저: ${q.low_52w.toLocaleString()}${currency} | 거래량: ${q.volume?.toLocaleString() || '—'}`;
+            }
+          }
+        } catch { /* silent */ }
+        break; // 첫 번째 종목만
+      }
+    }
+
+    const userMsg: Message = { role: 'user', content: enriched };
+    const displayMsg: Message = { role: 'user', content: text }; // UI에는 원문 표시
+    const history = retryText ? messages : [...messages, displayMsg];
+    const payloadHistory = retryText ? messages : [...messages, userMsg];
     if (!retryText) setMessages(history);
     setInput('');
     setLoading(true);
     setError(null);
     if (textareaRef.current) { textareaRef.current.style.height = 'auto'; }
 
-    const payload = history
+    const payload = payloadHistory
       .filter(m => !(m.role === 'assistant' && m.content === WELCOME.content))
       .slice(-20);
 

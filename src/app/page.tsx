@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, BarChart3, Newspaper, Search, Share2, Map as MapIcon, X, Globe, MapPinned, Radar, Satellite, Moon, ExternalLink, AlertTriangle, Building2, RadioTower, Activity, Shield, Database, Wifi } from 'lucide-react';
 import IntelFeed from '@/components/IntelFeed';
 import MarketsPanel from '@/components/MarketsPanel';
+import StockPanel from '@/components/StockPanel';
 import SearchBar from '@/components/SearchBar';
 import ScaleBar from '@/components/ScaleBar';
 import MapLegend from '@/components/MapLegend';
@@ -112,6 +113,7 @@ export default function Dashboard() {
   const [showLayers, setShowLayers] = useState(true);
   const [showMarkets, setShowMarkets] = useState(true);
   const [showIntel, setShowIntel] = useState(true);
+  const [stockAiInput, setStockAiInput] = useState<string>('');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mobilePanel, setMobilePanel] = useState<'layers'|'markets'|'intel'|'alerts'|'search'|'recon'|null>(null);
   const [mapProjection, setMapProjection] = useState<'globe'|'mercator'>('globe');
@@ -771,6 +773,7 @@ export default function Dashboard() {
           </>
         )}
         {showMarkets && <MarketsPanel data={data} spaceWeather={spaceWeather} />}
+        <StockPanel onAskAI={msg => setStockAiInput(msg)} />
         {showIntel && <IntelFeed data={data} onLocate={(lat, lng) => setFlyToLocation({ lat, lng, ts: Date.now() })} />}
       </div>
 
@@ -997,10 +1000,10 @@ export default function Dashboard() {
       )}
 
       {/* ── MIKAEL AI CHAT (desktop) ── */}
-      {!isMobile && <MikaelAIChat isMobile={false} />}
+      {!isMobile && <MikaelAIChat isMobile={false} externalInput={stockAiInput} onExternalInputClear={() => setStockAiInput('')} />}
 
       {/* ── MIKAEL AI CHAT (mobile) ── */}
-      {isMobile && <MikaelAIChat isMobile={true} />}
+      {isMobile && <MikaelAIChat isMobile={true} externalInput={stockAiInput} onExternalInputClear={() => setStockAiInput('')} />}
 
       {/* ── BOTTOM CENTER (desktop) ── */}
       {!isMobile && (
