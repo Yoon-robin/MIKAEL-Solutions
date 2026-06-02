@@ -24,12 +24,32 @@ const RISK_COLORS: Record<string, string> = {
   LOW: '#00E676',
 };
 
+const CATEGORY_CHIP: Record<string, string> = {
+  '북한':  'text-red-400 bg-red-950/40 border-red-900/50',
+  '안보':  'text-orange-400 bg-orange-950/40 border-orange-900/50',
+  '사이버':'text-purple-400 bg-purple-950/40 border-purple-900/50',
+  '재난':  'text-yellow-400 bg-yellow-950/40 border-yellow-900/50',
+  '기상':  'text-sky-400 bg-sky-950/40 border-sky-900/50',
+  '동북아':'text-blue-400 bg-blue-950/40 border-blue-900/50',
+  '경제':  'text-green-400 bg-green-950/40 border-green-900/50',
+  '정치':  'text-indigo-400 bg-indigo-950/40 border-indigo-900/50',
+  '보건':  'text-teal-400 bg-teal-950/40 border-teal-900/50',
+};
+
 export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsProps) {
   const [expanded, setExpanded] = useState(true);
   const [filter, setFilter] = useState<'all' | 'news' | 'quakes' | 'feeds'>('all');
 
   // Built-in live feeds — verified video IDs (synced with /api/live-news)
   const BUILTIN_FEEDS = [
+    // ══ 한국 (최우선) ══
+    { name: 'YTN 24시',    city: '서울', country: 'KR', lat: 37.566, lng: 126.978, url: 'https://www.youtube.com/embed/live_stream?channel=UCbtzJjz2FkT6mXXbB2jS9cA&autoplay=1&mute=1', category: 'korean', region: 'korea' },
+    { name: '연합뉴스TV',  city: '서울', country: 'KR', lat: 37.566, lng: 126.978, url: 'https://www.youtube.com/embed/live_stream?channel=UCjKpEIHNcELB_zAAvOvYsJA&autoplay=1&mute=1', category: 'korean', region: 'korea' },
+    { name: 'KBS 뉴스',    city: '서울', country: 'KR', lat: 37.528, lng: 126.927, url: 'https://www.youtube.com/embed/live_stream?channel=UCcQTRi69dsVYHN3exePtZ1A&autoplay=1&mute=1', category: 'korean', region: 'korea' },
+    { name: 'MBC 뉴스',    city: '서울', country: 'KR', lat: 37.566, lng: 126.978, url: 'https://www.youtube.com/embed/live_stream?channel=UCF1bXWOzfbIEuNxEBiyMkCA&autoplay=1&mute=1', category: 'korean', region: 'korea' },
+    { name: 'SBS 뉴스',    city: '서울', country: 'KR', lat: 37.494, lng: 126.953, url: 'https://www.youtube.com/embed/live_stream?channel=UC8pXcFMJnHNhPCmTuTD-w3w&autoplay=1&mute=1', category: 'korean', region: 'korea' },
+    { name: 'JTBC 뉴스',   city: '서울', country: 'KR', lat: 37.566, lng: 126.978, url: 'https://www.youtube.com/embed/live_stream?channel=UCgwKQMB87Gb_wQNgJc5K0aA&autoplay=1&mute=1', category: 'korean', region: 'korea' },
+    { name: 'Arirang',     city: '서울', country: 'KR', lat: 37.566, lng: 126.978, url: 'https://www.youtube.com/embed/live_stream?channel=UCFFjMNPFwpkP1T8S_w_44BA&autoplay=1&mute=1', category: 'korean', region: 'korea' },
     // ── North America ──
     { name: 'NBC News NOW', city: 'New York', country: 'US', lat: 40.759, lng: -73.980, url: 'https://www.youtube.com/embed/live_stream?channel=UCeY0bbntWzzVIaj2z3QigXg&autoplay=1&mute=1', category: 'mainstream', region: 'americas' },
     { name: 'CBS News 24/7', city: 'New York', country: 'US', lat: 40.764, lng: -73.973, url: 'https://www.youtube.com/embed/live_stream?channel=UC8p1vwvWtl6T73JiExfWs1g&autoplay=1&mute=1', category: 'mainstream', region: 'americas' },
@@ -72,6 +92,8 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
         lat: a.coords?.[0], lng: a.coords?.[1], time: a.published,
         severity: (a.risk_score ?? 1) >= 8 ? 'CRITICAL' : (a.risk_score ?? 1) >= 6 ? 'HIGH' : (a.risk_score ?? 1) >= 4 ? 'ELEVATED' : 'LOW',
         url: a.link,
+        category: a.category,
+        korea_relevance: a.korea_relevance,
       });
     });
   }
@@ -188,15 +210,30 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                       </div>
 
                       <div className="flex-1 min-w-0">
+                        {/* 카테고리 + 한국 관련 뱃지 */}
+                        {alert.type === 'news' && (alert.category || alert.korea_relevance >= 5) && (
+                          <div className="flex items-center gap-1 mb-1">
+                            {alert.category && CATEGORY_CHIP[alert.category] && (
+                              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${CATEGORY_CHIP[alert.category]}`}>
+                                {alert.category}
+                              </span>
+                            )}
+                            {(alert.korea_relevance ?? 0) >= 5 && (
+                              <span className="text-[10px] font-bold text-[#00E5FF] bg-[#00E5FF]/10 border border-[#00E5FF]/20 px-1.5 py-0.5 rounded">
+                                국내
+                              </span>
+                            )}
+                          </div>
+                        )}
                         <div className="flex items-center gap-1.5 mb-1">
                           <Icon className="w-3 h-3 flex-shrink-0" style={{ color: sevColor }} />
-                          <span className={`text-[13px] text-white font-semibold ${alert.type === 'news' ? 'line-clamp-4 leading-snug' : 'truncate leading-tight'}`}>
+                          <span className={`text-[12px] text-white font-semibold ${alert.type === 'news' ? 'line-clamp-3 leading-snug' : 'truncate leading-tight'}`}>
                             {alert.description || alert.title}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[13px] text-[var(--text-muted)]">{alert.source}</span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[11px] text-[var(--text-muted)] truncate max-w-[80px]">{alert.source}</span>
                             {alert.time && (
                               <span className="text-[13px] text-[var(--text-muted)] flex items-center gap-0.5">
                                 <Clock className="w-2 h-2" />

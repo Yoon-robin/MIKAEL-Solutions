@@ -216,22 +216,28 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                                 transition={{ duration: 0.15 }}
                                 aria-pressed={isActive}
                                 aria-label={`${layer.label} 레이어 ${isActive ? '끄기' : '켜기'}`}
-                                className="w-full flex items-center gap-2.5 px-2 py-2.5 rounded text-left"
-                                style={{ color: isActive ? '#EDEDED' : '#71717A' }}
+                                className={`w-full flex items-center gap-2.5 px-2 py-2.5 rounded text-left transition-opacity duration-200 ${
+                                  isActive && count === 0 ? 'opacity-60' : 'opacity-100'
+                                }`}
+                                style={{ color: isActive ? '#EDEDED' : '#52525B' }}
                               >
-                                <motion.div animate={{ color: isActive ? layer.color : '#52525B' }} transition={{ duration: 0.18 }}>
+                                <motion.div animate={{ color: isActive ? layer.color : '#3F3F46' }} transition={{ duration: 0.18 }}>
                                   <Icon className="w-3.5 h-3.5 flex-shrink-0" />
                                 </motion.div>
-                                <span className="text-[14px] flex-1 font-semibold leading-tight">{layer.label}</span>
+                                <span className={`text-[13px] flex-1 font-semibold leading-tight ${!isActive ? 'text-white/30' : ''}`}>
+                                  {layer.label}
+                                </span>
                                 {count !== null && (
                                   <motion.span
                                     key={count}
                                     initial={{ opacity: 0, scale: 1.2 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                                    className="text-[12px] tabular-nums font-semibold text-white/30"
+                                    className={`text-[11px] tabular-nums font-bold ${
+                                      count > 0 ? 'text-white/60' : 'text-white/15'
+                                    }`}
                                   >
-                                    {count.toLocaleString()}
+                                    {count > 0 ? count.toLocaleString() : '—'}
                                   </motion.span>
                                 )}
                                 <div className={`layer-toggle flex-shrink-0 ${isActive ? 'active' : ''}`} />

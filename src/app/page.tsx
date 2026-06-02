@@ -734,11 +734,23 @@ export default function Dashboard() {
             <LayerPanel data={data} activeLayers={activeLayers} setActiveLayers={setActiveLayers} />
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }} className="glass-panel px-3 py-2.5 pointer-events-auto">
               <div className="grid grid-cols-5 gap-2 text-center">
-                <div><div className="hud-label">항공</div><div className="hud-value text-[12px] animate-data-pulse">{globalStats ? globalStats.flights.toLocaleString() : '0'}</div></div>
-                <div><div className="hud-label">위성</div><div className="hud-value text-[12px]">{globalStats ? globalStats.sats.toLocaleString() : '0'}</div></div>
-                <div><div className="hud-label">CCTV</div><div className="hud-value text-[12px]">{globalStats ? globalStats.cctv.toLocaleString() : '0'}</div></div>
-                <div><div className="hud-label">기상</div><div className="hud-value text-[12px]" style={{ color: '#E040FB' }}>{globalStats ? globalStats.weather.toLocaleString() : '0'}</div></div>
-                <div><div className="hud-label">원전</div><div className="hud-value text-[12px]" style={{ color: '#76FF03' }}>{globalStats ? globalStats.nuclear.toLocaleString() : '0'}</div></div>
+                {([
+                  { label: '항공', val: globalStats?.flights, color: '#00E5FF' },
+                  { label: '위성', val: globalStats?.sats,    color: '#94A3B8' },
+                  { label: 'CCTV', val: globalStats?.cctv,    color: '#39FF14' },
+                  { label: '기상', val: globalStats?.weather,  color: '#E040FB' },
+                  { label: '원전', val: globalStats?.nuclear,  color: '#76FF03' },
+                ] as const).map(({ label, val, color }) => {
+                  const n = val ?? 0;
+                  return (
+                    <div key={label} className={`transition-opacity duration-300 ${n === 0 ? 'opacity-25' : 'opacity-100'}`}>
+                      <div className="hud-label">{label}</div>
+                      <div className="text-[12px] font-bold tabular-nums" style={{ color: n > 0 ? color : 'rgba(255,255,255,0.3)' }}>
+                        {n > 0 ? n.toLocaleString() : '—'}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
             <ViewPresets onNavigate={(lat, lng, zoom) => { setFlyToLocation({ lat, lng, ts: Date.now() }); setMapView(v => ({ ...v, zoom })); }} />
