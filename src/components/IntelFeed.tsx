@@ -64,7 +64,7 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
         >
           <div className="flex items-center gap-2.5">
             <Newspaper className="w-4 h-4 text-[var(--gold-primary)]" />
-            <span className="mikael-brand text-[13px] text-[var(--text-heading)]">정보 피드</span>
+            <span className="text-[15px] font-bold text-white">정보 피드</span>
             <Badge variant="cyan" className="text-[12px] h-5 px-1.5 rounded font-semibold">{news.length}</Badge>
             {news.some((n: any) => n.risk_score >= 8) && (
               <Badge variant="danger" className="text-[12px] h-5 px-1.5 rounded font-semibold">경보</Badge>

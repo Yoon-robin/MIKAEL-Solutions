@@ -125,7 +125,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
       >
         <div className="flex items-center gap-2.5">
           <Radio className="w-4 h-4 text-[#FF4081]" />
-          <span className="mikael-brand text-[13px] text-[var(--text-heading)]">실시간 경보</span>
+          <span className="text-[15px] font-bold text-white">실시간 경보</span>
           <Badge variant="warning" className="text-[12px] h-5 px-1.5 rounded font-semibold">
             {alerts.filter(a => a.type === 'news' || a.type === 'quake').length}
           </Badge>

@@ -684,7 +684,7 @@ export default function Dashboard() {
               GRID
             </span>
           </div>
-          <span className="text-[13px] md:text-[12px] text-[var(--text-muted)] tracking-[0.18em] md:tracking-[0.22em] mikael-brand" style={{ fontWeight: 400 }}>OSINT 상황인식 지휘 콘솔</span>
+          <span className="text-[12px] md:text-[11px] text-[var(--text-muted)] font-semibold tracking-[0.06em]">OSINT 상황인식 지휘 콘솔</span>
         </div>
       </motion.div>
 

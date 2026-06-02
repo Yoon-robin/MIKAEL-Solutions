@@ -130,7 +130,7 @@ function LayerPanel({ data, activeLayers, setActiveLayers }: LayerPanelProps) {
                 <Eye className="w-4 h-4 text-[var(--gold-primary)]" />
                 <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[var(--alert-green)]" />
               </div>
-              <CardTitle className="mikael-brand text-[13px] text-[var(--text-heading)]">
+              <CardTitle className="text-[15px] font-bold text-white">
                 데이터 레이어
               </CardTitle>
             </div>

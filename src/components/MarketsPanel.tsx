@@ -58,7 +58,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
           >
             <div className="flex items-center gap-2.5">
               <BarChart3 className="w-4 h-4 text-[var(--gold-primary)]" />
-              <CardTitle className="mikael-brand text-[13px] text-[var(--text-heading)]">
+              <CardTitle className="text-[15px] font-bold text-white">
                 시장·정보
               </CardTitle>
               <Badge variant="success" className="text-[12px] h-5 px-1.5 rounded font-semibold">실시간</Badge>
