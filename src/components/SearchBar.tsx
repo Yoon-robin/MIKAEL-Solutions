@@ -49,7 +49,7 @@ export default function SearchBar({ onLocate }: SearchBarProps) {
         });
         const data = await res.json();
         setResults(data.map((r: any) => ({ label: r.display_name, lat: parseFloat(r.lat), lng: parseFloat(r.lon) })));
-      } catch { setResults([]); }
+      } catch { setResults([]); setResults(prev => prev.length === 0 ? [{ label: '검색 중 오류가 발생했습니다', lat: 0, lng: 0, error: true }] : prev); }
       setLoading(false);
     }, 350);
   }, []);
@@ -89,8 +89,8 @@ export default function SearchBar({ onLocate }: SearchBarProps) {
           className="flex-1 bg-transparent text-[12px] text-[var(--text-primary)] tracking-wider outline-none placeholder:text-[var(--text-muted)]"
         />
         {loading && <div className="w-3 h-3 border border-[var(--gold-primary)] border-t-transparent rounded-full animate-spin" />}
-        <button onClick={() => { setOpen(false); setValue(''); setResults([]); }} className="text-[var(--text-muted)] hover:text-[var(--text-primary)]">
-          <X className="w-3 h-3" />
+        <button onClick={() => { setOpen(false); setValue(''); setResults([]); }} className="p-1 rounded hover:bg-white/[0.06] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors" aria-label="검색 닫기">
+          <X className="w-3.5 h-3.5" />
         </button>
       </div>
 

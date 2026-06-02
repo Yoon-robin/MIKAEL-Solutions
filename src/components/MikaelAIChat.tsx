@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, Send, X, Loader2, Sparkles, MessageSquare, ChevronDown, Minimize2 } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { Bot, Send, X, Loader2, Sparkles, ChevronDown, Minimize2, RotateCcw } from 'lucide-react';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -77,9 +77,20 @@ export default function MikaelAIChat({ isMobile = false }: { isMobile?: boolean 
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [lastInput, setLastInput] = useState<string>(''); // 재시도용
   const [unread, setUnread] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Escape 키로 닫기 (#31)
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && open) setOpen(false);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [open]);
 
   useEffect(() => {
     if (open) {
@@ -98,13 +109,14 @@ export default function MikaelAIChat({ isMobile = false }: { isMobile?: boolean 
     el.style.height = Math.min(el.scrollHeight, 96) + 'px';
   };
 
-  const send = useCallback(async () => {
-    const text = input.trim();
+  const send = useCallback(async (retryText?: string) => {
+    const text = retryText || input.trim();
     if (!text || loading) return;
 
+    setLastInput(text);
     const userMsg: Message = { role: 'user', content: text };
-    const history = [...messages, userMsg];
-    setMessages(history);
+    const history = retryText ? messages : [...messages, userMsg];
+    if (!retryText) setMessages(history);
     setInput('');
     setLoading(true);
     setError(null);
@@ -173,7 +185,7 @@ export default function MikaelAIChat({ isMobile = false }: { isMobile?: boolean 
             <div className="absolute inset-0 rounded-lg overflow-hidden pointer-events-none">
               <motion.div
                 className="absolute top-0 bottom-0 w-8 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent"
-                animate={{ x: ['-200%', '400%'] }}
+                animate={prefersReducedMotion ? {} : { x: ['-200%', '400%'] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
               />
             </div>
@@ -223,7 +235,7 @@ export default function MikaelAIChat({ isMobile = false }: { isMobile?: boolean 
               <div className="absolute inset-0 pointer-events-none" aria-hidden>
                 <motion.div
                   className="absolute top-0 bottom-0 w-12 bg-gradient-to-r from-transparent via-[#00E5FF]/[0.04] to-transparent"
-                  animate={{ x: ['-300%', '600%'] }}
+                  animate={prefersReducedMotion ? {} : { x: ['-300%', '600%'] }}
                   transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
                 />
               </div>
@@ -282,7 +294,19 @@ export default function MikaelAIChat({ isMobile = false }: { isMobile?: boolean 
                   className="flex items-start gap-2 px-3 py-2 bg-red-950/20 border border-red-900/25 rounded-lg"
                 >
                   <X className="w-3 h-3 text-red-400/80 flex-shrink-0 mt-0.5" />
-                  <span className="text-[11px] text-red-400/80 leading-relaxed">{error}</span>
+                  <div className="flex-1 flex items-center justify-between gap-2">
+                    <span className="text-[11px] text-red-400/80 leading-relaxed">{error}</span>
+                    {lastInput && (
+                      <button
+                        onClick={() => send(lastInput)}
+                        className="flex items-center gap-1 text-[10px] text-red-400/60 hover:text-red-400 transition-colors flex-shrink-0"
+                        aria-label="마지막 메시지 재전송"
+                      >
+                        <RotateCcw className="w-3 h-3" />
+                        재시도
+                      </button>
+                    )}
+                  </div>
                 </motion.div>
               )}
 

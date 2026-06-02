@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronDown, ChevronUp, MapPin, ExternalLink, AlertTriangle,
@@ -9,6 +9,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { CATEGORY_CHIP, KOREA_BADGE } from '@/lib/categoryColors';
 
 interface LiveAlertsProps {
   data: any;
@@ -24,17 +25,7 @@ const RISK_COLORS: Record<string, string> = {
   LOW: '#00E676',
 };
 
-const CATEGORY_CHIP: Record<string, string> = {
-  '북한':  'text-red-400 bg-red-950/40 border-red-900/50',
-  '안보':  'text-orange-400 bg-orange-950/40 border-orange-900/50',
-  '사이버':'text-purple-400 bg-purple-950/40 border-purple-900/50',
-  '재난':  'text-yellow-400 bg-yellow-950/40 border-yellow-900/50',
-  '기상':  'text-sky-400 bg-sky-950/40 border-sky-900/50',
-  '동북아':'text-blue-400 bg-blue-950/40 border-blue-900/50',
-  '경제':  'text-green-400 bg-green-950/40 border-green-900/50',
-  '정치':  'text-indigo-400 bg-indigo-950/40 border-indigo-900/50',
-  '보건':  'text-teal-400 bg-teal-950/40 border-teal-900/50',
-};
+/* CATEGORY_CHIP — @/lib/categoryColors에서 import */
 
 export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsProps) {
   const [expanded, setExpanded] = useState(true);
@@ -81,48 +72,43 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
     { name: 'teleSUR EN', city: 'Caracas', country: 'VE', lat: 10.491, lng: -66.902, url: 'https://www.youtube.com/embed/live_stream?channel=UCmuTmpLY35O3csvhyA6vrkg&autoplay=1&mute=1', category: 'mainstream', region: 'americas' },
   ];
 
-  // Build unified alert feed
-  const alerts: any[] = [];
-
-  // OSINT Telegram News Feed (from /api/news)
-  if (data.news) {
-    data.news.forEach((a: any) => {
-      alerts.push({
-        type: 'news', title: a.title, description: a.description, source: a.source,
-        lat: a.coords?.[0], lng: a.coords?.[1], time: a.published,
-        severity: (a.risk_score ?? 1) >= 8 ? 'CRITICAL' : (a.risk_score ?? 1) >= 6 ? 'HIGH' : (a.risk_score ?? 1) >= 4 ? 'ELEVATED' : 'LOW',
-        url: a.link,
-        category: a.category,
-        korea_relevance: a.korea_relevance,
+  // useMemo로 감싸 — 매 렌더마다 재생성 방지 (#19, #20)
+  const alerts = useMemo(() => {
+    const list: any[] = [];
+    if (data.news) {
+      data.news.forEach((a: any) => {
+        list.push({
+          type: 'news', title: a.title, description: a.description, source: a.source,
+          lat: a.coords?.[0], lng: a.coords?.[1], time: a.published,
+          severity: (a.risk_score ?? 1) >= 8 ? 'CRITICAL' : (a.risk_score ?? 1) >= 6 ? 'HIGH' : (a.risk_score ?? 1) >= 4 ? 'ELEVATED' : 'LOW',
+          url: a.link, category: a.category, korea_relevance: a.korea_relevance,
+        });
+      });
+    }
+    if (data.earthquakes) {
+      data.earthquakes.slice(0, 10).forEach((eq: any) => {
+        list.push({
+          type: 'quake', title: `M${eq.magnitude} - ${eq.place}`, source: 'USGS',
+          lat: eq.lat, lng: eq.lng, time: eq.time,
+          severity: eq.magnitude >= 6 ? 'CRITICAL' : eq.magnitude >= 4.5 ? 'HIGH' : 'MODERATE',
+        });
+      });
+    }
+    BUILTIN_FEEDS.forEach(f => {
+      list.push({
+        type: 'feed', title: f.name, source: `${f.city}, ${f.country}`,
+        lat: f.lat, lng: f.lng, feedUrl: f.url, severity: 'LOW', category: f.category,
       });
     });
-  }
+    return list;
+  }, [data.news, data.earthquakes]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Earthquakes
-  if (data.earthquakes) {
-    data.earthquakes.slice(0, 5).forEach((eq: any) => {
-      alerts.push({
-        type: 'quake', title: `M${eq.magnitude} - ${eq.place}`, source: 'USGS',
-        lat: eq.lat, lng: eq.lng, time: eq.time,
-        severity: eq.magnitude >= 6 ? 'CRITICAL' : eq.magnitude >= 4.5 ? 'HIGH' : 'MODERATE',
-      });
-    });
-  }
-
-  // Built-in live feeds (always present)
-  BUILTIN_FEEDS.forEach(f => {
-    alerts.push({
-      type: 'feed', title: f.name,
-      source: `${f.city}, ${f.country}`,
-      lat: f.lat, lng: f.lng,
-      feedUrl: f.url, severity: 'LOW', category: f.category,
-    });
-  });
-
-  const filtered = filter === 'all' ? alerts :
+  const filtered = useMemo(() =>
+    filter === 'all' ? alerts :
     filter === 'news' ? alerts.filter(a => a.type === 'news') :
     filter === 'quakes' ? alerts.filter(a => a.type === 'quake') :
-    alerts.filter(a => a.type === 'feed');
+    alerts.filter(a => a.type === 'feed'),
+  [alerts, filter]);
 
   const getIcon = (type: string) => {
     switch (type) {
@@ -143,6 +129,8 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
       <Card className="border-white/[0.07] bg-[#0A0808] py-0 gap-0 overflow-hidden rounded mikael-panel">
       <button
         onClick={() => setExpanded(!expanded)}
+        aria-expanded={expanded}
+        aria-label={`실시간 경보 패널 ${expanded ? '접기' : '펼치기'}`}
         className="flex items-center justify-between px-4 py-3.5 w-full hover:bg-[#110E0E] transition-colors"
       >
         <div className="flex items-center gap-2.5">
@@ -178,6 +166,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
+                  aria-pressed={filter === f}
                   className={`px-2.5 py-1 rounded-md text-[12px] font-semibold transition-colors ${filter === f ? 'bg-[#110E0E] text-white' : 'text-[#6B5748] hover:text-[#A1A1AA] hover:bg-[#110E0E]'}`}
                 >
                   {{ all: '전체', news: '뉴스', quakes: '지진', feeds: '방송' }[f]}
@@ -186,22 +175,23 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
             </div>
 
             {/* Alert List */}
-            <div className="space-y-0.5 max-h-[180px] overflow-y-auto styled-scrollbar">
+            <div className="space-y-0.5 max-h-[240px] overflow-y-auto styled-scrollbar">
               {filtered.map((alert, i) => {
                 const Icon = getIcon(alert.type);
                 const sevColor = RISK_COLORS[alert.severity] || '#FFD700';
+                const handleClick = () => {
+                  if (alert.lat !== undefined && alert.lng !== undefined) onLocate(alert.lat, alert.lng);
+                  if (alert.feedUrl && onWatchFeed) onWatchFeed(alert.feedUrl, alert.title);
+                };
                 return (
-                  <div
+                  <button
                     key={i}
-                    onClick={() => {
-                      if (alert.lat !== undefined && alert.lng !== undefined) {
-                        onLocate(alert.lat, alert.lng);
-                      }
-                      if (alert.feedUrl && onWatchFeed) {
-                        onWatchFeed(alert.feedUrl, alert.title);
-                      }
-                    }}
-                    className="w-full text-left p-2 rounded-lg hover:bg-[var(--hover-accent)] transition-all border border-transparent hover:border-[var(--border-primary)] group cursor-default"
+                    type="button"
+                    onClick={handleClick}
+                    onKeyDown={e => e.key === 'Enter' && handleClick()}
+                    tabIndex={0}
+                    aria-label={`${alert.title} — ${alert.source}`}
+                    className="w-full text-left p-2 rounded-lg hover:bg-[var(--hover-accent)] transition-all border border-transparent hover:border-[var(--border-primary)] group"
                   >
                     <div className="flex items-start gap-2">
                       {/* Severity indicator */}
@@ -236,7 +226,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                             <span className="text-[11px] text-[var(--text-muted)] truncate max-w-[80px]">{alert.source}</span>
                             {alert.time && (
                               <span className="text-[13px] text-[var(--text-muted)] flex items-center gap-0.5">
-                                <Clock className="w-2 h-2" />
+                                <Clock className="w-3 h-3" />
                                 {new Date(alert.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </span>
                             )}
@@ -260,7 +250,7 @@ export default function LiveAlerts({ data, onLocate, onWatchFeed }: LiveAlertsPr
                         <MapPin className="w-3 h-3 text-[var(--text-muted)] opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5" />
                       )}
                     </div>
-                  </div>
+                  </button>
                 );
               })}
               {filtered.length === 0 && (

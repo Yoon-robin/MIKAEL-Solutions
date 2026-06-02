@@ -57,7 +57,12 @@ export default function ViewPresets({ onNavigate }: ViewPresetsProps) {
             }`}
           >
             <span>{p.label}</span>
-            {p.hot && <span className="w-1.5 h-1.5 rounded-full bg-[var(--alert-red)] animate-beacon ml-auto flex-shrink-0" />}
+            {p.hot && (
+              <>
+                <span className="sr-only">위험 지역</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--alert-red)] animate-beacon ml-auto flex-shrink-0" />
+              </>
+            )}
           </button>
         ))}
       </div>

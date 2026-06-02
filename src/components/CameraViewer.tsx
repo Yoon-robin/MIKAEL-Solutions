@@ -110,24 +110,24 @@ export default function CameraViewer({ camera, onClose, onLocate }: CameraViewer
               <Camera className="w-3.5 h-3.5 text-[#39FF14] flex-shrink-0" />
               <div className="min-w-0">
                 <h3 className="text-[12px] md:text-[13px] font-bold text-[#39FF14] tracking-wider truncate">{camera.name}</h3>
-                <p className="text-[6px] md:text-[13px] text-[var(--text-muted)]">{camera.city}, {camera.country} · {camera.source}</p>
+                <p className="text-[11px] md:text-[13px] text-[var(--text-muted)]">{camera.city}, {camera.country} · {camera.source}</p>
               </div>
             </div>
             <div className="flex items-center gap-1 flex-shrink-0">
               {streamType === 'jpg' && (
-                <button onClick={() => setRefreshKey(k => k + 1)} className="p-1.5 rounded hover:bg-[var(--hover-accent)] transition-colors" title="피드 새로고침">
+                <button onClick={() => setRefreshKey(k => k + 1)} className="p-1.5 rounded hover:bg-[var(--hover-accent)] transition-colors" title="피드 새로고침" aria-label="피드 새로고침">
                   <RefreshCw className="w-3 h-3 text-[var(--text-muted)] hover:text-[#39FF14]" />
                 </button>
               )}
               {camera.lat && camera.lng && (
-                <button onClick={() => onLocate?.(camera.lat, camera.lng)} className="p-1.5 rounded hover:bg-[var(--hover-accent)] transition-colors" title="지도에서 위치 보기">
-                  <MapPin className="w-3 h-3 text-[var(--text-muted)] hover:text-[var(--gold-primary)]" />
+                <button onClick={() => onLocate?.(camera.lat, camera.lng)} className="p-1.5 rounded hover:bg-[var(--hover-accent)] transition-colors" title="지도에서 위치 보기" aria-label="지도에서 위치 보기">
+                  <MapPin className="w-3 h-3 text-[var(--text-muted)] hover:text-white" />
                 </button>
               )}
-              <button onClick={() => setFullscreen(!fullscreen)} className="hidden md:block p-1.5 rounded hover:bg-[var(--hover-accent)] transition-colors" title="전체 화면 전환">
+              <button onClick={() => setFullscreen(!fullscreen)} className="hidden md:block p-1.5 rounded hover:bg-[var(--hover-accent)] transition-colors" title="전체 화면 전환" aria-label="전체 화면 전환">
                 <Maximize2 className="w-3 h-3 text-[var(--text-muted)] hover:text-white" />
               </button>
-              <button onClick={onClose} className="p-1.5 rounded hover:bg-red-900/30 transition-colors">
+              <button onClick={onClose} className="p-1.5 rounded hover:bg-red-900/30 transition-colors" aria-label="카메라 뷰어 닫기">
                 <X className="w-4 h-4 md:w-3 md:h-3 text-[var(--text-muted)] hover:text-red-400" />
               </button>
             </div>

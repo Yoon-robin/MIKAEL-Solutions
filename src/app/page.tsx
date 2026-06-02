@@ -933,11 +933,20 @@ export default function Dashboard() {
                     <>
                       <div className="glass-panel-sm p-2 mb-2">
                         <div className="grid grid-cols-5 gap-1 text-center">
-                          <div><div className="hud-label" style={{fontSize:'6px'}}>AIR</div><div className="hud-value text-[12px]">{totalFlights.toLocaleString()}</div></div>
-                          <div><div className="hud-label" style={{fontSize:'6px'}}>SAT</div><div className="hud-value text-[12px]">{(data.satellites?.length||0)}</div></div>
-                          <div><div className="hud-label" style={{fontSize:'6px'}}>CAM</div><div className="hud-value text-[12px]">{(data.cameras?.length||0)}</div></div>
-                          <div><div className="hud-label" style={{fontSize:'6px'}}>WX</div><div className="hud-value text-[12px]" style={{color:'#E040FB'}}>{(data.weather_events?.length||0)}</div></div>
-                          <div><div className="hud-label" style={{fontSize:'6px'}}>NUC</div><div className="hud-value text-[12px]" style={{color:'#76FF03'}}>{(data.infrastructure?.length||0)}</div></div>
+                          {([
+                            { label: '항공', val: totalFlights, color: '#00E5FF' },
+                            { label: '위성', val: data.satellites?.length || 0, color: '#94A3B8' },
+                            { label: 'CCTV', val: data.cameras?.length || 0, color: '#39FF14' },
+                            { label: '기상', val: data.weather_events?.length || 0, color: '#E040FB' },
+                            { label: '원전', val: data.infrastructure?.length || 0, color: '#76FF03' },
+                          ] as const).map(({ label, val, color }) => (
+                            <div key={label} className={val === 0 ? 'opacity-30' : ''}>
+                              <div className="text-[9px] text-white/40 font-bold tracking-wider mb-0.5">{label}</div>
+                              <div className="text-[12px] font-bold tabular-nums" style={{ color: val > 0 ? color : 'rgba(255,255,255,0.3)' }}>
+                                {val > 0 ? val.toLocaleString() : '—'}
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
                       <LayerPanel data={data} activeLayers={activeLayers} setActiveLayers={setActiveLayers} />

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   TrendingUp, TrendingDown, ChevronDown, ChevronUp, BarChart3,
@@ -20,6 +20,14 @@ const SECTIONS = [
   { key: 'crypto', label: '암호자산', icon: Bitcoin },
 ];
 
+function formatPrice(price: number): string {
+  if (!price && price !== 0) return '—';
+  return new Intl.NumberFormat('ko-KR', {
+    maximumFractionDigits: price >= 100 ? 0 : price >= 1 ? 2 : 4,
+    minimumFractionDigits: 0,
+  }).format(price);
+}
+
 function Ticker({ name, data: d }: { name: string; data: any }) {
   if (!d) return null;
   return (
@@ -27,7 +35,7 @@ function Ticker({ name, data: d }: { name: string; data: any }) {
       <span className="text-[13px] text-[#A1A1AA] font-semibold">{name}</span>
       <div className="flex items-center gap-2">
         <span className="text-[13px] font-semibold text-white tabular-nums">
-          {d.price >= 1000 ? `${(d.price / 1000).toFixed(1)}K` : d.price?.toFixed(2)}
+          {formatPrice(d.price)}
         </span>
         <span className={`text-[13px] font-bold flex items-center gap-0.5 ${d.up ? 'text-[var(--alert-green)]' : 'text-[var(--alert-red)]'}`}>
           {d.up ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
@@ -38,7 +46,7 @@ function Ticker({ name, data: d }: { name: string; data: any }) {
   );
 }
 
-export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) {
+function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) {
   const [expanded, setExpanded] = useState(true);
   const [activeSection, setActiveSection] = useState('stocks');
   const markets = data.markets || {};
@@ -54,6 +62,8 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
         <CardHeader className="px-4 py-3.5">
           <button
             onClick={() => setExpanded(!expanded)}
+            aria-expanded={expanded}
+            aria-label={`시장·정보 패널 ${expanded ? '접기' : '펼치기'}`}
             className="flex items-center justify-between w-full"
           >
             <div className="flex items-center gap-2.5">
@@ -117,6 +127,7 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
                       <button
                         key={s.key}
                         onClick={() => setActiveSection(s.key)}
+                        aria-pressed={activeSection === s.key}
                         className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-[12px] font-semibold whitespace-nowrap transition-colors ${
                           activeSection === s.key
                             ? 'bg-[#110E0E] text-white'
@@ -151,3 +162,5 @@ export default function MarketsPanel({ data, spaceWeather }: MarketsPanelProps) 
     </motion.div>
   );
 }
+
+export default memo(MarketsPanel);

@@ -49,7 +49,7 @@ export default function KeyboardShortcuts() {
                 <Keyboard className="w-4 h-4 text-[var(--gold-primary)]" />
                 <span className="text-sm font-bold text-[var(--text-heading)] tracking-wider">단축키</span>
               </div>
-              <button onClick={() => setIsOpen(false)} className="text-[var(--text-muted)] hover:text-[var(--text-primary)]">
+              <button onClick={() => setIsOpen(false)} className="p-1.5 rounded hover:bg-white/[0.06] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors" aria-label="단축키 도움말 닫기">
                 <X className="w-4 h-4" />
               </button>
             </div>

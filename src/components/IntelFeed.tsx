@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Newspaper, ChevronDown, ChevronUp, ExternalLink, MapPin, Zap } from 'lucide-react';
+import { Newspaper, ChevronDown, ChevronUp, ExternalLink, MapPin, Zap, Loader2 } from 'lucide-react';
+import { CATEGORY_CHIP, KOREA_BADGE } from '@/lib/categoryColors';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -45,23 +46,9 @@ function timeAgo(dateStr: string): string {
   }
 }
 
-const CATEGORY_COLOR: Record<string, string> = {
-  '북한':  'text-red-400 bg-red-950/30 border-red-900/40',
-  '안보':  'text-orange-400 bg-orange-950/30 border-orange-900/40',
-  '사이버':'text-purple-400 bg-purple-950/30 border-purple-900/40',
-  '재난':  'text-yellow-400 bg-yellow-950/30 border-yellow-900/40',
-  '기상':  'text-sky-400 bg-sky-950/30 border-sky-900/40',
-  '동북아':'text-blue-400 bg-blue-950/30 border-blue-900/40',
-  '경제':  'text-green-400 bg-green-950/30 border-green-900/40',
-  '정치':  'text-indigo-400 bg-indigo-950/30 border-indigo-900/40',
-  '사회':  'text-zinc-300 bg-zinc-900/30 border-zinc-700/40',
-  '보건':  'text-teal-400 bg-teal-950/30 border-teal-900/40',
-  '에너지':'text-amber-400 bg-amber-950/30 border-amber-900/40',
-  '교통':  'text-cyan-400 bg-cyan-950/30 border-cyan-900/40',
-  '국제':  'text-slate-300 bg-slate-900/30 border-slate-700/40',
-};
+/* CATEGORY_CHIP — @/lib/categoryColors에서 import */
 
-export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
+function IntelFeed({ data, onLocate }: IntelFeedProps) {
   const [expanded, setExpanded] = useState(true);
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const news = data.news || [];
@@ -106,9 +93,10 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
               <Separator className="bg-[#272027]" />
               <div className="max-h-[400px] overflow-y-auto styled-scrollbar divide-y divide-[var(--border-secondary)]">
                 {news.length === 0 ? (
-                  <div className="px-4 py-6 text-center">
-                    <span className="text-[13px] text-[var(--text-muted)] tracking-widest">
-                      정보 수집 대기 중...
+                  <div className="px-4 py-8 text-center flex flex-col items-center gap-2">
+                    <Loader2 className="w-4 h-4 text-white/20 animate-spin" />
+                    <span className="text-[12px] text-[var(--text-muted)] tracking-widest">
+                      뉴스 수집 중...
                     </span>
                   </div>
                 ) : (
@@ -136,14 +124,12 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
                           {getRiskLabel(item.risk_score)}
                         </span>
                         {item.category && item.category !== '기타' && (
-                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${CATEGORY_COLOR[item.category] || 'text-white/40 bg-white/[0.03] border-white/[0.08]'}`}>
+                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${CATEGORY_CHIP[item.category] || 'text-white/40 bg-white/[0.03] border-white/[0.08]'}`}>
                             {item.category}
                           </span>
                         )}
                         {(item.korea_relevance ?? 0) >= 5 && (
-                          <span className="text-[10px] font-bold text-[#00E5FF] bg-[#00E5FF]/10 border border-[#00E5FF]/20 px-1.5 py-0.5 rounded">
-                            국내
-                          </span>
+                          <span className={KOREA_BADGE}>국내</span>
                         )}
                         <span className="text-[11px] text-[#6B5748] bg-[#110E0E] px-1.5 py-0.5 rounded-md font-semibold truncate max-w-[80px]">
                           {item.source}
@@ -212,3 +198,5 @@ export default function IntelFeed({ data, onLocate }: IntelFeedProps) {
     </motion.div>
   );
 }
+
+export default memo(IntelFeed);
