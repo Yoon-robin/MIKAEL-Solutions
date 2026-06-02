@@ -254,7 +254,7 @@ function classifyDevice(
     portSet.has(4500) ||
     cpeLower.some((c) => /openvpn|wireguard/.test(c))
   ) {
-    return { device_type: 'VPN Gateway', device_icon: 'ShieldCheck', device_color: '#D4AF37' };
+    return { device_type: 'VPN Gateway', device_icon: 'ShieldCheck', device_color: '#94A3B8' };
   }
 
   // Windows Workstation

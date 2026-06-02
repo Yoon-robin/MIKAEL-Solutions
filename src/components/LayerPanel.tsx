@@ -37,7 +37,7 @@ const LAYER_GROUPS = [
     color: '#00BCD4',
     layers: [
       { key: 'maritime', label: '해상 / 함정', icon: Ship, color: '#00BCD4', dataKey: 'maritime_ships,maritime_ports,maritime_chokepoints' },
-      { key: 'satellites', label: '위성', icon: Satellite, color: '#D4AF37', dataKey: 'satellites' },
+      { key: 'satellites', label: '위성', icon: Satellite, color: '#94A3B8', dataKey: 'satellites' },
     ],
   },
   {

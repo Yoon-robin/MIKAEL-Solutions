@@ -490,7 +490,7 @@ button:not(.icon-compact), [role="button"]:not(.icon-compact) {
 /* ── Risk Badges ── */
 .risk-critical { color: #FF3D3D; text-shadow: 0 0 8px rgba(255, 61, 61, 0.5); }
 .risk-high { color: #FF9500; text-shadow: 0 0 8px rgba(255, 149, 0, 0.3); }
-.risk-medium { color: #D4AF37; }
+.risk-medium { color: #F59E0B; }
 .risk-low { color: #00E676; }
 
 /* ── CRT Scanlines ── */
@@ -1611,7 +1611,7 @@ button:not(.icon-compact), [role="button"]:not(.icon-compact) {
 }
 .gotham-tag--critical { background: rgba(255,61,61,0.12); color: #FF3D3D; border-color: rgba(255,61,61,0.3); }
 .gotham-tag--high { background: rgba(255,149,0,0.12); color: #FF9500; border-color: rgba(255,149,0,0.3); }
-.gotham-tag--medium { background: rgba(212,175,55,0.12); color: #D4AF37; border-color: rgba(212,175,55,0.3); }
+.gotham-tag--medium { background: rgba(255,255,255,0.08); color: #A1A1AA; border-color: rgba(255,255,255,0.15); }
 .gotham-tag--low { background: rgba(0,230,118,0.12); color: #00E676; border-color: rgba(0,230,118,0.3); }
 .gotham-tag--info { background: rgba(0,229,255,0.08); color: var(--cyan-primary); border-color: rgba(0,229,255,0.2); }
 .gotham-tag--classified { background: rgba(212,175,55,0.08); color: var(--gold-primary); border-color: rgba(212,175,55,0.25); letter-spacing: 0.2em; }

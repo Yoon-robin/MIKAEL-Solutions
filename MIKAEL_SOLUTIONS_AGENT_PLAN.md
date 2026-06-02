@@ -1,7 +1,7 @@
 # MIKAEL MIKAEL Solutions Agent Plan
 
 작성일: 2026-05-27 UTC
-기반: simplifaisoul/osiris + Hermes Agent + Telegram
+기반: MIKAEL Solutions + Hermes Agent + Telegram
 서버 접속 URL: https://43.200.203.218
 
 ## 1. 시스템 이름 제안
