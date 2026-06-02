@@ -10,6 +10,7 @@ import {
   Maximize2, Minimize2
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const TABS = [
   { id: 'scanner', label: '포트 스캔', icon: Radar, placeholder: 'IP 또는 호스트명', color: '#00E5FF' },
@@ -427,13 +428,16 @@ function OsintPanelInner({ isMobile, onSweepVisualize, onScanGeolocate }: OsintP
         
         {/* Secondary Controls */}
         {activeTab === 'scanner' && (
-          <select value={scanType} onChange={e => setScanType(e.target.value)}
-            className="w-full px-3 py-2 rounded text-[13px] font-semibold text-white outline-none cursor-pointer appearance-none"
-            style={{ background: '#111111', border: '1px solid rgba(255,255,255,0.1)', colorScheme: 'dark' }}>
-            <option value="quick">빠른 스캔</option>
-            <option value="deep">심층 스캔</option>
-            <option value="ports">상위 1000 포트</option>
-          </select>
+          <Select value={scanType} onValueChange={setScanType}>
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="quick">빠른 스캔</SelectItem>
+              <SelectItem value="deep">심층 스캔</SelectItem>
+              <SelectItem value="ports">상위 1000 포트</SelectItem>
+            </SelectContent>
+          </Select>
         )}
         {(activeTab === 'sweep' || activeTab === 'vuln') && (
           <div className="flex items-center justify-between bg-[var(--bg-primary)]/60 border border-[var(--border-primary)] rounded-lg p-1">
