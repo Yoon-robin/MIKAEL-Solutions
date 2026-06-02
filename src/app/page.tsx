@@ -225,6 +225,7 @@ export default function Dashboard() {
   }, []);
 
   // Mouse coords + reverse geocode (Zero-Render)
+  // BigDataCloud API: 무료, 키 없음, Nominatim보다 빠름
   const handleMouseCoords = useCallback((coords: { lat: number; lng: number }) => {
     mouseCoordsRef.current = coords;
     if (coordsDisplayRef.current) {
@@ -234,23 +235,35 @@ export default function Dashboard() {
     geocodeTimer.current = setTimeout(async () => {
       if (lastGeocodedPos.current) {
         const d = Math.abs(coords.lat - lastGeocodedPos.current.lat) + Math.abs(coords.lng - lastGeocodedPos.current.lng);
-        if (d < 0.5) return; // increased threshold — fewer geocode calls
+        if (d < 0.15) return; // ~16km 이내 이동은 스킵
       }
-      const gk = `${coords.lat.toFixed(1)},${coords.lng.toFixed(1)}`; // coarser grid = more cache hits
-      if (geocodeCache.current.has(gk)) { setLocationLabel(geocodeCache.current.get(gk)!); lastGeocodedPos.current = coords; return; }
+      const gk = `${coords.lat.toFixed(1)},${coords.lng.toFixed(1)}`;
+      if (geocodeCache.current.has(gk)) {
+        setLocationLabel(geocodeCache.current.get(gk)!);
+        lastGeocodedPos.current = coords;
+        return;
+      }
       try {
-        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${coords.lat}&lon=${coords.lng}&format=json&zoom=10&addressdetails=1`, { headers: { 'Accept-Language': 'ko,en' } });
+        // BigDataCloud — 빠른 응답, 무료, rate limit 없음
+        const res = await fetch(
+          `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${coords.lat}&longitude=${coords.lng}&localityLanguage=ko`,
+          { signal: AbortSignal.timeout(3000) }
+        );
         if (res.ok) {
           const d = await res.json();
-          const a = d.address || {};
-          const label = [a.city||a.town||a.village||a.county, a.state||a.region, a.country].filter(Boolean).join(', ') || '알 수 없음';
-          if (geocodeCache.current.size > 500) { const it = geocodeCache.current.keys(); for (let i=0;i<100;i++) { const k = it.next().value; if(k) geocodeCache.current.delete(k); }}
+          const city = d.city || d.locality || d.principalSubdivision || '';
+          const country = d.countryName || '';
+          const label = [city, country].filter(Boolean).join(', ') || '알 수 없음';
+          if (geocodeCache.current.size > 500) {
+            const it = geocodeCache.current.keys();
+            for (let i = 0; i < 100; i++) { const k = it.next().value; if (k) geocodeCache.current.delete(k); }
+          }
           geocodeCache.current.set(gk, label);
           setLocationLabel(label);
           lastGeocodedPos.current = coords;
         }
-      } catch (e) { console.warn('[MIKAEL Solutions] Suppressed error:', e instanceof Error ? e.message : e); }
-    }, 3000); // 3s debounce (was 1.5s)
+      } catch (e) { console.warn('[MIKAEL] geocode suppressed:', e instanceof Error ? e.message : e); }
+    }, 800); // 3000ms → 800ms
   }, []);
 
   // Region dossier (right-click)
